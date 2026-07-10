@@ -327,14 +327,14 @@
       transition: transform .8s var(--ease);
     }
     .product-stage:hover { transform: perspective(1000px) rotateY(0) rotateX(0) translateY(-6px); }
-    .orbit {
+    .stage-orbit {
       position: absolute;
-      inset: 11%;
+      inset: 10%;
       border: 1px solid color-mix(in srgb, var(--accent) 23%, transparent);
       border-radius: 50%;
       animation: orbit 24s linear infinite;
     }
-    .orbit::before, .orbit::after {
+    .stage-orbit::before, .stage-orbit::after {
       content: "";
       position: absolute;
       width: 9px;
@@ -343,69 +343,68 @@
       background: var(--accent);
       box-shadow: 0 0 24px var(--accent);
     }
-    .orbit::before { top: 12%; left: 12%; }
-    .orbit::after { right: 4%; bottom: 28%; background: #bf5af2; }
-    .pendant {
+    .stage-orbit::before { top: 12%; left: 12%; }
+    .stage-orbit::after { right: 4%; bottom: 28%; background: #bf5af2; }
+    .curation-core {
       position: absolute;
-      z-index: 2;
-      width: 31%;
-      height: 41%;
-      left: 15%;
-      top: 34%;
-      border: 2px solid color-mix(in srgb, var(--text) 42%, transparent);
-      border-radius: 50% 50% 55% 55% / 42% 42% 68% 68%;
-      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.28));
-      box-shadow: inset 9px 10px 24px rgba(255,255,255,.7), var(--shadow-float);
-      animation: float 5s var(--ease) infinite alternate;
+      z-index: 4;
+      left: 50%;
+      top: 50%;
+      width: 42%;
+      min-width: 178px;
+      display: grid;
+      justify-items: center;
+      border: 1px solid rgba(255,255,255,.62);
+      border-radius: 28px;
+      padding: 23px 18px 20px;
+      background: color-mix(in srgb, var(--surface) 82%, transparent);
+      box-shadow: var(--shadow-float);
+      -webkit-backdrop-filter: blur(22px);
+      backdrop-filter: blur(22px);
+      text-align: center;
+      transform: translate(-50%, -50%);
+      animation: curation-pulse 4.8s var(--ease) infinite alternate;
     }
-    .pendant::before {
-      content: "";
-      position: absolute;
-      width: 110%;
-      height: 74%;
-      left: -5%;
-      top: -56%;
-      border: 2px solid color-mix(in srgb, var(--text) 37%, transparent);
-      border-color: color-mix(in srgb, var(--text) 37%, transparent) transparent transparent;
-      border-radius: 50%;
+    .curation-core img {
+      width: 54px;
+      height: 54px;
+      border-radius: 17px;
+      box-shadow: 0 12px 28px rgba(10,132,255,.22);
     }
-    .watch {
+    .curation-core strong { margin-top: 12px; font-size: .94rem; letter-spacing: -.02em; }
+    .curation-core small { margin-top: 3px; color: var(--muted); font-size: .67rem; }
+    .collection-chip {
       position: absolute;
       z-index: 3;
-      width: 32%;
-      height: 39%;
-      right: 13%;
-      top: 20%;
-      border: 4px solid color-mix(in srgb, var(--text) 50%, transparent);
-      border-radius: 48% / 54%;
-      background: linear-gradient(145deg, #fff, #e8e8ed);
-      box-shadow: inset -10px -12px 24px rgba(0,0,0,.06), var(--shadow-float);
-      animation: float 5.8s var(--ease) .4s infinite alternate-reverse;
-    }
-    .watch::before, .watch::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
       width: 34%;
-      height: 74%;
-      left: 33%;
-      border: 3px solid color-mix(in srgb, var(--text) 42%, transparent);
-      border-radius: 10px;
-      background: repeating-linear-gradient(90deg, transparent 0 4px, rgba(127,127,127,.2) 4px 5px);
+      min-width: 142px;
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255,255,255,.56);
+      border-radius: 18px;
+      padding: 10px;
+      background: color-mix(in srgb, var(--surface) 76%, transparent);
+      box-shadow: 0 14px 34px rgba(0,0,0,.12);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      animation: collection-drift 5.6s var(--ease) infinite alternate;
     }
-    .watch::before { bottom: 82%; }
-    .watch::after { top: 82%; }
-    .watch-hand {
-      position: absolute;
-      width: 3px;
-      height: 31%;
-      left: calc(50% - 1.5px);
-      top: 23%;
-      border-radius: 99px;
-      background: var(--accent);
-      transform: rotate(32deg);
-      transform-origin: bottom;
+    .collection-chip svg {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      padding: 7px;
+      background: var(--accent-soft);
+      color: var(--accent);
     }
+    .collection-chip b, .collection-chip small { display: block; }
+    .collection-chip b { font-size: .72rem; }
+    .collection-chip small { margin-top: 2px; color: var(--muted); font-size: .6rem; }
+    .stage-necklace { left: 7%; top: 12%; transform: rotate(-3deg); }
+    .stage-watch { right: 5%; top: 16%; transform: rotate(3deg); animation-delay: -.8s; }
+    .stage-lens { right: 8%; bottom: 13%; transform: rotate(-2deg); animation-delay: -1.6s; }
     .stage-label {
       position: absolute;
       z-index: 5;
@@ -631,8 +630,10 @@
       object-fit: contain;
       object-position: center;
       background: #fff;
+      opacity: 0;
       transition: transform .7s var(--ease), opacity .25s ease;
     }
+    .product-image.is-loaded { opacity: 1; }
     .product-image.is-screenshot { object-fit: cover; object-position: top center; }
     .product-card:hover .product-image { transform: scale(1.045); }
     .product-fallback {
@@ -643,7 +644,8 @@
       color: color-mix(in srgb, var(--accent) 66%, var(--text));
     }
     .product-fallback svg { width: 42%; max-height: 56%; opacity: .58; }
-    .product-media:not(.image-error) .product-fallback { opacity: 0; }
+    .product-fallback { transition: opacity .25s ease; }
+    .product-media.has-image .product-fallback { opacity: 0; }
     .product-media.image-error .product-image { display: none; }
     .media-badge {
       position: absolute;
@@ -780,7 +782,7 @@
     .table-link { display: inline-flex; margin-top: 6px; color: var(--accent); font-size: .78rem; font-weight: 650; text-decoration: none; }
 
     .quick-view-dialog, .favorites-dialog {
-      width: min(900px, calc(100% - 28px));
+      width: min(980px, calc(100% - 28px));
       max-height: min(820px, calc(100dvh - 36px));
       border: 1px solid var(--line-soft);
       border-radius: 30px;
@@ -788,13 +790,15 @@
       background: var(--surface);
       color: var(--text);
       box-shadow: var(--shadow-float);
-      overflow: auto;
+      overflow: hidden;
     }
     .quick-view-dialog::backdrop, .favorites-dialog::backdrop { background: rgba(0,0,0,.48); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
     .quick-close { position: absolute; z-index: 4; top: 18px; right: 18px; }
-    .quick-view-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
-    .quick-view-media { min-height: 520px; margin: 14px; border-radius: 22px; }
-    .quick-view-info { display: flex; flex-direction: column; justify-content: center; padding: 62px 48px 48px 34px; }
+    .quick-view-layout { display: grid; grid-template-columns: minmax(0, 46%) minmax(0, 54%); height: min(700px, calc(100dvh - 36px)); min-height: 560px; }
+    .quick-view-media { min-width: 0; min-height: 0; margin: 14px; border-radius: 22px; }
+    .quick-view-media .product-image { position: absolute; inset: 0; width: 100%; height: 100%; padding: clamp(22px, 4vw, 48px); }
+    .quick-view-media .product-image.is-screenshot { padding: 0; }
+    .quick-view-info { min-width: 0; display: flex; flex-direction: column; justify-content: flex-start; overflow-y: auto; padding: 72px 48px 48px 34px; }
     .quick-view-info .eyebrow { margin-bottom: 10px; }
     .quick-view-info h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.03; letter-spacing: -.052em; }
     .quick-price { margin: 18px 0 0; font-size: 1.45rem; font-weight: 740; }
@@ -879,6 +883,8 @@
     @keyframes breathe { to { transform: translate(-24px, 16px) scale(1.08); } }
     @keyframes orbit { to { transform: rotate(360deg); } }
     @keyframes float { to { transform: translateY(-16px) rotate(2deg); } }
+    @keyframes collection-drift { to { translate: 0 -11px; } }
+    @keyframes curation-pulse { to { transform: translate(-50%, -53%) scale(1.025); box-shadow: 0 26px 70px rgba(10,132,255,.2); } }
     @keyframes shimmer { to { background-position: -250% 0; } }
     @keyframes view-in { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
@@ -907,8 +913,10 @@
       .product-grid, .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .footer-inner { flex-direction: column; }
       .quick-view-layout { grid-template-columns: 1fr; }
-      .quick-view-media { min-height: 360px; }
-      .quick-view-info { padding: 28px 24px 34px; }
+      .quick-view-dialog { overflow: auto; }
+      .quick-view-layout { height: auto; min-height: 0; }
+      .quick-view-media { height: min(420px, 52vh); min-height: 320px; }
+      .quick-view-info { overflow: visible; padding: 28px 24px 34px; }
     }
     @media (max-width: 580px) {
       .category-tabs { gap: 2px; padding: 3px; }
@@ -933,7 +941,7 @@
       .favorite-row { grid-template-columns: 68px 1fr; }
       .favorite-thumb { width: 68px; height: 68px; }
       .favorite-row-actions { grid-column: 1 / -1; }
-      .quick-view-media { min-height: 300px; }
+      .quick-view-media { height: 300px; min-height: 300px; }
       .quick-specs { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
@@ -983,8 +991,7 @@
           <h1 id="hero-title">Curated for<br><span class="gradient-word">Abigail.</span></h1>
           <p class="hero-lede">Abigail을 위해 고른 제품들. 새로운 카테고리를 계속 더하며, 마음에 드는 제품을 한곳에서 편하게 만나볼 수 있어요.</p>
           <div class="hero-actions">
-            <button class="button button-primary" id="explore-collections" type="button">컬렉션 둘러보기 <span class="arrow" aria-hidden="true">→</span></button>
-            <button class="button button-secondary" id="explore-lenses" type="button">렌즈 보기</button>
+            <button class="button button-primary" id="explore-collections" type="button">컬렉션 보기 <span class="arrow" aria-hidden="true">→</span></button>
           </div>
           <ul class="hero-stats">
             <li class="stat"><strong>3</strong><span>collections</span></li>
@@ -994,10 +1001,21 @@
         </div>
 
         <div class="product-stage" aria-hidden="true" data-reveal>
-          <span class="orbit"></span>
-          <span class="pendant"></span>
-          <span class="watch"><span class="watch-hand"></span></span>
-          <span class="stage-label">Chosen for Abigail</span>
+          <span class="stage-orbit"></span>
+          <span class="collection-chip stage-necklace">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 5c1.5 9 4.5 13.5 11 13.5S25.5 14 27 5"/><path d="M16 17c-4.5 0-6.5 3.2-6.5 6.7 0 4.2 2.8 6.8 6.5 6.8s6.5-2.6 6.5-6.8C22.5 20.2 20.5 17 16 17Z"/></svg>
+            <span><b>Necklaces</b><small>5 curated pieces</small></span>
+          </span>
+          <span class="collection-chip stage-watch">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m12 8 1-6h6l1 6m-8 16 1 6h6l1-6"/><ellipse cx="16" cy="16" rx="9" ry="10"/><path d="M16 11v5l3.5 2"/></svg>
+            <span><b>Watches</b><small>36 curated picks</small></span>
+          </span>
+          <span class="collection-chip stage-lens">
+            <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="26" height="17" rx="4"/><circle cx="16" cy="16.5" r="8"/><circle cx="16" cy="16.5" r="4.5"/></svg>
+            <span><b>Lenses</b><small>35 curated picks</small></span>
+          </span>
+          <span class="curation-core"><img src="favicon.svg" alt=""><strong>Abigail’s edit</strong><small>One thoughtful collection</small></span>
+          <span class="stage-label">3 collections · 77 products</span>
         </div>
       </div>
 
@@ -1185,23 +1203,37 @@
     const usd = value => value === null || value === "" || Number.isNaN(Number(value)) ? "Price unavailable" : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(Number(value));
     const productImage = product => product.image || `https://api.microlink.io/?url=${encodeURIComponent(safeUrl(product.url))}&embed=image.url`;
     const productScreenshot = url => `https://api.microlink.io/?url=${encodeURIComponent(safeUrl(url))}&screenshot=true&meta=false&embed=screenshot.url`;
+    const productPagePreview = url => `https://image.thum.io/get/width/900/crop/900/noanimate/${safeUrl(url)}`;
+    function handleProductImageLoad(image) {
+      const media = image.closest(".product-media");
+      image.classList.add("is-loaded");
+      media?.classList.add("has-image");
+      media?.classList.remove("image-error");
+    }
     function handleProductImageError(image) {
       const media = image.closest(".product-media");
+      image.classList.remove("is-loaded");
+      media?.classList.remove("has-image");
       if (!image.dataset.screenshotAttempted) {
         image.dataset.screenshotAttempted = "true";
         image.classList.add("is-screenshot");
         image.src = productScreenshot(image.dataset.productUrl);
         return;
       }
-      media.classList.add("image-error");
+      if (!image.dataset.previewAttempted) {
+        image.dataset.previewAttempted = "true";
+        image.src = productPagePreview(image.dataset.productUrl);
+        return;
+      }
+      media?.classList.add("image-error");
     }
     const fallbackIcon = type => type === "watch"
       ? `<svg viewBox="0 0 160 200" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><path d="M59 49 64 9h32l5 40M59 151l5 40h32l5-40"/><ellipse cx="80" cy="100" rx="52" ry="62"/><path d="M80 69v34l22 15" stroke-linecap="round"/></svg>`
       : type === "lens"
-        ? `<svg viewBox="0 0 200 180" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><path d="M25 47h150v86H25z" rx="18"/><ellipse cx="100" cy="90" rx="54" ry="54"/><ellipse cx="100" cy="90" rx="34" ry="34"/><path d="M42 47v86M158 47v86"/></svg>`
+        ? `<svg viewBox="0 0 200 180" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><rect x="25" y="47" width="150" height="86" rx="18"/><ellipse cx="100" cy="90" rx="54" ry="54"/><ellipse cx="100" cy="90" rx="34" ry="34"/><path d="M42 47v86M158 47v86"/></svg>`
         : `<svg viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M28 26c9 54 26 81 62 81s53-27 62-81" stroke-linecap="round"/><path d="M90 102c-27 0-39 20-39 43 0 27 17 44 39 44s39-17 39-44c0-23-12-43-39-43Z"/></svg>`;
     const heartIcon = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.9l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.3 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>`;
-    const cardMedia = (product, label) => `<figure class="product-media"><span class="media-badge">${esc(label)}</span><button class="favorite-toggle" type="button" data-favorite="${esc(product.id)}" aria-label="${esc(product.name)} 저장" aria-pressed="${state.favorites.has(product.id)}">${heartIcon}</button><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon(product.type)}</span><button class="quick-view" type="button" data-quick-view="${esc(product.id)}">Quick view</button></figure>`;
+    const cardMedia = (product, label) => `<figure class="product-media"><span class="media-badge">${esc(label)}</span><button class="favorite-toggle" type="button" data-favorite="${esc(product.id)}" aria-label="${esc(product.name)} 저장" aria-pressed="${state.favorites.has(product.id)}">${heartIcon}</button><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onload="handleProductImageLoad(this)" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon(product.type)}</span><button class="quick-view" type="button" data-quick-view="${esc(product.id)}">Quick view</button></figure>`;
 
     function necklaceCard(product) {
       return `
@@ -1406,7 +1438,7 @@
           ? [["Case", product.case || "—"], ["Strap", product.strap || "—"], ["Finish", product.finish || "—"], ["Best for", product.best || "—"]]
           : [["Collection", "Egg-drop"], ["Material", "Surgical steel"], ["Retailer", product.retailer], ["Price note", product.note]];
       $("#quick-view-content").innerHTML = `<div class="quick-view-layout">
-        <figure class="product-media quick-view-media"><span class="media-badge">${esc(product.type)}</span><button class="favorite-toggle" type="button" data-favorite="${esc(product.id)}" aria-label="${esc(product.name)} 저장" aria-pressed="${state.favorites.has(product.id)}">${heartIcon}</button><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon(product.type)}</span></figure>
+        <figure class="product-media quick-view-media"><span class="media-badge">${esc(product.type)}</span><button class="favorite-toggle" type="button" data-favorite="${esc(product.id)}" aria-label="${esc(product.name)} 저장" aria-pressed="${state.favorites.has(product.id)}">${heartIcon}</button><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" decoding="async" onload="handleProductImageLoad(this)" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon(product.type)}</span></figure>
         <div class="quick-view-info"><p class="eyebrow">${esc(product.brand)} · Quick view</p><h2 id="quick-view-title">${esc(product.name)}</h2><p class="quick-price">${esc(product.priceLabel)}</p><p class="quick-description">${esc(product.notes || product.note || product.tier || "Curated for Abigail")}</p><div class="quick-specs">${specs.map(([label,value]) => `<div class="quick-spec"><small>${esc(label)}</small><strong>${esc(value || "—")}</strong></div>`).join("")}</div><div class="quick-actions"><button class="button button-secondary" type="button" data-compare="${esc(product.id)}">Compare</button><a class="button button-primary" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer">View product ↗</a></div></div>
       </div>`;
       bindProductButtons();
@@ -1470,7 +1502,6 @@
         });
       });
       $("#explore-collections").addEventListener("click", () => document.querySelector(".landing-categories").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }));
-      $("#explore-lenses").addEventListener("click", () => switchCategory("lens", { scroll: true }));
       $$('[data-open-category]').forEach(button => button.addEventListener("click", () => switchCategory(button.dataset.openCategory, { scroll: true })));
       $("#theme-toggle").addEventListener("click", () => {
         const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
