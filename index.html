@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="목걸이와 시계를 더 쉽고 아름답게 비교하는 큐레이션 가이드">
   <meta name="theme-color" content="#f5f5f7">
-  <title>Compare — Curated Product Guide</title>
+  <meta name="apple-mobile-web-app-title" content="Abigail">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="favicon.svg" color="#0071e3">
+  <link rel="manifest" href="site.webmanifest">
+  <title>Curated for Abigail</title>
   <script>
     (() => {
       const saved = localStorage.getItem("compare-theme");
@@ -121,18 +125,11 @@
     }
     .brand-mark {
       position: relative;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #5ac8fa, var(--accent) 58%, #5e5ce6);
-      box-shadow: inset 0 1px 1px rgba(255,255,255,.5), 0 5px 14px rgba(0,113,227,.2);
-    }
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      inset: 7px;
-      border: 1.5px solid rgba(255,255,255,.9);
-      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      border-radius: 9px;
+      background: url("favicon.svg") center / cover no-repeat;
+      box-shadow: 0 5px 14px rgba(0,113,227,.2);
     }
     .category-tabs {
       display: flex;
@@ -195,6 +192,26 @@
     }
     .icon-button:hover { transform: rotate(10deg) scale(1.05); }
     .icon-button svg { width: 17px; height: 17px; }
+    .favorites-button { position: relative; }
+    .favorites-button:hover { transform: scale(1.05); }
+    .favorites-button #favorites-count {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      min-width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--surface);
+      border-radius: 999px;
+      padding-inline: 3px;
+      background: var(--accent);
+      color: #fff;
+      font-size: .58rem;
+      font-weight: 750;
+    }
+    .scroll-progress { position: absolute; inset: auto 0 -1px; height: 2px; overflow: hidden; }
+    .scroll-progress span { display: block; width: 100%; height: 100%; background: linear-gradient(90deg, var(--accent), #7d5cff, #bf5af2); transform: scaleX(0); transform-origin: left; will-change: transform; }
     html[data-theme="dark"] .sun-icon { display: none; }
     html:not([data-theme="dark"]) .moon-icon { display: none; }
 
@@ -413,7 +430,7 @@
     .landing-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 28px; }
     .landing-heading .eyebrow { margin-bottom: 8px; }
     .landing-heading h2 { margin: 0; font-size: clamp(2.3rem, 4vw, 3.8rem); line-height: 1; letter-spacing: -.052em; }
-    .landing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .landing-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
     .landing-card {
       position: relative;
       min-height: 520px;
@@ -468,8 +485,33 @@
     .landing-art-watch span::before, .landing-art-watch span::after { content: ""; position: absolute; z-index: -1; width: 38px; height: 115px; left: 40px; border: 3px solid color-mix(in srgb, var(--text) 42%, transparent); border-radius: 10px; background: repeating-linear-gradient(90deg, transparent 0 5px, rgba(127,127,127,.22) 5px 6px); }
     .landing-art-watch span::before { bottom: 135px; }
     .landing-art-watch span::after { top: 135px; }
+    .landing-art-lens span {
+      position: relative;
+      width: 164px;
+      height: 132px;
+      border: 4px solid #3a3a3c;
+      border-radius: 30px;
+      background: linear-gradient(90deg, #111 0 14%, #424248 14% 19%, #161618 19% 80%, #4c4c52 80% 86%, #111 86%);
+      box-shadow: var(--shadow-float);
+      transform: rotate(-7deg);
+      transition: transform .7s var(--ease);
+    }
+    .landing-art-lens span::before {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 12px;
+      left: 30px;
+      border: 4px solid #62626a;
+      border-radius: 50%;
+      background: radial-gradient(circle at 36% 32%, #7dd3fc, #1e40af 22%, #111827 48%, #050508 70%);
+      box-shadow: inset 0 0 0 8px #18181b, inset 0 0 24px rgba(90,200,250,.55);
+    }
+    .landing-art-lens span::after { content: ""; position: absolute; inset: 7px 18px; border: 1px solid rgba(255,255,255,.14); border-radius: 22px; }
     .landing-card:hover .landing-art-necklace span { transform: translateY(-10px) rotate(0); }
     .landing-card:hover .landing-art-watch span { transform: translateY(-10px) rotate(0); }
+    .landing-card:hover .landing-art-lens span { transform: translateY(-10px) rotate(0); }
     .landing-card-copy { display: grid; gap: 4px; padding: 18px 12px 10px; }
     .landing-card-copy small { color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
     .landing-card-copy strong { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.05; letter-spacing: -.045em; }
@@ -622,6 +664,24 @@
       font-size: .68rem;
       font-weight: 700;
     }
+    .favorite-toggle, .quick-view {
+      position: absolute;
+      z-index: 4;
+      border: 1px solid rgba(255,255,255,.6);
+      background: rgba(255,255,255,.82);
+      color: #1d1d1f;
+      box-shadow: 0 6px 22px rgba(0,0,0,.1);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      cursor: pointer;
+      transition: transform .25s var(--ease), background-color .25s ease, color .25s ease, opacity .25s ease;
+    }
+    .favorite-toggle { top: 12px; right: 12px; width: 36px; height: 36px; display: grid; place-items: center; border-radius: 50%; }
+    .favorite-toggle svg { width: 17px; height: 17px; }
+    .favorite-toggle[aria-pressed="true"] { background: var(--accent); color: #fff; }
+    .favorite-toggle:hover { transform: scale(1.08); }
+    .quick-view { right: 50%; bottom: 14px; min-height: 38px; border-radius: 999px; padding: 8px 15px; font-size: .75rem; font-weight: 700; opacity: 0; transform: translate(50%, 12px); }
+    .product-card:hover .quick-view, .quick-view:focus-visible { opacity: 1; transform: translate(50%, 0); }
     .product-copy { position: relative; z-index: 1; display: flex; min-height: 188px; flex-direction: column; padding: 17px 12px 12px; }
     .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
     .badges { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -719,6 +779,94 @@
     .comparison-table thead th { color: var(--text); font-size: 1rem; }
     .table-link { display: inline-flex; margin-top: 6px; color: var(--accent); font-size: .78rem; font-weight: 650; text-decoration: none; }
 
+    .quick-view-dialog, .favorites-dialog {
+      width: min(900px, calc(100% - 28px));
+      max-height: min(820px, calc(100dvh - 36px));
+      border: 1px solid var(--line-soft);
+      border-radius: 30px;
+      padding: 0;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow-float);
+      overflow: auto;
+    }
+    .quick-view-dialog::backdrop, .favorites-dialog::backdrop { background: rgba(0,0,0,.48); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+    .quick-close { position: absolute; z-index: 4; top: 18px; right: 18px; }
+    .quick-view-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+    .quick-view-media { min-height: 520px; margin: 14px; border-radius: 22px; }
+    .quick-view-info { display: flex; flex-direction: column; justify-content: center; padding: 62px 48px 48px 34px; }
+    .quick-view-info .eyebrow { margin-bottom: 10px; }
+    .quick-view-info h2 { margin: 0; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.03; letter-spacing: -.052em; }
+    .quick-price { margin: 18px 0 0; font-size: 1.45rem; font-weight: 740; }
+    .quick-description { margin: 16px 0 0; color: var(--muted); }
+    .quick-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 24px 0 0; }
+    .quick-spec { border-top: 1px solid var(--line-soft); padding-top: 10px; }
+    .quick-spec small { display: block; color: var(--faint); font-size: .63rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+    .quick-spec strong { display: block; margin-top: 3px; font-size: .86rem; }
+    .quick-actions { display: flex; gap: 9px; margin-top: 28px; }
+    .quick-actions .button { flex: 1; }
+
+    .favorites-dialog .dialog-head .eyebrow { margin: 0 0 3px; }
+    .favorites-dialog .dialog-head h2 { font-size: 1.7rem; }
+    .favorites-content { display: grid; gap: 10px; padding: 18px 22px 26px; }
+    .favorite-row { display: grid; grid-template-columns: 86px 1fr auto; align-items: center; gap: 15px; border: 1px solid var(--line-soft); border-radius: 18px; padding: 9px; background: var(--surface-2); }
+    .favorite-thumb { width: 86px; height: 86px; border-radius: 12px; object-fit: contain; background: #fff; }
+    .favorite-row-copy { min-width: 0; }
+    .favorite-row-copy small { color: var(--accent); font-weight: 700; }
+    .favorite-row-copy strong { display: block; overflow: hidden; margin-top: 3px; text-overflow: ellipsis; white-space: nowrap; }
+    .favorite-row-copy span { display: block; margin-top: 3px; color: var(--muted); font-size: .78rem; }
+    .favorite-row-actions { position: relative; z-index: 2; display: flex; gap: 7px; }
+    .favorite-row-actions a, .favorite-row-actions button { min-height: 38px; border: 1px solid var(--line); border-radius: 999px; padding: 8px 12px; background: var(--surface); color: var(--text); font-size: .75rem; font-weight: 650; text-decoration: none; cursor: pointer; }
+    .favorites-empty { padding: 70px 24px; text-align: center; }
+    .favorites-empty strong { display: block; font-size: 1.25rem; }
+    .favorites-empty span { display: block; margin-top: 7px; color: var(--muted); }
+
+    .back-to-top {
+      position: fixed;
+      z-index: 80;
+      right: 22px;
+      bottom: max(22px, env(safe-area-inset-bottom));
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line-soft);
+      border-radius: 50%;
+      background: var(--surface-glass);
+      color: var(--text);
+      box-shadow: var(--shadow-card);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(12px);
+      transition: opacity .3s ease, transform .35s var(--ease);
+    }
+    .back-to-top.is-visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .toast-region {
+      position: fixed;
+      z-index: 300;
+      top: calc(var(--nav-height) + 16px);
+      left: 50%;
+      min-width: min(360px, calc(100% - 32px));
+      border: 1px solid var(--line-soft);
+      border-radius: 999px;
+      padding: 11px 17px;
+      background: var(--surface-glass);
+      color: var(--text);
+      box-shadow: var(--shadow-card);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      font-size: .82rem;
+      font-weight: 650;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, -12px);
+      transition: opacity .25s ease, transform .35s var(--ease);
+    }
+    .toast-region.is-visible { opacity: 1; transform: translate(-50%, 0); }
+    .view-enter { animation: view-in .55s var(--ease) both; }
+
     .site-footer { border-top: 1px solid var(--line-soft); padding: 36px 0 92px; color: var(--muted); font-size: .75rem; }
     .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
     .footer-inner p { margin: 0; }
@@ -732,9 +880,11 @@
     @keyframes orbit { to { transform: rotate(360deg); } }
     @keyframes float { to { transform: translateY(-16px) rotate(2deg); } }
     @keyframes shimmer { to { background-position: -250% 0; } }
+    @keyframes view-in { from { opacity: 0; transform: translateY(12px); filter: blur(4px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
 
     @media (max-width: 1060px) {
       .hero { grid-template-columns: 1fr 390px; gap: 48px; }
+      .landing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .product-grid, .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .filter-panel { grid-template-columns: 1fr 1fr; }
       .clear-button { grid-column: 2; }
@@ -744,7 +894,7 @@
       .nav { width: min(100% - 24px, 1280px); grid-template-columns: auto 1fr auto; gap: 10px; }
       .brand span:last-child, .nav-status { display: none; }
       .category-tabs { justify-self: center; }
-      .tab { min-width: 78px; min-height: 38px; padding: 7px 10px; }
+      .tab { min-width: 62px; min-height: 38px; padding: 7px 8px; }
       .container { width: min(100% - 28px, 1280px); }
       .hero { grid-template-columns: 1fr; min-height: 0; gap: 60px; padding-block: 82px 96px; }
       .hero h1 { max-width: 640px; }
@@ -756,10 +906,13 @@
       .field-search { grid-column: 1 / -1; }
       .product-grid, .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .footer-inner { flex-direction: column; }
+      .quick-view-layout { grid-template-columns: 1fr; }
+      .quick-view-media { min-height: 360px; }
+      .quick-view-info { padding: 28px 24px 34px; }
     }
     @media (max-width: 580px) {
       .category-tabs { gap: 2px; padding: 3px; }
-      .tab { min-width: 68px; padding-inline: 8px; font-size: .72rem; }
+      .tab { min-width: 53px; padding-inline: 6px; font-size: .68rem; }
       .hero h1 { font-size: clamp(3.15rem, 16vw, 5rem); }
       .hero-lede { font-size: 1rem; }
       .hero-actions .button { width: 100%; }
@@ -776,6 +929,12 @@
       .compare-tray { border-radius: 22px; }
       .compare-actions { gap: 4px; }
       .tray-button { padding-inline: 11px; }
+      .quick-view-dialog, .favorites-dialog { border-radius: 22px; }
+      .favorite-row { grid-template-columns: 68px 1fr; }
+      .favorite-thumb { width: 68px; height: 68px; }
+      .favorite-row-actions { grid-column: 1 / -1; }
+      .quick-view-media { min-height: 300px; }
+      .quick-specs { grid-template-columns: 1fr; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
@@ -789,25 +948,31 @@
 
   <header class="site-header">
     <nav class="nav" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="Compare home">
+      <a class="brand" href="#top" aria-label="Curated for Abigail home">
         <span class="brand-mark" aria-hidden="true"></span>
-        <span>COMPARE</span>
+        <span>ABIGAIL</span>
       </a>
 
       <div class="category-tabs" role="tablist" aria-label="제품 비교 카테고리">
         <button class="tab" id="home-tab" type="button" role="tab" aria-selected="true" aria-controls="home-panel" data-category="home">Home</button>
         <button class="tab" id="necklace-tab" type="button" role="tab" aria-selected="false" aria-controls="necklace-panel" data-category="necklace" tabindex="-1">목걸이</button>
         <button class="tab" id="watch-tab" type="button" role="tab" aria-selected="false" aria-controls="watch-panel" data-category="watch" tabindex="-1">시계</button>
+        <button class="tab" id="lens-tab" type="button" role="tab" aria-selected="false" aria-controls="lens-panel" data-category="lens" tabindex="-1">렌즈</button>
       </div>
 
       <div class="nav-actions">
         <span class="nav-status">Curated guide</span>
+        <button class="icon-button favorites-button" id="favorites-open" type="button" aria-label="저장한 제품 열기">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.9l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.3 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>
+          <span id="favorites-count" aria-hidden="true">0</span>
+        </button>
         <button class="icon-button" id="theme-toggle" type="button" aria-label="다크 모드로 전환">
           <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
           <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.2 15.6A8.5 8.5 0 0 1 8.4 3.8 8.5 8.5 0 1 0 20.2 15.6Z"/></svg>
         </button>
       </div>
     </nav>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress-bar"></span></div>
   </header>
 
   <main id="top">
@@ -816,14 +981,14 @@
         <div class="hero-copy" data-reveal>
           <p class="eyebrow">A personal edit</p>
           <h1 id="hero-title">Curated for<br><span class="gradient-word">Abigail.</span></h1>
-          <p class="hero-lede">Abigail을 위해 고른 목걸이와 시계 컬렉션. 부담 없이 둘러보고, 마음에 드는 제품을 바로 만나보세요.</p>
+          <p class="hero-lede">Abigail을 위해 고른 제품들. 새로운 카테고리를 계속 더하며, 마음에 드는 제품을 한곳에서 편하게 만나볼 수 있어요.</p>
           <div class="hero-actions">
-            <button class="button button-primary" id="explore-necklaces" type="button">목걸이 컬렉션 <span class="arrow" aria-hidden="true">→</span></button>
-            <button class="button button-secondary" id="explore-watches" type="button">시계 컬렉션</button>
+            <button class="button button-primary" id="explore-collections" type="button">컬렉션 둘러보기 <span class="arrow" aria-hidden="true">→</span></button>
+            <button class="button button-secondary" id="explore-lenses" type="button">렌즈 보기</button>
           </div>
           <ul class="hero-stats">
-            <li class="stat"><strong>5</strong><span>necklaces</span></li>
-            <li class="stat"><strong id="hero-watch-count">36</strong><span>watches</span></li>
+            <li class="stat"><strong>3</strong><span>collections</span></li>
+            <li class="stat"><strong id="hero-total-count">77</strong><span>products</span></li>
             <li class="stat"><strong>3</strong><span>compare at once</span></li>
           </ul>
         </div>
@@ -849,6 +1014,10 @@
           <button class="landing-card landing-watch" type="button" data-open-category="watch">
             <span class="landing-art landing-art-watch" aria-hidden="true"><span></span></span>
             <span class="landing-card-copy"><small><span id="landing-watch-count">36</span> curated picks</small><strong>Watches</strong><span>Petite oval classics <b aria-hidden="true">→</b></span></span>
+          </button>
+          <button class="landing-card landing-lens" type="button" data-open-category="lens">
+            <span class="landing-art landing-art-lens" aria-hidden="true"><span></span></span>
+            <span class="landing-card-copy"><small><span id="landing-lens-count">35</span> curated picks</small><strong>Lenses</strong><span>Sony E-mount essentials <b aria-hidden="true">→</b></span></span>
           </button>
         </div>
       </section>
@@ -907,6 +1076,46 @@
           <ul class="product-grid" id="watch-grid"></ul>
           <div class="empty-state" id="empty-state" hidden><strong>조건에 맞는 제품이 없습니다.</strong><span>검색어나 필터를 조정해 주세요.</span></div>
         </section>
+
+        <section id="lens-panel" role="tabpanel" aria-labelledby="lens-tab" hidden>
+          <div class="section-intro" data-reveal>
+            <div>
+              <p class="eyebrow">Lens collection</p>
+              <h2 id="lens-title">Sony E-mount 렌즈를<br>한눈에.</h2>
+              <p>단렌즈부터 프로 줌렌즈까지, 화각과 조리개 그리고 예산에 맞춰 비교해 보세요.</p>
+            </div>
+            <p class="result-count" aria-live="polite"><strong id="lens-count">0</strong> products</p>
+          </div>
+
+          <div class="filter-panel" role="search" aria-label="렌즈 필터" data-reveal>
+            <div class="field field-search">
+              <label for="lens-search">Search</label>
+              <div class="search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+                <input class="search-control" id="lens-search" type="search" placeholder="Brand, model, focal length…" autocomplete="off">
+              </div>
+            </div>
+            <div class="field">
+              <label for="lens-focal">Focal length</label>
+              <select class="control" id="lens-focal"><option value="">All focal lengths</option></select>
+            </div>
+            <div class="field">
+              <label for="lens-tier">Tier</label>
+              <select class="control" id="lens-tier"><option value="">All tiers</option></select>
+            </div>
+            <div class="field">
+              <label for="lens-sort">Sort</label>
+              <select class="control" id="lens-sort"><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="focal">Focal length</option><option value="brand">Brand A–Z</option></select>
+            </div>
+            <button class="clear-button" id="lens-clear" type="button" disabled>Clear</button>
+          </div>
+
+          <div class="skeleton-grid" id="lens-loading" role="status" aria-label="렌즈 데이터 불러오는 중">
+            <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+          </div>
+          <ul class="product-grid" id="lens-grid"></ul>
+          <div class="empty-state" id="lens-empty" hidden><strong>조건에 맞는 렌즈가 없습니다.</strong><span>검색어나 필터를 조정해 주세요.</span></div>
+        </section>
       </div>
     </section>
   </main>
@@ -927,6 +1136,22 @@
     <div class="comparison-wrap" id="comparison-content"></div>
   </dialog>
 
+  <dialog class="quick-view-dialog" id="quick-view-dialog" aria-labelledby="quick-view-title">
+    <button class="dialog-close quick-close" id="quick-view-close" type="button" aria-label="빠른 보기 닫기">✕</button>
+    <div id="quick-view-content"></div>
+  </dialog>
+
+  <dialog class="favorites-dialog" id="favorites-dialog" aria-labelledby="favorites-title">
+    <div class="dialog-head">
+      <div><p class="eyebrow">Saved edit</p><h2 id="favorites-title">Abigail’s favorites</h2></div>
+      <button class="dialog-close" id="favorites-close" type="button" aria-label="저장한 제품 닫기">✕</button>
+    </div>
+    <div class="favorites-content" id="favorites-content"></div>
+  </dialog>
+
+  <button class="back-to-top" id="back-to-top" type="button" aria-label="페이지 맨 위로 이동">↑</button>
+  <div class="toast-region" id="toast" role="status" aria-live="polite"></div>
+
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>가격과 재고는 판매처에서 변경될 수 있습니다. 구매 전 판매 페이지를 확인해 주세요.</p>
@@ -943,7 +1168,15 @@
       { id: "necklace-5", type: "necklace", brand: "로렌하이", name: "러히드 실버 에그 드롭 롱 목걸이", price: 22900, priceLabel: "₩22,900", retailer: "Laurenhi", note: "로렌하이 판매가", url: "https://laurenhi.com/product/%EB%AF%B8%EB%8B%88%EB%AC%B4%EB%93%9C%EB%A3%A9%EC%99%84%EC%84%B1%EB%8F%84up%EC%9D%80%EC%9D%80%ED%95%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8%EB%9F%AC%ED%9E%88%EB%93%9C-%EC%8B%A4%EB%B2%84-%EC%97%90%EA%B7%B8-%EB%93%9C%EB%A1%AD-%EB%A1%B1-%EB%AA%A9%EA%B1%B8%EC%9D%B4%EC%8D%A8%EC%A7%80%EC%BB%AC%EC%8A%A4%ED%8B%B8-1-color/31828/" }
     ];
 
-    const state = { watches: [], query: "", segment: "", similarity: "", sort: "recommended", selected: new Set() };
+    function loadFavoriteIds() {
+      try { return JSON.parse(localStorage.getItem("abigail-favorites") || "[]"); }
+      catch { return []; }
+    }
+    const state = {
+      watches: [], lenses: [], query: "", segment: "", similarity: "", sort: "recommended",
+      lensQuery: "", lensFocal: "", lensTier: "", lensSort: "recommended",
+      selected: new Set(), favorites: new Set(loadFavoriteIds()), activeCategory: "home",
+    };
     const productIndex = new Map(necklaces.map(product => [product.id, product]));
     const $ = selector => document.querySelector(selector);
     const $$ = selector => [...document.querySelectorAll(selector)];
@@ -964,13 +1197,17 @@
     }
     const fallbackIcon = type => type === "watch"
       ? `<svg viewBox="0 0 160 200" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><path d="M59 49 64 9h32l5 40M59 151l5 40h32l5-40"/><ellipse cx="80" cy="100" rx="52" ry="62"/><path d="M80 69v34l22 15" stroke-linecap="round"/></svg>`
-      : `<svg viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M28 26c9 54 26 81 62 81s53-27 62-81" stroke-linecap="round"/><path d="M90 102c-27 0-39 20-39 43 0 27 17 44 39 44s39-17 39-44c0-23-12-43-39-43Z"/></svg>`;
+      : type === "lens"
+        ? `<svg viewBox="0 0 200 180" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><path d="M25 47h150v86H25z" rx="18"/><ellipse cx="100" cy="90" rx="54" ry="54"/><ellipse cx="100" cy="90" rx="34" ry="34"/><path d="M42 47v86M158 47v86"/></svg>`
+        : `<svg viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M28 26c9 54 26 81 62 81s53-27 62-81" stroke-linecap="round"/><path d="M90 102c-27 0-39 20-39 43 0 27 17 44 39 44s39-17 39-44c0-23-12-43-39-43Z"/></svg>`;
+    const heartIcon = `<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.8 4.8a5.5 5.5 0 0 0-7.8 0L12 5.9l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.3 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>`;
+    const cardMedia = (product, label) => `<figure class="product-media"><span class="media-badge">${esc(label)}</span><button class="favorite-toggle" type="button" data-favorite="${esc(product.id)}" aria-label="${esc(product.name)} 저장" aria-pressed="${state.favorites.has(product.id)}">${heartIcon}</button><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon(product.type)}</span><button class="quick-view" type="button" data-quick-view="${esc(product.id)}">Quick view</button></figure>`;
 
     function necklaceCard(product) {
       return `
         <li class="product-card" data-reveal>
           <a class="card-click-target" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(product.name)} 구매 페이지 열기"></a>
-          <figure class="product-media"><span class="media-badge">Curated pick</span><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon("necklace")}</span></figure>
+          ${cardMedia(product, "Curated pick")}
           <div class="product-copy">
             <div class="card-top"><div class="badges"><span class="badge">${esc(product.brand)}</span></div><span class="price">${esc(product.priceLabel)}</span></div>
             <p class="category-label">Egg-drop necklace</p>
@@ -986,13 +1223,30 @@
       return `
         <li class="product-card" data-reveal>
           <a class="card-click-target" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(product.name)} product page"></a>
-          <figure class="product-media"><span class="media-badge">${esc(product.similarity)} match</span><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon("watch")}</span></figure>
+          ${cardMedia(product, `${product.similarity} match`)}
           <div class="product-copy">
             <div class="card-top"><div class="badges"><span class="badge">${esc(product.brand)}</span><span class="badge badge-neutral ${similarityClass}">${esc(product.similarity)}</span></div><span class="price">${esc(product.priceLabel)}</span></div>
             <p class="category-label">${esc(product.segment)}</p>
             <h3>${esc(product.name)}</h3>
             <p class="card-note">${esc(product.finish || product.notes)} · ${esc(product.retailer)}</p>
             <div class="card-actions"><span class="shop-label">View product <span aria-hidden="true">↗</span></span><button class="compare-toggle" type="button" data-compare="${esc(product.id)}" aria-pressed="${state.selected.has(product.id)}">Compare</button></div>
+          </div>
+        </li>`;
+    }
+
+    function lensCard(product) {
+      const tierClass = product.tier.startsWith("Tier 1") ? "badge-exact" : product.tier.startsWith("Tier 3") ? "badge-medium" : "";
+      const tierLabel = product.tier.startsWith("Tier 1") ? "Professional" : product.tier.startsWith("Tier 2") ? "Pro value" : product.tier.startsWith("Tier 3") ? "Budget" : "New";
+      return `
+        <li class="product-card" data-reveal>
+          <a class="card-click-target" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(product.name)} product page"></a>
+          ${cardMedia(product, product.focal)}
+          <div class="product-copy">
+            <div class="card-top"><div class="badges"><span class="badge">${esc(product.brand)}</span><span class="badge badge-neutral ${tierClass}">${esc(tierLabel)}</span></div><span class="price">${esc(product.priceLabel)}</span></div>
+            <p class="category-label">${esc(product.focal)} · ${esc(product.aperture)}</p>
+            <h3>${esc(product.name)}</h3>
+            <p class="card-note">${esc(product.tier)}</p>
+            <div class="card-actions"><span class="shop-label">View lens <span aria-hidden="true">↗</span></span><button class="compare-toggle" type="button" data-compare="${esc(product.id)}" aria-pressed="${state.selected.has(product.id)}">Compare</button></div>
           </div>
         </li>`;
     }
@@ -1004,6 +1258,16 @@
         const raw = Object.fromEntries(headers.map((header, column) => [header, row[column] ?? ""]));
         const price = raw.price === "" ? null : Number(raw.price);
         return { ...raw, id: `watch-${index + 1}`, type: "watch", price, priceLabel: usd(price) };
+      });
+    }
+
+    function parseLensTsv(text) {
+      const rows = text.trim().split(/\r?\n/).map(row => row.split("\t"));
+      const headers = rows.shift();
+      return rows.map((row, index) => {
+        const raw = Object.fromEntries(headers.map((header, column) => [header, row[column] ?? ""]));
+        const price = raw.price === "" ? null : Number(raw.price);
+        return { ...raw, id: `lens-${index + 1}`, type: "lens", price, priceLabel: usd(price), retailer: new URL(raw.url).hostname.includes("bhphoto") ? "B&H Photo" : new URL(raw.url).hostname.replace("www.", "") };
       });
     }
 
@@ -1028,7 +1292,34 @@
       $("#watch-grid").innerHTML = products.map(watchCard).join("");
       $("#empty-state").hidden = products.length !== 0;
       $("#clear-filters").disabled = !(state.query || state.segment || state.similarity || state.sort !== "recommended");
-      bindCompareButtons();
+      bindProductButtons();
+      observeReveals();
+    }
+
+    function visibleLenses() {
+      const query = state.lensQuery.trim().toLowerCase();
+      const tierRank = value => value.startsWith("Tier 1") ? 1 : value.startsWith("Tier 2") ? 2 : value.startsWith("Tier 3") ? 3 : 4;
+      const focalNumber = value => Number.parseFloat(value) || 0;
+      const items = state.lenses.filter(product => {
+        const haystack = Object.values(product).join(" ").toLowerCase();
+        return (!query || haystack.includes(query)) && (!state.lensFocal || product.focal === state.lensFocal) && (!state.lensTier || product.tier === state.lensTier);
+      });
+      return items.sort((a, b) => {
+        if (state.lensSort === "price-low") return (a.price ?? Infinity) - (b.price ?? Infinity);
+        if (state.lensSort === "price-high") return (b.price ?? -Infinity) - (a.price ?? -Infinity);
+        if (state.lensSort === "focal") return focalNumber(a.focal) - focalNumber(b.focal);
+        if (state.lensSort === "brand") return a.brand.localeCompare(b.brand);
+        return tierRank(a.tier) - tierRank(b.tier) || focalNumber(a.focal) - focalNumber(b.focal);
+      });
+    }
+
+    function renderLenses() {
+      const products = visibleLenses();
+      $("#lens-count").textContent = products.length;
+      $("#lens-grid").innerHTML = products.map(lensCard).join("");
+      $("#lens-empty").hidden = products.length !== 0;
+      $("#lens-clear").disabled = !(state.lensQuery || state.lensFocal || state.lensTier || state.lensSort !== "recommended");
+      bindProductButtons();
       observeReveals();
     }
 
@@ -1039,23 +1330,33 @@
         tab.tabIndex = active ? 0 : -1;
       });
       const isHome = category === "home";
+      state.activeCategory = category;
       $("#home-panel").hidden = !isHome;
       $("#collection").hidden = isHome;
       $("#necklace-panel").hidden = category !== "necklace";
       $("#watch-panel").hidden = category !== "watch";
-      if (updateHash) history.replaceState(null, "", category === "watch" ? "#watches" : category === "necklace" ? "#necklaces" : "#home");
+      $("#lens-panel").hidden = category !== "lens";
+      if (updateHash) history.replaceState(null, "", category === "watch" ? "#watches" : category === "necklace" ? "#necklaces" : category === "lens" ? "#lenses" : "#home");
       if (scroll) {
         const target = isHome ? $("#top") : $("#collection");
         target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
       }
+      const activeView = isHome ? $("#home-panel") : category === "necklace" ? $("#necklace-panel") : category === "watch" ? $("#watch-panel") : $("#lens-panel");
+      activeView.classList.remove("view-enter");
+      requestAnimationFrame(() => activeView.classList.add("view-enter"));
       requestAnimationFrame(observeReveals);
     }
 
-    function bindCompareButtons() {
+    function bindProductButtons() {
       $$('[data-compare]').forEach(button => {
         button.setAttribute("aria-pressed", state.selected.has(button.dataset.compare));
         button.onclick = () => toggleCompare(button.dataset.compare);
       });
+      $$('[data-favorite]').forEach(button => {
+        button.setAttribute("aria-pressed", state.favorites.has(button.dataset.favorite));
+        button.onclick = () => toggleFavorite(button.dataset.favorite);
+      });
+      $$('[data-quick-view]').forEach(button => { button.onclick = () => openQuickView(button.dataset.quickView); });
     }
 
     function toggleCompare(id) {
@@ -1064,9 +1365,61 @@
       else {
         const tray = $("#compare-tray");
         tray.animate([{ transform: "translate(50%, 0)" }, { transform: "translate(50%, -8px)" }, { transform: "translate(50%, 0)" }], { duration: 350, easing: "ease-out" });
+        showToast("한 번에 최대 3개 제품까지 비교할 수 있어요.");
         return;
       }
       updateCompareUi();
+      showToast(state.selected.has(id) ? "비교 목록에 추가했어요." : "비교 목록에서 제외했어요.");
+    }
+
+    function toggleFavorite(id) {
+      if (state.favorites.has(id)) state.favorites.delete(id);
+      else state.favorites.add(id);
+      try { localStorage.setItem("abigail-favorites", JSON.stringify([...state.favorites])); } catch {}
+      updateFavoritesUi();
+      showToast(state.favorites.has(id) ? "Abigail’s favorites에 저장했어요." : "저장한 제품에서 제외했어요.");
+    }
+
+    function updateFavoritesUi() {
+      $("#favorites-count").textContent = state.favorites.size;
+      $$('[data-favorite]').forEach(button => button.setAttribute("aria-pressed", state.favorites.has(button.dataset.favorite)));
+      if ($("#favorites-dialog").open) renderFavorites();
+    }
+
+    function renderFavorites() {
+      const products = [...state.favorites].map(id => productIndex.get(id)).filter(Boolean);
+      $("#favorites-content").innerHTML = products.length ? products.map(product => `
+        <article class="favorite-row">
+          <img class="favorite-thumb" src="${esc(productImage(product))}" alt="" loading="lazy" onerror="this.style.visibility='hidden'">
+          <div class="favorite-row-copy"><small>${esc(product.brand)}</small><strong>${esc(product.name)}</strong><span>${esc(product.priceLabel)}</span></div>
+          <div class="favorite-row-actions"><a href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer">Shop ↗</a><button type="button" data-favorite="${esc(product.id)}">Remove</button></div>
+        </article>`).join("") : `<div class="favorites-empty"><strong>아직 저장한 제품이 없어요.</strong><span>제품 카드의 하트를 눌러 Abigail’s edit을 만들어 보세요.</span></div>`;
+      bindProductButtons();
+    }
+
+    function openQuickView(id) {
+      const product = productIndex.get(id);
+      if (!product) return;
+      const specs = product.type === "lens"
+        ? [["Focal length", product.focal], ["Aperture", product.aperture], ["Tier", product.tier], ["Retailer", product.retailer]]
+        : product.type === "watch"
+          ? [["Case", product.case || "—"], ["Strap", product.strap || "—"], ["Finish", product.finish || "—"], ["Best for", product.best || "—"]]
+          : [["Collection", "Egg-drop"], ["Material", "Surgical steel"], ["Retailer", product.retailer], ["Price note", product.note]];
+      $("#quick-view-content").innerHTML = `<div class="quick-view-layout">
+        <figure class="product-media quick-view-media"><span class="media-badge">${esc(product.type)}</span><button class="favorite-toggle" type="button" data-favorite="${esc(product.id)}" aria-label="${esc(product.name)} 저장" aria-pressed="${state.favorites.has(product.id)}">${heartIcon}</button><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon(product.type)}</span></figure>
+        <div class="quick-view-info"><p class="eyebrow">${esc(product.brand)} · Quick view</p><h2 id="quick-view-title">${esc(product.name)}</h2><p class="quick-price">${esc(product.priceLabel)}</p><p class="quick-description">${esc(product.notes || product.note || product.tier || "Curated for Abigail")}</p><div class="quick-specs">${specs.map(([label,value]) => `<div class="quick-spec"><small>${esc(label)}</small><strong>${esc(value || "—")}</strong></div>`).join("")}</div><div class="quick-actions"><button class="button button-secondary" type="button" data-compare="${esc(product.id)}">Compare</button><a class="button button-primary" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer">View product ↗</a></div></div>
+      </div>`;
+      bindProductButtons();
+      $("#quick-view-dialog").showModal();
+    }
+
+    let toastTimer;
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("is-visible"), 2400);
     }
 
     function updateCompareUi() {
@@ -1083,7 +1436,8 @@
       const products = [...state.selected].map(id => productIndex.get(id)).filter(Boolean);
       if (products.length < 2) return;
       const rows = [
-        ["Brand", product => product.brand], ["Price", product => product.priceLabel], ["Category", product => product.segment || "Necklace"],
+        ["Brand", product => product.brand], ["Price", product => product.priceLabel], ["Category", product => product.type === "lens" ? "Lens" : product.segment || "Necklace"],
+        ["Focal length", product => product.focal || "—"], ["Aperture", product => product.aperture || "—"],
         ["Case", product => product.case || "—"], ["Strap", product => product.strap || "—"], ["Finish", product => product.finish || "Surgical steel"],
         ["Best for", product => product.best || product.note || "—"], ["Retailer", product => product.retailer || "—"]
       ];
@@ -1115,8 +1469,8 @@
           switchCategory(tabs[next].dataset.category);
         });
       });
-      $("#explore-necklaces").addEventListener("click", () => switchCategory("necklace", { scroll: true }));
-      $("#explore-watches").addEventListener("click", () => switchCategory("watch", { scroll: true }));
+      $("#explore-collections").addEventListener("click", () => document.querySelector(".landing-categories").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }));
+      $("#explore-lenses").addEventListener("click", () => switchCategory("lens", { scroll: true }));
       $$('[data-open-category]').forEach(button => button.addEventListener("click", () => switchCategory(button.dataset.openCategory, { scroll: true })));
       $("#theme-toggle").addEventListener("click", () => {
         const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -1134,10 +1488,44 @@
         $("#search").value = $("#segment").value = $("#similarity").value = ""; $("#sort").value = "recommended";
         renderWatches();
       });
-      $("#compare-clear").addEventListener("click", () => { state.selected.clear(); updateCompareUi(); });
+      $("#lens-search").addEventListener("input", event => { state.lensQuery = event.target.value; renderLenses(); });
+      $("#lens-focal").addEventListener("change", event => { state.lensFocal = event.target.value; renderLenses(); });
+      $("#lens-tier").addEventListener("change", event => { state.lensTier = event.target.value; renderLenses(); });
+      $("#lens-sort").addEventListener("change", event => { state.lensSort = event.target.value; renderLenses(); });
+      $("#lens-clear").addEventListener("click", () => {
+        state.lensQuery = state.lensFocal = state.lensTier = ""; state.lensSort = "recommended";
+        $("#lens-search").value = $("#lens-focal").value = $("#lens-tier").value = ""; $("#lens-sort").value = "recommended";
+        renderLenses();
+      });
+      $("#compare-clear").addEventListener("click", () => { state.selected.clear(); updateCompareUi(); showToast("비교 목록을 비웠어요."); });
       $("#compare-open").addEventListener("click", openComparison);
       $("#dialog-close").addEventListener("click", () => $("#compare-dialog").close());
       $("#compare-dialog").addEventListener("click", event => { if (event.target === $("#compare-dialog")) $("#compare-dialog").close(); });
+      $("#quick-view-close").addEventListener("click", () => $("#quick-view-dialog").close());
+      $("#quick-view-dialog").addEventListener("click", event => { if (event.target === $("#quick-view-dialog")) $("#quick-view-dialog").close(); });
+      $("#favorites-open").addEventListener("click", () => { renderFavorites(); $("#favorites-dialog").showModal(); });
+      $("#favorites-close").addEventListener("click", () => $("#favorites-dialog").close());
+      $("#favorites-dialog").addEventListener("click", event => { if (event.target === $("#favorites-dialog")) $("#favorites-dialog").close(); });
+      $("#back-to-top").addEventListener("click", () => window.scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" }));
+      let scrollTicking = false;
+      addEventListener("scroll", () => {
+        if (scrollTicking) return;
+        scrollTicking = true;
+        requestAnimationFrame(() => {
+          const max = document.documentElement.scrollHeight - innerHeight;
+          $("#scroll-progress-bar").style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+          $("#back-to-top").classList.toggle("is-visible", scrollY > 700);
+          scrollTicking = false;
+        });
+      }, { passive: true });
+      document.addEventListener("keydown", event => {
+        const typing = ["INPUT", "TEXTAREA", "SELECT"].includes(document.activeElement?.tagName) || document.querySelector("dialog[open]");
+        if (event.key !== "/" || typing || event.metaKey || event.ctrlKey || event.altKey) return;
+        event.preventDefault();
+        const category = state.activeCategory === "lens" ? "lens" : "watch";
+        if (state.activeCategory !== category) switchCategory(category, { scroll: true });
+        setTimeout(() => $(category === "lens" ? "#lens-search" : "#search").focus(), 420);
+      });
     }
 
     async function loadWatches() {
@@ -1146,23 +1534,53 @@
         if (!response.ok) throw new Error(`Unable to load watches.tsv (${response.status})`);
         state.watches = parseTsv(await response.text());
         state.watches.forEach(product => productIndex.set(product.id, product));
-        $("#hero-watch-count").textContent = state.watches.length;
         $("#landing-watch-count").textContent = state.watches.length;
         [...new Set(state.watches.map(product => product.segment).filter(Boolean))].forEach(value => $("#segment").add(new Option(value, value)));
         $("#watch-loading").remove();
         renderWatches();
+        updateCollectionCounts();
+        updateFavoritesUi();
       } catch (error) {
         $("#watch-loading").innerHTML = `<div class="empty-state"><strong>시계 데이터를 불러오지 못했습니다.</strong><span>페이지를 새로고침해 주세요.</span></div>`;
         console.error(error);
       }
     }
 
+    async function loadLenses() {
+      try {
+        const response = await fetch("lenses.tsv");
+        if (!response.ok) throw new Error(`Unable to load lenses.tsv (${response.status})`);
+        state.lenses = parseLensTsv(await response.text());
+        state.lenses.forEach(product => productIndex.set(product.id, product));
+        $("#landing-lens-count").textContent = state.lenses.length;
+        [...new Set(state.lenses.map(product => product.focal).filter(Boolean))]
+          .sort((a,b) => Number.parseFloat(a) - Number.parseFloat(b))
+          .forEach(value => $("#lens-focal").add(new Option(value, value)));
+        [...new Set(state.lenses.map(product => product.tier).filter(Boolean))]
+          .sort()
+          .forEach(value => $("#lens-tier").add(new Option(value, value)));
+        $("#lens-loading").remove();
+        renderLenses();
+        updateCollectionCounts();
+        updateFavoritesUi();
+      } catch (error) {
+        $("#lens-loading").innerHTML = `<div class="empty-state"><strong>렌즈 데이터를 불러오지 못했습니다.</strong><span>페이지를 새로고침해 주세요.</span></div>`;
+        console.error(error);
+      }
+    }
+
+    function updateCollectionCounts() {
+      $("#hero-total-count").textContent = necklaces.length + state.watches.length + state.lenses.length;
+    }
+
     $("#necklace-grid").innerHTML = necklaces.map(necklaceCard).join("");
     setupInteractions();
-    bindCompareButtons();
+    bindProductButtons();
+    updateFavoritesUi();
     observeReveals();
     loadWatches();
-    switchCategory(location.hash === "#watches" ? "watch" : location.hash === "#necklaces" ? "necklace" : "home", { updateHash: false });
+    loadLenses();
+    switchCategory(location.hash === "#watches" ? "watch" : location.hash === "#necklaces" ? "necklace" : location.hash === "#lenses" ? "lens" : "home", { updateHash: false });
   </script>
 </body>
 </html>
