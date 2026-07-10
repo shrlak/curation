@@ -14,7 +14,7 @@
   };
 
   const cardProductUrl = image => {
-    const card = image.closest('.card');
+    const card = image?.closest?.('.card');
     return card?.querySelector('.card-link')?.href
       || card?.querySelector('h3 a')?.href
       || card?.querySelector('.card-action')?.href
