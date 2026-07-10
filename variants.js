@@ -72,12 +72,36 @@
   function renderCardControls() {
     const card = findSetCard();
     if (!card) return false;
+    card.classList.add("has-color-options");
     const copy = card.querySelector(".copy");
+    const link = variantUrl(PANTS_URL, currentColor);
+
+    const title = card.querySelector("h3");
+    if (title && !title.querySelector("a")) {
+      const titleLink = document.createElement("a");
+      titleLink.textContent = title.textContent;
+      titleLink.href = link;
+      titleLink.target = "_blank";
+      titleLink.rel = "noopener noreferrer";
+      title.replaceChildren(titleLink);
+    }
+
+    let action = copy?.querySelector(".card-action");
+    if (action && action.tagName !== "A") {
+      const actionLink = document.createElement("a");
+      actionLink.className = action.className;
+      actionLink.textContent = action.textContent;
+      actionLink.href = link;
+      actionLink.target = "_blank";
+      actionLink.rel = "noopener noreferrer";
+      action.replaceWith(actionLink);
+      action = actionLink;
+    }
+
     let row = card.querySelector(".color-row");
     if (!row && copy) {
       row = document.createElement("div");
       row.className = "color-row";
-      const action = copy.querySelector(".card-action");
       action ? copy.insertBefore(row, action) : copy.appendChild(row);
     }
     if (row) {
@@ -88,7 +112,7 @@
         selectColor(button.dataset.cardColor);
       }));
     }
-    const link = variantUrl(PANTS_URL, currentColor);
+
     card.querySelectorAll(".card-link, h3 a, .card-action").forEach(element => {
       if (element.tagName === "A") element.href = link;
     });
