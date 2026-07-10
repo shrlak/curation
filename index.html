@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
-<meta content="Abigail Orbit — 관심 있는 제품을 발견하고 비교해 개인 컬렉션 탭으로 정리하는 큐레이션 공간" name="description"/>
+<meta content="Curation for Abigail — 관심 있는 제품을 발견하고 비교해 개인 컬렉션 탭으로 정리하는 큐레이션 공간" name="description"/>
 <meta content="#f5f5f7" name="theme-color"/>
 <meta content="yes" name="apple-mobile-web-app-capable"/>
-<meta content="Abigail Orbit" name="apple-mobile-web-app-title"/>
+<meta content="Curation for Abigail" name="apple-mobile-web-app-title"/>
 <link href="favicon.svg" rel="icon" type="image/svg+xml"/>
 <link href="site.webmanifest" rel="manifest"/>
-<title>Abigail Orbit · Curated Finds</title>
+<title>Curation for Abigail · Curated Finds</title>
 <script>
     (()=>{const saved=localStorage.getItem('abigail-theme');const dark=matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.dataset.theme=saved||(dark?'dark':'light')})();
   </script>
@@ -19,7 +19,7 @@
 <a class="skip" href="#main">본문으로 건너뛰기</a>
 <header class="site-header">
 <nav aria-label="Main navigation" class="nav">
-<a aria-label="홈으로 돌아가기" class="brand" data-route="home" href="#home"><span aria-hidden="true" class="brand-mark"></span><span>ABIGAIL ORBIT</span></a>
+<a aria-label="홈으로 돌아가기" class="brand" data-route="home" href="#home"><span aria-hidden="true" class="brand-mark"></span><span>CURATION FOR ABIGAIL</span></a>
 <div aria-label="Website sections" class="tabs" role="tablist">
 <button aria-selected="true" class="tab" data-route="home" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"></path></svg><span>Home</span></button>
 <button aria-selected="false" class="tab" data-route="necklaces" role="tab" type="button"><svg fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 3c1 7 3.6 11 8 11s7-4 8-11"></path><path d="M12 13c-3 0-4.5 2.2-4.5 4.7A4.5 4.5 0 0 0 12 22a4.5 4.5 0 0 0 4.5-4.3C16.5 15.2 15 13 12 13Z"></path></svg><span>Necklaces</span></button>
@@ -39,7 +39,7 @@
 <div class="progress"><span id="progress"></span></div>
 </header>
 <main id="main"><div class="loading">Loading collection…</div></main>
-<footer><div class="container footer-inner"><span>Abigail Orbit · Product information may change.</span><div class="footer-links"><button data-route="about" type="button">About</button><button data-route="acknowledgements" type="button">Acknowledgements</button><button data-route="contact" type="button">Contact</button><a href="https://github.com/shrlak/curation" rel="noopener noreferrer" target="_blank">GitHub ↗</a></div></div></footer>
+<footer><div class="container footer-inner"><span>Curation for Abigail · Product information may change.</span><div class="footer-links"><button data-route="about" type="button">About</button><button data-route="acknowledgements" type="button">Acknowledgements</button><button data-route="contact" type="button">Contact</button><a href="https://github.com/shrlak/curation" rel="noopener noreferrer" target="_blank">GitHub ↗</a></div></div></footer>
 <dialog class="modal" id="quick-dialog"><button aria-label="Close quick view" class="icon-btn modal-close" id="quick-close" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg></button><div class="quick-layout"><div class="quick-media"><img alt="" id="quick-image"/></div><div class="quick-info"><p class="eyebrow" id="quick-type"></p><h2 id="quick-name"></h2><p id="quick-note"></p><div class="specs" id="quick-specs"></div><a class="pill-btn primary" id="quick-link" rel="noopener noreferrer" target="_blank">View product <span>↗</span></a></div></div></dialog>
 <dialog class="favorites" id="favorites-dialog"><div class="modal-head"><h2>Saved products</h2><button aria-label="Close saved products" class="icon-btn" id="favorites-close" type="button"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"></path></svg></button></div><div class="favorite-list" id="favorite-list"></div></dialog>
 <div aria-live="polite" class="toast" id="toast" role="status"></div>
