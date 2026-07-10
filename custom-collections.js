@@ -1,5 +1,6 @@
 (()=>{
-  const STORAGE_KEY="abigail-orbit-custom-collections-v1";
+  const STORAGE_KEY="curation-for-abigail-custom-collections-v1";
+  const LEGACY_STORAGE_KEY="abigail-orbit-custom-collections-v1";
   const initialHash=location.hash.slice(1);
   const $=(selector,root=document)=>root.querySelector(selector);
   const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
@@ -12,7 +13,7 @@
 
   function load(){
     try{
-      const parsed=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");
+      const parsed=JSON.parse(localStorage.getItem(STORAGE_KEY)||localStorage.getItem(LEGACY_STORAGE_KEY)||"[]");
       return Array.isArray(parsed)?parsed.filter(category=>category?.id&&category?.name&&Array.isArray(category.items)):[];
     }catch{return[]}
   }
@@ -28,7 +29,7 @@
   function injectDialog(){
     if($("#custom-collection-dialog"))return;
     document.body.insertAdjacentHTML("beforeend",`<dialog class="custom-dialog" id="custom-collection-dialog" aria-labelledby="custom-dialog-title">
-      <div class="custom-dialog-head"><div><h2 id="custom-dialog-title">Orbit에 제품 추가하기</h2><p>카테고리가 처음이라면 새 탭이 자동으로 만들어집니다.</p></div><button class="icon-btn" id="custom-dialog-close" type="button" aria-label="닫기">✕</button></div>
+      <div class="custom-dialog-head"><div><h2 id="custom-dialog-title">Curation에 제품 추가하기</h2><p>카테고리가 처음이라면 새 탭이 자동으로 만들어집니다.</p></div><button class="icon-btn" id="custom-dialog-close" type="button" aria-label="닫기">✕</button></div>
       <form class="custom-form" id="custom-product-form">
         <div class="custom-field"><label for="custom-category">Category</label><input id="custom-category" name="category" list="custom-category-list" placeholder="예: Sneakers" required><datalist id="custom-category-list"></datalist><small>같은 이름의 제품은 한 탭에 모입니다.</small></div>
         <div class="custom-field"><label for="custom-name">Product name</label><input id="custom-name" name="name" placeholder="예: New Balance 530" required><small>알아보고 싶은 제품명을 입력하세요.</small></div>
@@ -82,8 +83,8 @@
     let host="Product research";try{host=new URL(item.url).hostname.replace(/^www\./,"")}catch{}
     return`<li class="card custom-card" data-reveal data-custom-item="${esc(item.id)}">
       <a class="card-link" href="${esc(item.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(item.name)} 자세히 보기"></a>
-      <figure class="media"><span class="media-tag">Added to Orbit</span><button class="custom-remove" type="button" data-remove-custom="${esc(item.id)}" data-category-id="${esc(category.id)}" aria-label="${esc(item.name)} 삭제"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 7h14M9 7V4h6v3M8 10v8M12 10v8M16 10v8M7 7l1 14h8l1-14"/></svg></button><img class="product-img" data-custom-image data-page-url="${esc(item.url)}" alt="${esc(item.name)}" loading="lazy" decoding="async"><span class="fallback">${fallbackIcon()}</span></figure>
-      <div class="copy"><div class="topline"><div class="badges"><span class="badge">${esc(category.name)}</span></div><span class="price">${esc(item.price||"Research")}</span></div><p class="kind">Personal Orbit</p><h3>${esc(item.name)}</h3><p class="note">${esc(item.note||"제품 페이지에서 사양, 옵션, 최신 정보를 확인해 보세요.")}</p><span class="custom-source">${esc(host)}</span><span class="card-action">자세히 보기 ↗</span></div>
+      <figure class="media"><span class="media-tag">Added to Curation</span><button class="custom-remove" type="button" data-remove-custom="${esc(item.id)}" data-category-id="${esc(category.id)}" aria-label="${esc(item.name)} 삭제"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 7h14M9 7V4h6v3M8 10v8M12 10v8M16 10v8M7 7l1 14h8l1-14"/></svg></button><img class="product-img" data-custom-image data-page-url="${esc(item.url)}" alt="${esc(item.name)}" loading="lazy" decoding="async"><span class="fallback">${fallbackIcon()}</span></figure>
+      <div class="copy"><div class="topline"><div class="badges"><span class="badge">${esc(category.name)}</span></div><span class="price">${esc(item.price||"Research")}</span></div><p class="kind">Personal Curation</p><h3>${esc(item.name)}</h3><p class="note">${esc(item.note||"제품 페이지에서 사양, 옵션, 최신 정보를 확인해 보세요.")}</p><span class="custom-source">${esc(host)}</span><span class="card-action">자세히 보기 ↗</span></div>
     </li>`;
   }
 
@@ -126,7 +127,7 @@
     const anchor=tabs.querySelector('[data-route="about"]');
     collections.forEach(category=>{
       const tab=document.createElement("button");tab.className="tab custom-tab";tab.type="button";tab.role="tab";tab.dataset.route=category.id;tab.setAttribute("aria-selected","false");tab.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h6l2 2h8v11H4Z"/><path d="M8 13h8"/></svg><span>${esc(category.name)}</span>`;tab.onclick=()=>openRoute(category.id);tabs.insertBefore(tab,anchor);
-      const section=document.createElement("section");section.className="view collection custom-view";section.dataset.view=category.id;section.dataset.customView="";section.hidden=true;section.innerHTML=`<div class="container"><div class="section-head" data-reveal><div><p class="eyebrow">Personal Orbit</p><h1>${esc(category.name)}</h1><p>직접 추가한 제품을 한곳에서 살펴보고, 각 제품 페이지에서 더 자세한 정보를 확인하세요.</p></div><p class="result-count"><strong>${category.items.length}</strong> products</p></div><div class="custom-section-actions"><button class="pill-btn primary" type="button" data-add-to-category="${esc(category.name)}">제품 추가하기 <span aria-hidden="true">＋</span></button><span class="custom-section-note">이 브라우저에 안전하게 저장됨</span></div><ul class="grid">${category.items.length?category.items.map(item=>card(category,item)).join(""):`<li class="custom-empty"><strong>아직 제품이 없어요.</strong><span>첫 제품을 추가하면 이곳에 표시됩니다.</span></li>`}</ul></div>`;main.append(section);
+      const section=document.createElement("section");section.className="view collection custom-view";section.dataset.view=category.id;section.dataset.customView="";section.hidden=true;section.innerHTML=`<div class="container"><div class="section-head" data-reveal><div><p class="eyebrow">Personal Curation</p><h1>${esc(category.name)}</h1><p>직접 추가한 제품을 한곳에서 살펴보고, 각 제품 페이지에서 더 자세한 정보를 확인하세요.</p></div><p class="result-count"><strong>${category.items.length}</strong> products</p></div><div class="custom-section-actions"><button class="pill-btn primary" type="button" data-add-to-category="${esc(category.name)}">제품 추가하기 <span aria-hidden="true">＋</span></button><span class="custom-section-note">이 브라우저에 안전하게 저장됨</span></div><ul class="grid">${category.items.length?category.items.map(item=>card(category,item)).join(""):`<li class="custom-empty"><strong>아직 제품이 없어요.</strong><span>첫 제품을 추가하면 이곳에 표시됩니다.</span></li>`}</ul></div>`;main.append(section);
     });
     $$('[data-add-to-category]').forEach(button=>button.onclick=()=>{$("#custom-category").value=button.dataset.addToCategory;openDialog()});
     $$('[data-remove-custom]').forEach(button=>button.onclick=event=>{event.preventDefault();event.stopPropagation();removeProduct(button.dataset.categoryId,button.dataset.removeCustom)});
