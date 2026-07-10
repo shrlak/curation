@@ -109,12 +109,17 @@
     if (!card) return false;
     const color = selectedFor(product);
     const pageUrl = variantUrl(product, color);
-    const copy = card.querySelector(".copy");
-    let row = card.querySelector(".product-color-row");
+    const colorChoices = colorsFor(product);
+    const existingRow = card.querySelector(".product-color-row");
+    if (card.dataset.variantColor === color && card.dataset.variantUrl === pageUrl && (colorChoices.length <= 1 || existingRow)) return true;
 
+    card.dataset.variantColor = color;
+    card.dataset.variantUrl = pageUrl;
     card.classList.add("has-color-options");
+    const copy = card.querySelector(".copy");
+    let row = existingRow;
 
-    if (!row && copy && colorsFor(product).length > 1) {
+    if (!row && copy && colorChoices.length > 1) {
       row = document.createElement("div");
       row.className = "color-row product-color-row";
       const action = copy.querySelector(".card-action");
@@ -144,6 +149,9 @@
     const feature = document.querySelector("#set-feature");
     if (!product || !feature) return;
     const color = selectedFor(product);
+    if (feature.dataset.variantColor === color && feature.querySelector("#set-swatches .swatch")) return;
+    feature.dataset.variantColor = color;
+
     const pantsUrl = variantUrl(product, color);
     const topUrl = variantUrl(product, color, true);
     const label = feature.querySelector("#set-color-name");
@@ -193,6 +201,8 @@
       const product = productsByName.get(name);
       if (!product) return;
       const color = selectedFor(product);
+      if (row.dataset.variantColor === color) return;
+      row.dataset.variantColor = color;
       const image = row.querySelector("img");
       const pageUrl = variantUrl(product, color);
       setImageWithFallback(image, pageUrl, `${product.name} in ${color}`, row);
