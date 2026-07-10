@@ -1,6 +1,6 @@
 {
-  "name": "Abigail Orbit",
-  "short_name": "Orbit",
+  "name": "Curation for Abigail",
+  "short_name": "Curation",
   "description": "Discover, compare, and gather products into personal collection tabs.",
   "start_url": "./#home",
   "display": "standalone",
