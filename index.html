@@ -409,6 +409,74 @@
     }
     .stage-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
 
+    .landing-categories { padding-bottom: clamp(90px, 11vw, 150px); }
+    .landing-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 28px; }
+    .landing-heading .eyebrow { margin-bottom: 8px; }
+    .landing-heading h2 { margin: 0; font-size: clamp(2.3rem, 4vw, 3.8rem); line-height: 1; letter-spacing: -.052em; }
+    .landing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .landing-card {
+      position: relative;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line-soft);
+      border-radius: 34px;
+      padding: 18px;
+      background: var(--surface);
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 1px 1px rgba(0,0,0,.02);
+      transition: transform .5s var(--ease), box-shadow .5s var(--ease), border-color .3s ease;
+    }
+    .landing-card:hover { border-color: color-mix(in srgb, var(--accent) 28%, var(--line)); box-shadow: var(--shadow-card); transform: translateY(-7px); }
+    .landing-art {
+      position: relative;
+      min-height: 350px;
+      display: grid;
+      place-items: center;
+      border-radius: 24px;
+      background: linear-gradient(145deg, var(--accent-soft), color-mix(in srgb, #bf5af2 8%, var(--surface-2)));
+      overflow: hidden;
+    }
+    .landing-art::before { content: ""; position: absolute; width: 320px; height: 320px; border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent); border-radius: 50%; }
+    .landing-art-necklace span {
+      position: relative;
+      width: 120px;
+      height: 150px;
+      border: 3px solid color-mix(in srgb, var(--text) 52%, transparent);
+      border-radius: 50% 50% 55% 55% / 42% 42% 68% 68%;
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.24));
+      box-shadow: inset 8px 9px 20px rgba(255,255,255,.65), var(--shadow-float);
+      transform: rotate(-5deg);
+      transition: transform .7s var(--ease);
+    }
+    .landing-art-necklace span::before { content: ""; position: absolute; width: 160px; height: 130px; margin: -100px 0 0 -23px; border: 2px solid color-mix(in srgb, var(--text) 38%, transparent); border-color: color-mix(in srgb, var(--text) 38%, transparent) transparent transparent; border-radius: 50%; }
+    .landing-art-watch span {
+      position: relative;
+      width: 128px;
+      height: 160px;
+      border: 5px solid color-mix(in srgb, var(--text) 53%, transparent);
+      border-radius: 48% / 54%;
+      background: linear-gradient(145deg, #fff, #e8e8ed);
+      box-shadow: var(--shadow-float);
+      transform: rotate(6deg);
+      transition: transform .7s var(--ease);
+    }
+    .landing-art-watch span::before, .landing-art-watch span::after { content: ""; position: absolute; z-index: -1; width: 38px; height: 115px; left: 40px; border: 3px solid color-mix(in srgb, var(--text) 42%, transparent); border-radius: 10px; background: repeating-linear-gradient(90deg, transparent 0 5px, rgba(127,127,127,.22) 5px 6px); }
+    .landing-art-watch span::before { bottom: 135px; }
+    .landing-art-watch span::after { top: 135px; }
+    .landing-card:hover .landing-art-necklace span { transform: translateY(-10px) rotate(0); }
+    .landing-card:hover .landing-art-watch span { transform: translateY(-10px) rotate(0); }
+    .landing-card-copy { display: grid; gap: 4px; padding: 18px 12px 10px; }
+    .landing-card-copy small { color: var(--accent); font-size: .72rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+    .landing-card-copy strong { font-size: clamp(1.8rem, 3vw, 2.65rem); line-height: 1.05; letter-spacing: -.045em; }
+    .landing-card-copy > span { display: flex; align-items: center; justify-content: space-between; color: var(--muted); font-size: .9rem; }
+    .landing-card-copy b { color: var(--accent); font-size: 1.25rem; transition: transform .25s var(--ease); }
+    .landing-card:hover .landing-card-copy b { transform: translateX(5px); }
+
     .collection-section { padding: clamp(70px, 10vw, 130px) 0 120px; }
     .section-intro {
       display: flex;
@@ -523,6 +591,7 @@
       background: #fff;
       transition: transform .7s var(--ease), opacity .25s ease;
     }
+    .product-image.is-screenshot { object-fit: cover; object-position: top center; }
     .product-card:hover .product-image { transform: scale(1.045); }
     .product-fallback {
       position: absolute;
@@ -675,11 +744,13 @@
       .nav { width: min(100% - 24px, 1280px); grid-template-columns: auto 1fr auto; gap: 10px; }
       .brand span:last-child, .nav-status { display: none; }
       .category-tabs { justify-self: center; }
-      .tab { min-width: 108px; min-height: 38px; padding: 7px 12px; }
+      .tab { min-width: 78px; min-height: 38px; padding: 7px 10px; }
       .container { width: min(100% - 28px, 1280px); }
       .hero { grid-template-columns: 1fr; min-height: 0; gap: 60px; padding-block: 82px 96px; }
       .hero h1 { max-width: 640px; }
       .product-stage { width: min(100%, 520px); transform: none; }
+      .landing-card { min-height: 450px; }
+      .landing-art { min-height: 290px; }
       .section-intro { align-items: start; flex-direction: column; }
       .filter-panel { grid-template-columns: 1fr 1fr; }
       .field-search { grid-column: 1 / -1; }
@@ -688,12 +759,15 @@
     }
     @media (max-width: 580px) {
       .category-tabs { gap: 2px; padding: 3px; }
-      .tab { min-width: 92px; font-size: .77rem; }
+      .tab { min-width: 68px; padding-inline: 8px; font-size: .72rem; }
       .hero h1 { font-size: clamp(3.15rem, 16vw, 5rem); }
       .hero-lede { font-size: 1rem; }
       .hero-actions .button { width: 100%; }
       .hero-stats { justify-content: space-between; gap: 16px; }
       .stat { min-width: 74px; }
+      .landing-grid { grid-template-columns: 1fr; }
+      .landing-card { min-height: 410px; border-radius: 26px; padding: 12px; }
+      .landing-art { min-height: 270px; border-radius: 19px; }
       .product-grid, .skeleton-grid, .filter-panel { grid-template-columns: 1fr; }
       .field-search, .clear-button { grid-column: 1; }
       .product-card { border-radius: 22px; padding: 8px; }
@@ -721,7 +795,8 @@
       </a>
 
       <div class="category-tabs" role="tablist" aria-label="제품 비교 카테고리">
-        <button class="tab" id="necklace-tab" type="button" role="tab" aria-selected="true" aria-controls="necklace-panel" data-category="necklace">목걸이</button>
+        <button class="tab" id="home-tab" type="button" role="tab" aria-selected="true" aria-controls="home-panel" data-category="home">Home</button>
+        <button class="tab" id="necklace-tab" type="button" role="tab" aria-selected="false" aria-controls="necklace-panel" data-category="necklace" tabindex="-1">목걸이</button>
         <button class="tab" id="watch-tab" type="button" role="tab" aria-selected="false" aria-controls="watch-panel" data-category="watch" tabindex="-1">시계</button>
       </div>
 
@@ -736,31 +811,50 @@
   </header>
 
   <main id="top">
-    <section class="hero container" aria-labelledby="hero-title">
-      <div class="hero-copy" data-reveal>
-        <p class="eyebrow">Curated product comparison</p>
-        <h1 id="hero-title">Less searching.<br><span class="gradient-word">Better choosing.</span></h1>
-        <p class="hero-lede">목걸이와 시계를 한곳에서 간결하게 비교하고, 마음에 드는 제품의 구매 페이지로 바로 이동하세요.</p>
-        <div class="hero-actions">
-          <a class="button button-primary" href="#collection">제품 둘러보기 <span class="arrow" aria-hidden="true">→</span></a>
-          <button class="button button-secondary" id="explore-watches" type="button">시계 컬렉션 보기</button>
+    <section id="home-panel" role="tabpanel" aria-labelledby="home-tab">
+      <div class="hero container">
+        <div class="hero-copy" data-reveal>
+          <p class="eyebrow">A personal edit</p>
+          <h1 id="hero-title">Curated for<br><span class="gradient-word">Abigail.</span></h1>
+          <p class="hero-lede">Abigail을 위해 고른 목걸이와 시계 컬렉션. 부담 없이 둘러보고, 마음에 드는 제품을 바로 만나보세요.</p>
+          <div class="hero-actions">
+            <button class="button button-primary" id="explore-necklaces" type="button">목걸이 컬렉션 <span class="arrow" aria-hidden="true">→</span></button>
+            <button class="button button-secondary" id="explore-watches" type="button">시계 컬렉션</button>
+          </div>
+          <ul class="hero-stats">
+            <li class="stat"><strong>5</strong><span>necklaces</span></li>
+            <li class="stat"><strong id="hero-watch-count">36</strong><span>watches</span></li>
+            <li class="stat"><strong>3</strong><span>compare at once</span></li>
+          </ul>
         </div>
-        <ul class="hero-stats">
-          <li class="stat"><strong>5</strong><span>necklaces</span></li>
-          <li class="stat"><strong id="hero-watch-count">36</strong><span>watches</span></li>
-          <li class="stat"><strong>3</strong><span>compare at once</span></li>
-        </ul>
+
+        <div class="product-stage" aria-hidden="true" data-reveal>
+          <span class="orbit"></span>
+          <span class="pendant"></span>
+          <span class="watch"><span class="watch-hand"></span></span>
+          <span class="stage-label">Chosen for Abigail</span>
+        </div>
       </div>
 
-      <div class="product-stage" aria-hidden="true" data-reveal>
-        <span class="orbit"></span>
-        <span class="pendant"></span>
-        <span class="watch"><span class="watch-hand"></span></span>
-        <span class="stage-label">Curated, not crowded</span>
-      </div>
+      <section class="landing-categories container" aria-labelledby="landing-categories-title" data-reveal>
+        <div class="landing-heading">
+          <p class="eyebrow">The Abigail edit</p>
+          <h2 id="landing-categories-title">Choose a collection.</h2>
+        </div>
+        <div class="landing-grid">
+          <button class="landing-card landing-necklace" type="button" data-open-category="necklace">
+            <span class="landing-art landing-art-necklace" aria-hidden="true"><span></span></span>
+            <span class="landing-card-copy"><small>5 curated pieces</small><strong>Necklaces</strong><span>Soft metallic drops <b aria-hidden="true">→</b></span></span>
+          </button>
+          <button class="landing-card landing-watch" type="button" data-open-category="watch">
+            <span class="landing-art landing-art-watch" aria-hidden="true"><span></span></span>
+            <span class="landing-card-copy"><small><span id="landing-watch-count">36</span> curated picks</small><strong>Watches</strong><span>Petite oval classics <b aria-hidden="true">→</b></span></span>
+          </button>
+        </div>
+      </section>
     </section>
 
-    <section class="collection-section" id="collection" aria-label="Product collections">
+    <section class="collection-section" id="collection" aria-label="Product collections" hidden>
       <div class="container">
         <section id="necklace-panel" role="tabpanel" aria-labelledby="necklace-tab">
           <div class="section-intro" data-reveal>
@@ -856,7 +950,18 @@
     const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
     const safeUrl = value => /^https:\/\//i.test(String(value)) ? String(value) : "#";
     const usd = value => value === null || value === "" || Number.isNaN(Number(value)) ? "Price unavailable" : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(Number(value));
-    const productImage = product => `https://api.microlink.io/?url=${encodeURIComponent(safeUrl(product.url))}&embed=image.url`;
+    const productImage = product => product.image || `https://api.microlink.io/?url=${encodeURIComponent(safeUrl(product.url))}&embed=image.url`;
+    const productScreenshot = url => `https://api.microlink.io/?url=${encodeURIComponent(safeUrl(url))}&screenshot=true&meta=false&embed=screenshot.url`;
+    function handleProductImageError(image) {
+      const media = image.closest(".product-media");
+      if (!image.dataset.screenshotAttempted) {
+        image.dataset.screenshotAttempted = "true";
+        image.classList.add("is-screenshot");
+        image.src = productScreenshot(image.dataset.productUrl);
+        return;
+      }
+      media.classList.add("image-error");
+    }
     const fallbackIcon = type => type === "watch"
       ? `<svg viewBox="0 0 160 200" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><path d="M59 49 64 9h32l5 40M59 151l5 40h32l5-40"/><ellipse cx="80" cy="100" rx="52" ry="62"/><path d="M80 69v34l22 15" stroke-linecap="round"/></svg>`
       : `<svg viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M28 26c9 54 26 81 62 81s53-27 62-81" stroke-linecap="round"/><path d="M90 102c-27 0-39 20-39 43 0 27 17 44 39 44s39-17 39-44c0-23-12-43-39-43Z"/></svg>`;
@@ -865,7 +970,7 @@
       return `
         <li class="product-card" data-reveal>
           <a class="card-click-target" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(product.name)} 구매 페이지 열기"></a>
-          <figure class="product-media"><span class="media-badge">Curated pick</span><img class="product-image" src="${esc(productImage(product))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="this.closest('.product-media').classList.add('image-error')"><span class="product-fallback">${fallbackIcon("necklace")}</span></figure>
+          <figure class="product-media"><span class="media-badge">Curated pick</span><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon("necklace")}</span></figure>
           <div class="product-copy">
             <div class="card-top"><div class="badges"><span class="badge">${esc(product.brand)}</span></div><span class="price">${esc(product.priceLabel)}</span></div>
             <p class="category-label">Egg-drop necklace</p>
@@ -881,7 +986,7 @@
       return `
         <li class="product-card" data-reveal>
           <a class="card-click-target" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(product.name)} product page"></a>
-          <figure class="product-media"><span class="media-badge">${esc(product.similarity)} match</span><img class="product-image" src="${esc(productImage(product))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="this.closest('.product-media').classList.add('image-error')"><span class="product-fallback">${fallbackIcon("watch")}</span></figure>
+          <figure class="product-media"><span class="media-badge">${esc(product.similarity)} match</span><img class="product-image" src="${esc(productImage(product))}" data-product-url="${esc(safeUrl(product.url))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="handleProductImageError(this)"><span class="product-fallback">${fallbackIcon("watch")}</span></figure>
           <div class="product-copy">
             <div class="card-top"><div class="badges"><span class="badge">${esc(product.brand)}</span><span class="badge badge-neutral ${similarityClass}">${esc(product.similarity)}</span></div><span class="price">${esc(product.priceLabel)}</span></div>
             <p class="category-label">${esc(product.segment)}</p>
@@ -928,16 +1033,21 @@
     }
 
     function switchCategory(category, { updateHash = true, scroll = false } = {}) {
-      const isWatch = category === "watch";
       $$("[role='tab']").forEach(tab => {
         const active = tab.dataset.category === category;
         tab.setAttribute("aria-selected", active);
         tab.tabIndex = active ? 0 : -1;
       });
-      $("#necklace-panel").hidden = isWatch;
-      $("#watch-panel").hidden = !isWatch;
-      if (updateHash) history.replaceState(null, "", isWatch ? "#watches" : "#necklaces");
-      if (scroll) $("#collection").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      const isHome = category === "home";
+      $("#home-panel").hidden = !isHome;
+      $("#collection").hidden = isHome;
+      $("#necklace-panel").hidden = category !== "necklace";
+      $("#watch-panel").hidden = category !== "watch";
+      if (updateHash) history.replaceState(null, "", category === "watch" ? "#watches" : category === "necklace" ? "#necklaces" : "#home");
+      if (scroll) {
+        const target = isHome ? $("#top") : $("#collection");
+        target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      }
       requestAnimationFrame(observeReveals);
     }
 
@@ -1005,7 +1115,9 @@
           switchCategory(tabs[next].dataset.category);
         });
       });
+      $("#explore-necklaces").addEventListener("click", () => switchCategory("necklace", { scroll: true }));
       $("#explore-watches").addEventListener("click", () => switchCategory("watch", { scroll: true }));
+      $$('[data-open-category]').forEach(button => button.addEventListener("click", () => switchCategory(button.dataset.openCategory, { scroll: true })));
       $("#theme-toggle").addEventListener("click", () => {
         const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
         document.documentElement.dataset.theme = next;
@@ -1035,6 +1147,7 @@
         state.watches = parseTsv(await response.text());
         state.watches.forEach(product => productIndex.set(product.id, product));
         $("#hero-watch-count").textContent = state.watches.length;
+        $("#landing-watch-count").textContent = state.watches.length;
         [...new Set(state.watches.map(product => product.segment).filter(Boolean))].forEach(value => $("#segment").add(new Option(value, value)));
         $("#watch-loading").remove();
         renderWatches();
@@ -1049,7 +1162,7 @@
     bindCompareButtons();
     observeReveals();
     loadWatches();
-    switchCategory(location.hash === "#watches" ? "watch" : "necklace", { updateHash: false });
+    switchCategory(location.hash === "#watches" ? "watch" : location.hash === "#necklaces" ? "necklace" : "home", { updateHash: false });
   </script>
 </body>
 </html>
