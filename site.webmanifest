@@ -1,7 +1,7 @@
 {
-  "name": "Curated for Abigail",
-  "short_name": "Abigail",
-  "description": "A personal collection of curated necklaces, watches, camera lenses, and women's FIGS scrubs.",
+  "name": "Abigail Orbit",
+  "short_name": "Orbit",
+  "description": "Discover, compare, and gather products into personal collection tabs.",
   "start_url": "./#home",
   "display": "standalone",
   "background_color": "#f5f5f7",
