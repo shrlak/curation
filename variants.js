@@ -140,7 +140,7 @@
     renderCardControls();
     if (gridObserver) return;
     gridObserver = new MutationObserver(() => renderCardControls());
-    gridObserver.observe(grid, { childList: true, subtree: true });
+    gridObserver.observe(grid, { childList: true });
   }
 
   document.addEventListener("click", event => {
@@ -156,7 +156,7 @@
       if (document.querySelector("#set-feature")) renderFeature();
       if (document.querySelector("#scrub-grid")) watchForCard();
     });
-    partialObserver.observe(document.querySelector("#main"), { childList: true, subtree: true });
+    partialObserver.observe(document.querySelector("#main"), { childList: true });
     setTimeout(() => partialObserver.disconnect(), 8000);
   }
 
