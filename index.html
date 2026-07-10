@@ -1,77 +1,1055 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="목걸이와 시계 제품 비교 및 구매 링크">
-<meta name="theme-color" content="#173f5f">
-<title>Product Comparison Hub</title>
-<style>
-:root{--bg:#f4f6f8;--card:#fff;--text:#18212b;--muted:#667085;--line:#e4e7ec;--accent:#1f5f8b;--dark:#17496a;--soft:#eef5fa;--shadow:0 10px 30px rgba(16,24,40,.08)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif}button,input,select{font:inherit}.shell{width:min(1200px,calc(100% - 32px));margin:auto;padding:32px 0 64px}
-.hero{position:relative;overflow:hidden;padding:34px;border-radius:24px;background:linear-gradient(135deg,#173f5f,#276b9b 58%,#3987b8);color:#fff;box-shadow:var(--shadow);margin-bottom:20px}.hero:after{content:"";position:absolute;width:240px;height:240px;right:-90px;top:-110px;border-radius:50%;background:#ffffff1a}.hero h1{position:relative;margin:0 0 8px;font-size:clamp(2rem,5vw,3.4rem);line-height:1.05;letter-spacing:-.045em}.hero p{position:relative;margin:0;max-width:760px;opacity:.92}
-.tabbar{position:sticky;top:12px;z-index:20;margin-bottom:24px}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;border:1px solid #e4e7ece6;border-radius:18px;background:#fffffff0;box-shadow:0 8px 24px #10182817;backdrop-filter:blur(12px)}.tab{border:0;border-radius:12px;padding:13px 18px;background:transparent;color:var(--muted);font-weight:800;cursor:pointer}.tab:hover{background:#f8fafc;color:var(--text)}.tab[aria-selected=true]{background:var(--accent);color:#fff;box-shadow:0 5px 14px #1f5f8b47}
-[hidden]{display:none!important}.head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin:4px 0 20px}.head h2{margin:0;font-size:clamp(1.55rem,3vw,2.25rem);letter-spacing:-.03em}.head p{margin:7px 0 0;color:var(--muted)}.count{flex:none;padding:7px 12px;border-radius:999px;background:var(--soft);color:var(--dark);font-weight:800;font-size:.9rem}
-.filters{display:grid;grid-template-columns:minmax(220px,1.6fr) repeat(3,minmax(150px,1fr));gap:12px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin-bottom:20px}.field{display:flex;flex-direction:column;gap:6px}.field label{color:var(--muted);font-size:.82rem;font-weight:750}.field input,.field select{width:100%;min-height:44px;border:1px solid #d0d5dd;border-radius:11px;background:#fff;padding:9px 12px;color:var(--text)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{display:flex;flex-direction:column;min-height:220px;padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:var(--shadow);transition:.18s}.card:hover{transform:translateY(-2px);box-shadow:0 16px 40px #10182821;border-color:#cbd5e1}.top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:14px}.badges{display:flex;flex-wrap:wrap;gap:7px}.badge{display:inline-flex;align-items:center;min-height:29px;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--dark);font-size:.8rem;font-weight:800}.sim{background:#f2f4f7;color:#475467}.sim.exact{background:#ecfdf3;color:#067647}.sim.high{background:#f4f3ff;color:#5925dc}.sim.medium{background:#fffaeb;color:#b54708}.price{font-size:1.08rem;font-weight:850;white-space:nowrap}
-.eyebrow{margin:0 0 7px;color:var(--muted);font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.card h3{margin:0;font-size:1.18rem;line-height:1.35;letter-spacing:-.02em}.card h3 a{text-decoration:none;color:var(--text)}.card h3 a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}.specs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:17px 0 0}.specs div{padding:9px 10px;border:1px solid #eef2f6;border-radius:11px;background:#f8fafc}.specs dt{margin:0 0 3px;color:var(--muted);font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em}.specs dd{margin:0;font-size:.88rem;font-weight:700;overflow-wrap:anywhere}
-.best{display:flex;align-items:baseline;gap:8px;margin-top:15px;padding:10px 12px;border-left:3px solid #6ca6c9;border-radius:0 10px 10px 0;background:#f7fbfe}.best span{color:var(--muted);font-size:.78rem;font-weight:750;white-space:nowrap}.best strong{font-size:.9rem}.note{margin:12px 0 20px;color:var(--muted);font-size:.91rem}.actions{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:auto}.retailer{color:var(--accent);font-size:.88rem;font-weight:800;text-decoration:none}.retailer:hover{text-decoration:underline}.buy{display:inline-flex;justify-content:center;align-items:center;gap:7px;min-height:46px;padding:11px 16px;border-radius:12px;background:var(--accent);color:#fff;text-decoration:none;font-weight:800;transition:.15s;margin-top:auto}.buy:hover{background:var(--dark);transform:translateY(-1px)}.buy.small{min-height:40px;padding:9px 13px;font-size:.88rem;margin-top:0}
-.empty{display:none;grid-column:1/-1;padding:40px 24px;text-align:center;background:#fff;border:1px dashed #98a2b3;border-radius:18px;color:var(--muted)}.loading{padding:34px;text-align:center;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:18px}footer{margin-top:28px;color:var(--muted);font-size:.86rem;text-align:center}
-.tab:focus-visible,.buy:focus-visible,.card h3 a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #3987b859;outline-offset:3px}
-@media(max-width:900px){.filters{grid-template-columns:1fr 1fr}}@media(max-width:720px){.shell{width:min(100% - 20px,1200px);padding-top:16px}.hero{padding:26px 22px;border-radius:18px}.tabbar{top:8px}.tab{padding:11px 9px;font-size:.9rem}.head{align-items:flex-start;flex-direction:column;gap:10px}.filters,.grid{grid-template-columns:1fr}.card{min-height:0}.actions{align-items:stretch;flex-direction:column}.buy.small{width:100%}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="목걸이와 시계를 더 쉽고 아름답게 비교하는 큐레이션 가이드">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>Compare — Curated Product Guide</title>
+  <script>
+    (() => {
+      const saved = localStorage.getItem("compare-theme");
+      const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme = saved || (systemDark ? "dark" : "light");
+    })();
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f5f7;
+      --surface: #fff;
+      --surface-2: #fbfbfd;
+      --surface-glass: rgba(255,255,255,.78);
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --faint: #a1a1a6;
+      --line: #d2d2d7;
+      --line-soft: rgba(0,0,0,.08);
+      --accent: #0071e3;
+      --accent-hover: #0077ed;
+      --accent-soft: #e8f2fd;
+      --success: #248a3d;
+      --warning: #b25000;
+      --shadow-card: 0 2px 8px rgba(0,0,0,.04), 0 18px 50px rgba(0,0,0,.06);
+      --shadow-float: 0 20px 70px rgba(0,0,0,.16);
+      --ease: cubic-bezier(.22,1,.36,1);
+      --nav-height: 64px;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #000;
+      --surface: #1c1c1e;
+      --surface-2: #111113;
+      --surface-glass: rgba(20,20,22,.78);
+      --text: #f5f5f7;
+      --muted: #a1a1a6;
+      --faint: #6e6e73;
+      --line: #38383a;
+      --line-soft: rgba(255,255,255,.1);
+      --accent: #2997ff;
+      --accent-hover: #40a9ff;
+      --accent-soft: #0a2948;
+      --success: #30d158;
+      --warning: #ffd60a;
+      --shadow-card: 0 2px 8px rgba(0,0,0,.18), 0 24px 70px rgba(0,0,0,.32);
+      --shadow-float: 0 22px 80px rgba(0,0,0,.5);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: -.01em;
+      transition: background-color .35s ease, color .35s ease;
+    }
+    button, input, select { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    img, svg { display: block; }
+    [hidden] { display: none !important; }
+
+    .skip-link {
+      position: fixed;
+      z-index: 1000;
+      top: 10px;
+      left: 10px;
+      transform: translateY(-160%);
+      border-radius: 999px;
+      padding: 10px 16px;
+      background: var(--text);
+      color: var(--bg);
+      text-decoration: none;
+      transition: transform .2s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-header {
+      position: sticky;
+      z-index: 100;
+      top: 0;
+      height: var(--nav-height);
+      border-bottom: 1px solid var(--line-soft);
+      background: var(--surface-glass);
+      -webkit-backdrop-filter: saturate(180%) blur(22px);
+      backdrop-filter: saturate(180%) blur(22px);
+    }
+    .nav {
+      width: min(1280px, calc(100% - 40px));
+      height: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+    }
+    .brand {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-decoration: none;
+    }
+    .brand-mark {
+      position: relative;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #5ac8fa, var(--accent) 58%, #5e5ce6);
+      box-shadow: inset 0 1px 1px rgba(255,255,255,.5), 0 5px 14px rgba(0,113,227,.2);
+    }
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1.5px solid rgba(255,255,255,.9);
+      border-radius: 50%;
+    }
+    .category-tabs {
+      display: flex;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--text) 6%, transparent);
+    }
+    .tab {
+      min-width: 132px;
+      min-height: 40px;
+      border: 0;
+      border-radius: 999px;
+      padding: 8px 18px;
+      background: transparent;
+      color: var(--muted);
+      font-size: .85rem;
+      font-weight: 650;
+      cursor: pointer;
+      transition: color .25s ease, background .35s var(--ease), box-shadow .35s var(--ease), transform .2s ease;
+    }
+    .tab:hover { color: var(--text); }
+    .tab[aria-selected="true"] {
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 4px 18px rgba(0,0,0,.09);
+    }
+    .nav-actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: .75rem;
+    }
+    .nav-status::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 4px color-mix(in srgb, var(--success) 13%, transparent);
+    }
+    .icon-button {
+      display: inline-grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid var(--line-soft);
+      border-radius: 50%;
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform .25s var(--ease), background-color .25s ease;
+    }
+    .icon-button:hover { transform: rotate(10deg) scale(1.05); }
+    .icon-button svg { width: 17px; height: 17px; }
+    html[data-theme="dark"] .sun-icon { display: none; }
+    html:not([data-theme="dark"]) .moon-icon { display: none; }
+
+    .container { width: min(1280px, calc(100% - 40px)); margin-inline: auto; }
+    .hero {
+      position: relative;
+      min-height: min(790px, calc(100svh - var(--nav-height)));
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(360px, .85fr);
+      align-items: center;
+      gap: clamp(48px, 8vw, 110px);
+      padding-block: clamp(80px, 11vw, 150px);
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 540px;
+      height: 540px;
+      top: 10%;
+      right: -18%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(41,151,255,.15), rgba(94,92,230,.05) 46%, transparent 70%);
+      filter: blur(8px);
+      animation: breathe 8s ease-in-out infinite alternate;
+    }
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 750;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(3.4rem, 7vw, 6.6rem);
+      font-weight: 720;
+      letter-spacing: -.065em;
+      line-height: .93;
+      text-wrap: balance;
+    }
+    .gradient-word {
+      background: linear-gradient(95deg, var(--accent), #5e5ce6 58%, #bf5af2);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .hero-lede {
+      max-width: 600px;
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 1.7vw, 1.35rem);
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 12px 21px;
+      font-weight: 650;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .25s var(--ease), background-color .25s ease, border-color .25s ease, color .25s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { background: var(--accent); color: #fff; }
+    .button-primary:hover { background: var(--accent-hover); }
+    .button-secondary { border-color: var(--line); background: var(--surface); color: var(--text); }
+    .button .arrow { transition: transform .25s var(--ease); }
+    .button:hover .arrow { transform: translateX(3px); }
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 46px;
+      margin-bottom: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .stat { min-width: 92px; }
+    .stat strong { display: block; font-size: 1.55rem; letter-spacing: -.04em; }
+    .stat span { color: var(--muted); font-size: .78rem; }
+
+    .product-stage {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: min(100%, 520px);
+      margin-inline: auto;
+      border: 1px solid var(--line-soft);
+      border-radius: clamp(32px, 5vw, 56px);
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,.92), transparent 30%),
+        linear-gradient(145deg, var(--accent-soft), color-mix(in srgb, #bf5af2 11%, var(--surface)));
+      box-shadow: var(--shadow-card);
+      isolation: isolate;
+      overflow: hidden;
+      transform: perspective(1000px) rotateY(-3deg) rotateX(2deg);
+      transition: transform .8s var(--ease);
+    }
+    .product-stage:hover { transform: perspective(1000px) rotateY(0) rotateX(0) translateY(-6px); }
+    .orbit {
+      position: absolute;
+      inset: 11%;
+      border: 1px solid color-mix(in srgb, var(--accent) 23%, transparent);
+      border-radius: 50%;
+      animation: orbit 24s linear infinite;
+    }
+    .orbit::before, .orbit::after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 24px var(--accent);
+    }
+    .orbit::before { top: 12%; left: 12%; }
+    .orbit::after { right: 4%; bottom: 28%; background: #bf5af2; }
+    .pendant {
+      position: absolute;
+      z-index: 2;
+      width: 31%;
+      height: 41%;
+      left: 15%;
+      top: 34%;
+      border: 2px solid color-mix(in srgb, var(--text) 42%, transparent);
+      border-radius: 50% 50% 55% 55% / 42% 42% 68% 68%;
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(255,255,255,.28));
+      box-shadow: inset 9px 10px 24px rgba(255,255,255,.7), var(--shadow-float);
+      animation: float 5s var(--ease) infinite alternate;
+    }
+    .pendant::before {
+      content: "";
+      position: absolute;
+      width: 110%;
+      height: 74%;
+      left: -5%;
+      top: -56%;
+      border: 2px solid color-mix(in srgb, var(--text) 37%, transparent);
+      border-color: color-mix(in srgb, var(--text) 37%, transparent) transparent transparent;
+      border-radius: 50%;
+    }
+    .watch {
+      position: absolute;
+      z-index: 3;
+      width: 32%;
+      height: 39%;
+      right: 13%;
+      top: 20%;
+      border: 4px solid color-mix(in srgb, var(--text) 50%, transparent);
+      border-radius: 48% / 54%;
+      background: linear-gradient(145deg, #fff, #e8e8ed);
+      box-shadow: inset -10px -12px 24px rgba(0,0,0,.06), var(--shadow-float);
+      animation: float 5.8s var(--ease) .4s infinite alternate-reverse;
+    }
+    .watch::before, .watch::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 34%;
+      height: 74%;
+      left: 33%;
+      border: 3px solid color-mix(in srgb, var(--text) 42%, transparent);
+      border-radius: 10px;
+      background: repeating-linear-gradient(90deg, transparent 0 4px, rgba(127,127,127,.2) 4px 5px);
+    }
+    .watch::before { bottom: 82%; }
+    .watch::after { top: 82%; }
+    .watch-hand {
+      position: absolute;
+      width: 3px;
+      height: 31%;
+      left: calc(50% - 1.5px);
+      top: 23%;
+      border-radius: 99px;
+      background: var(--accent);
+      transform: rotate(32deg);
+      transform-origin: bottom;
+    }
+    .stage-label {
+      position: absolute;
+      z-index: 5;
+      right: 9%;
+      bottom: 8%;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--surface-glass);
+      box-shadow: 0 8px 30px rgba(0,0,0,.1);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      font-size: .75rem;
+      font-weight: 650;
+    }
+    .stage-label::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+
+    .collection-section { padding: clamp(70px, 10vw, 130px) 0 120px; }
+    .section-intro {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 34px;
+    }
+    .section-intro h2 {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.35rem, 5vw, 4.5rem);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+    }
+    .section-intro p:not(.eyebrow) { max-width: 540px; margin: 18px 0 0; color: var(--muted); font-size: 1.05rem; word-break: keep-all; }
+    .result-count { flex: none; color: var(--muted); font-size: .9rem; }
+    .result-count strong { color: var(--text); font-size: 1.35rem; }
+
+    .filter-panel {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: minmax(250px, 1.6fr) repeat(3, minmax(145px, .8fr)) auto;
+      gap: 10px;
+      align-items: end;
+      margin-bottom: 30px;
+      border: 1px solid var(--line-soft);
+      border-radius: 22px;
+      padding: 14px;
+      background: var(--surface);
+      box-shadow: 0 8px 34px rgba(0,0,0,.045);
+    }
+    .field { display: grid; gap: 6px; }
+    .field label { padding-left: 3px; color: var(--muted); font-size: .7rem; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; }
+    .control, .search-control {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: var(--surface-2);
+      color: var(--text);
+      transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
+    }
+    .control { padding: 10px 34px 10px 12px; cursor: pointer; }
+    .search-wrap { position: relative; }
+    .search-wrap svg { position: absolute; z-index: 1; top: 50%; left: 14px; width: 17px; height: 17px; color: var(--muted); transform: translateY(-50%); pointer-events: none; }
+    .search-control { padding: 10px 14px 10px 42px; }
+    .control:focus, .search-control:focus { outline: 0; border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 14%, transparent); background: var(--surface); }
+    .clear-button {
+      min-height: 46px;
+      border: 0;
+      border-radius: 13px;
+      padding: 10px 15px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: .85rem;
+      font-weight: 650;
+      cursor: pointer;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+    .clear-button:hover { transform: translateY(-1px); }
+    .clear-button:disabled { opacity: .42; cursor: default; transform: none; }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .product-card {
+      position: relative;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--line-soft);
+      border-radius: 26px;
+      padding: 10px;
+      background: var(--surface);
+      box-shadow: 0 1px 1px rgba(0,0,0,.02);
+      overflow: hidden;
+      transition: transform .45s var(--ease), border-color .3s ease, box-shadow .45s var(--ease);
+    }
+    .card-click-target {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      border-radius: inherit;
+    }
+    .product-card:hover { z-index: 2; border-color: color-mix(in srgb, var(--accent) 28%, var(--line)); box-shadow: var(--shadow-card); transform: translateY(-7px) scale(1.008); }
+    .product-card:has(.card-click-target:focus-visible) { outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 3px; }
+    .card-click-target:focus-visible { outline: 0; }
+    .product-media {
+      position: relative;
+      aspect-ratio: 1 / 1.08;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      border-radius: 19px;
+      background:
+        radial-gradient(circle at 50% 38%, rgba(255,255,255,.92), rgba(255,255,255,.15) 42%, transparent 68%),
+        linear-gradient(145deg, var(--accent-soft), color-mix(in srgb, #bf5af2 7%, var(--surface-2)));
+      overflow: hidden;
+    }
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #fff;
+      transition: transform .7s var(--ease), opacity .25s ease;
+    }
+    .product-card:hover .product-image { transform: scale(1.045); }
+    .product-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: color-mix(in srgb, var(--accent) 66%, var(--text));
+    }
+    .product-fallback svg { width: 42%; max-height: 56%; opacity: .58; }
+    .product-media:not(.image-error) .product-fallback { opacity: 0; }
+    .product-media.image-error .product-image { display: none; }
+    .media-badge {
+      position: absolute;
+      z-index: 1;
+      top: 12px;
+      left: 12px;
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,.58);
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: rgba(255,255,255,.78);
+      color: #1d1d1f;
+      box-shadow: 0 5px 18px rgba(0,0,0,.07);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      font-size: .68rem;
+      font-weight: 700;
+    }
+    .product-copy { position: relative; z-index: 1; display: flex; min-height: 188px; flex-direction: column; padding: 17px 12px 12px; }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge {
+      display: inline-flex;
+      min-height: 28px;
+      align-items: center;
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .badge-neutral { background: color-mix(in srgb, var(--text) 6%, transparent); color: var(--muted); }
+    .badge-exact { background: color-mix(in srgb, var(--success) 12%, transparent); color: var(--success); }
+    .badge-medium { background: color-mix(in srgb, var(--warning) 12%, transparent); color: var(--warning); }
+    .price { flex: none; color: var(--text); font-size: 1.08rem; font-weight: 730; letter-spacing: -.025em; }
+    .category-label { margin: 18px 0 7px; color: var(--muted); font-size: .66rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .product-card h3 { margin: 0; font-size: 1.23rem; line-height: 1.2; letter-spacing: -.032em; }
+    .card-note { display: -webkit-box; margin: 10px 0 0; overflow: hidden; color: var(--muted); font-size: .82rem; line-height: 1.45; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+    .card-actions { position: relative; z-index: 3; display: flex; align-items: center; gap: 8px; margin-top: auto; padding-top: 18px; }
+    .shop-label, .compare-toggle {
+      display: inline-flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: .78rem;
+      font-weight: 650;
+      transition: transform .2s ease, background-color .2s ease, color .2s ease, border-color .2s ease;
+    }
+    .shop-label { flex: 1; justify-content: flex-start; padding-left: 0; color: var(--accent); }
+    .compare-toggle { border: 1px solid var(--line); background: transparent; color: var(--text); }
+    .compare-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .compare-toggle[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+
+    .skeleton-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .skeleton { height: 390px; border-radius: 26px; background: linear-gradient(100deg, var(--surface) 30%, color-mix(in srgb, var(--text) 7%, var(--surface)) 50%, var(--surface) 70%); background-size: 250% 100%; animation: shimmer 1.7s infinite linear; }
+    .empty-state { grid-column: 1 / -1; border: 1px dashed var(--line); border-radius: 26px; padding: 72px 24px; background: var(--surface); text-align: center; }
+    .empty-state strong { display: block; margin-bottom: 8px; font-size: 1.3rem; }
+    .empty-state span { color: var(--muted); }
+
+    .compare-tray {
+      position: fixed;
+      z-index: 150;
+      right: 50%;
+      bottom: max(18px, env(safe-area-inset-bottom));
+      width: min(620px, calc(100% - 28px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+      border-radius: 999px;
+      padding: 10px 11px 10px 18px;
+      background: var(--surface-glass);
+      box-shadow: var(--shadow-float);
+      -webkit-backdrop-filter: saturate(180%) blur(24px);
+      backdrop-filter: saturate(180%) blur(24px);
+      transform: translate(50%, 140%);
+      opacity: 0;
+      transition: transform .5s var(--ease), opacity .35s ease;
+    }
+    .compare-tray.is-visible { transform: translate(50%, 0); opacity: 1; }
+    .compare-summary { min-width: 0; }
+    .compare-summary strong { display: block; font-size: .9rem; }
+    .compare-summary span { display: block; overflow: hidden; color: var(--muted); font-size: .74rem; text-overflow: ellipsis; white-space: nowrap; }
+    .compare-actions { display: flex; flex: none; gap: 8px; }
+    .tray-button { min-height: 40px; border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; font-size: .8rem; font-weight: 650; }
+    .tray-clear { background: transparent; color: var(--muted); }
+    .tray-open { background: var(--accent); color: #fff; }
+
+    .compare-dialog {
+      width: min(1040px, calc(100% - 28px));
+      max-height: min(820px, calc(100dvh - 40px));
+      border: 1px solid var(--line-soft);
+      border-radius: 28px;
+      padding: 0;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: var(--shadow-float);
+      overflow: hidden;
+    }
+    .compare-dialog::backdrop { background: rgba(0,0,0,.45); -webkit-backdrop-filter: blur(7px); backdrop-filter: blur(7px); }
+    .dialog-head { position: sticky; z-index: 2; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--line-soft); padding: 22px 24px; background: var(--surface-glass); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); }
+    .dialog-head h2 { margin: 0; font-size: 1.55rem; letter-spacing: -.04em; }
+    .dialog-close { display: grid; width: 36px; height: 36px; place-items: center; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--text) 7%, transparent); color: var(--text); cursor: pointer; }
+    .comparison-wrap { overflow: auto; padding: 22px; }
+    .comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+    .comparison-table th, .comparison-table td { min-width: 190px; border-bottom: 1px solid var(--line-soft); padding: 15px; text-align: left; vertical-align: top; }
+    .comparison-table th:first-child, .comparison-table td:first-child { position: sticky; left: 0; z-index: 1; width: 120px; min-width: 120px; background: var(--surface); color: var(--muted); font-size: .75rem; }
+    .comparison-table thead th { color: var(--text); font-size: 1rem; }
+    .table-link { display: inline-flex; margin-top: 6px; color: var(--accent); font-size: .78rem; font-weight: 650; text-decoration: none; }
+
+    .site-footer { border-top: 1px solid var(--line-soft); padding: 36px 0 92px; color: var(--muted); font-size: .75rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
+    .footer-inner p { margin: 0; }
+
+    [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .75s var(--ease), transform .75s var(--ease); }
+    [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+    :focus-visible { outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 3px; }
+
+    @keyframes breathe { to { transform: translate(-24px, 16px) scale(1.08); } }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @keyframes float { to { transform: translateY(-16px) rotate(2deg); } }
+    @keyframes shimmer { to { background-position: -250% 0; } }
+
+    @media (max-width: 1060px) {
+      .hero { grid-template-columns: 1fr 390px; gap: 48px; }
+      .product-grid, .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .filter-panel { grid-template-columns: 1fr 1fr; }
+      .clear-button { grid-column: 2; }
+    }
+    @media (max-width: 780px) {
+      :root { --nav-height: 58px; }
+      .nav { width: min(100% - 24px, 1280px); grid-template-columns: auto 1fr auto; gap: 10px; }
+      .brand span:last-child, .nav-status { display: none; }
+      .category-tabs { justify-self: center; }
+      .tab { min-width: 108px; min-height: 38px; padding: 7px 12px; }
+      .container { width: min(100% - 28px, 1280px); }
+      .hero { grid-template-columns: 1fr; min-height: 0; gap: 60px; padding-block: 82px 96px; }
+      .hero h1 { max-width: 640px; }
+      .product-stage { width: min(100%, 520px); transform: none; }
+      .section-intro { align-items: start; flex-direction: column; }
+      .filter-panel { grid-template-columns: 1fr 1fr; }
+      .field-search { grid-column: 1 / -1; }
+      .product-grid, .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer-inner { flex-direction: column; }
+    }
+    @media (max-width: 580px) {
+      .category-tabs { gap: 2px; padding: 3px; }
+      .tab { min-width: 92px; font-size: .77rem; }
+      .hero h1 { font-size: clamp(3.15rem, 16vw, 5rem); }
+      .hero-lede { font-size: 1rem; }
+      .hero-actions .button { width: 100%; }
+      .hero-stats { justify-content: space-between; gap: 16px; }
+      .stat { min-width: 74px; }
+      .product-grid, .skeleton-grid, .filter-panel { grid-template-columns: 1fr; }
+      .field-search, .clear-button { grid-column: 1; }
+      .product-card { border-radius: 22px; padding: 8px; }
+      .product-media { border-radius: 16px; }
+      .product-copy { min-height: 176px; padding: 15px 10px 10px; }
+      .compare-tray { border-radius: 22px; }
+      .compare-actions { gap: 4px; }
+      .tray-button { padding-inline: 11px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
 <body>
-<main class="shell">
-<header class="hero"><h1>Product Comparison Hub</h1><p>목걸이와 시계를 탭별로 비교하고, 제품명을 클릭해 판매 페이지로 바로 이동할 수 있습니다.</p></header>
-<div class="tabbar"><nav class="tabs" role="tablist" aria-label="제품 비교 카테고리">
-<button class="tab" id="necklace-tab" role="tab" aria-selected="true" aria-controls="necklace-panel" data-panel="necklace-panel">목걸이 비교 · Necklace</button>
-<button class="tab" id="watch-tab" role="tab" aria-selected="false" aria-controls="watch-panel" data-panel="watch-panel" tabindex="-1">시계 비교 · Watch</button>
-</nav></div>
+  <a class="skip-link" href="#collection">제품 목록으로 건너뛰기</a>
 
-<section id="necklace-panel" role="tabpanel" aria-labelledby="necklace-tab">
-<div class="head"><div><h2>에그 드롭 목걸이 비교</h2><p>제품명 또는 구매 버튼을 클릭하면 해당 판매 페이지가 새 탭에서 열립니다.</p></div><span class="count">5 products</span></div>
-<div class="grid" id="necklace-grid" aria-label="목걸이 제품 목록"></div>
-</section>
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Compare home">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>COMPARE</span>
+      </a>
 
-<section id="watch-panel" role="tabpanel" aria-labelledby="watch-tab" hidden>
-<div class="head"><div><h2>Coach Sammy 스타일 시계 비교</h2><p>업로드된 Excel의 제품을 동일한 카드 형식으로 정리했습니다.</p></div><span class="count"><span id="watch-count">0</span> products</span></div>
-<div class="filters" aria-label="시계 필터">
-<div class="field"><label for="q">Search</label><input id="q" type="search" placeholder="Brand, model, retailer, notes..." autocomplete="off"></div>
-<div class="field"><label for="segment">Category</label><select id="segment"><option value="">All categories</option></select></div>
-<div class="field"><label for="similarity">Similarity</label><select id="similarity"><option value="">All levels</option><option>Exact</option><option>High</option><option>Medium</option></select></div>
-<div class="field"><label for="budget">Budget</label><select id="budget"><option value="">All budgets</option><option>Under $75</option><option>$75-$149</option><option>$150-$249</option><option>$250+</option><option>TBD</option></select></div>
-</div>
-<div id="watch-status" class="loading">Loading watch comparison…</div>
-<div class="grid" id="watch-grid" aria-label="시계 제품 목록"></div>
-<div class="empty" id="empty">조건에 맞는 제품이 없습니다. 검색어나 필터를 조정해 주세요.</div>
-</section>
-<footer>목걸이 가격 확인일: 2026-07-10 · 시계 정보는 업로드된 Excel 기준입니다. 판매가와 재고는 판매처에서 달라질 수 있습니다.</footer>
-</main>
-<script>
-const necklaces=[
-{brand:"누아즈",name:"써지컬스틸 에그드롭 목걸이",price:"₩19,950",note:"지그재그 쿠폰할인가",url:"https://zigzag.kr/catalog/products/168649635"},
-{brand:"노트",name:"에그 드롭 롱 목걸이",price:"₩16,150",note:"지그재그 쿠폰할인가",url:"https://zigzag.kr/catalog/products/170030642"},
-{brand:"헤이민",name:"에그드롭 써지컬 목걸이",price:"₩23,750",note:"지그재그 쿠폰할인가",url:"https://zigzag.kr/catalog/products/168969671"},
-{brand:"모에",name:"물방울 펜던트 뱀줄 슬라이드 롱 목걸이",price:"₩20,800",note:"지그재그 쿠폰할인가",url:"https://zigzag.kr/catalog/products/170019114"},
-{brand:"로렌하이",name:"러히드 실버 에그 드롭 롱 목걸이",price:"₩22,900",note:"로렌하이 판매가",url:"https://laurenhi.com/product/%EB%AF%B8%EB%8B%88%EB%AC%B4%EB%93%9C%EB%A3%A9%EC%99%84%EC%84%B1%EB%8F%84up%EC%9D%80%EC%9D%80%ED%95%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8%EB%9F%AC%ED%9E%88%EB%93%9C-%EC%8B%A4%EB%B2%84-%EC%97%90%EA%B7%B8-%EB%93%9C%EB%A1%AD-%EB%A1%B1-%EB%AA%A9%EA%B1%B8%EC%9D%B4%EC%8D%A8%EC%A7%80%EC%BB%AC%EC%8A%A4%ED%8B%B8-1-color/31828/"}
-];
-const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const safe=u=>/^https:\/\//i.test(u)?u:"#";
-const money=n=>n===""?"Price unavailable":new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:2}).format(Number(n));
-document.getElementById("necklace-grid").innerHTML=necklaces.map(p=>`<article class="card"><div class="top"><span class="badge">${esc(p.brand)}</span><span class="price">${esc(p.price)}</span></div><h3><a href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">${esc(p.name)}</a></h3><p class="note">${esc(p.note)}</p><a class="buy" href="${safe(p.url)}" target="_blank" rel="noopener noreferrer">구매 페이지 열기 ↗</a></article>`).join("");
+      <div class="category-tabs" role="tablist" aria-label="제품 비교 카테고리">
+        <button class="tab" id="necklace-tab" type="button" role="tab" aria-selected="true" aria-controls="necklace-panel" data-category="necklace">목걸이</button>
+        <button class="tab" id="watch-tab" type="button" role="tab" aria-selected="false" aria-controls="watch-panel" data-category="watch" tabindex="-1">시계</button>
+      </div>
 
-const tabs=[...document.querySelectorAll('[role="tab"]')],panels=[...document.querySelectorAll('[role="tabpanel"]')];
-function openTab(btn,hash=true){tabs.forEach(t=>{const on=t===btn;t.setAttribute("aria-selected",on);t.tabIndex=on?0:-1});panels.forEach(p=>p.hidden=p.id!==btn.dataset.panel);if(hash)history.replaceState(null,"",btn.id==="watch-tab"?"#watch":"#necklace")}
-tabs.forEach((b,i)=>{b.onclick=()=>openTab(b);b.onkeydown=e=>{if(!["ArrowLeft","ArrowRight"].includes(e.key))return;e.preventDefault();const n=(i+(e.key==="ArrowRight"?1:-1)+tabs.length)%tabs.length;tabs[n].focus();openTab(tabs[n])}});
-openTab(document.getElementById(location.hash==="#watch"?"watch-tab":"necklace-tab"),false);
+      <div class="nav-actions">
+        <span class="nav-status">Curated guide</span>
+        <button class="icon-button" id="theme-toggle" type="button" aria-label="다크 모드로 전환">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20.2 15.6A8.5 8.5 0 0 1 8.4 3.8 8.5 8.5 0 1 0 20.2 15.6Z"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-let watches=[];
-const grid=document.getElementById("watch-grid"),status=document.getElementById("watch-status"),count=document.getElementById("watch-count"),segment=document.getElementById("segment"),q=document.getElementById("q"),similarity=document.getElementById("similarity"),budget=document.getElementById("budget"),empty=document.getElementById("empty");
-function card(w,i){return `<article class="card watch" data-i="${i}"><div class="top"><div class="badges"><span class="badge">${esc(w.brand)}</span><span class="badge sim ${esc(w.similarity.toLowerCase())}">${esc(w.similarity)}</span></div><span class="price">${esc(money(w.price))}</span></div><p class="eyebrow">${esc(w.segment)}</p><h3><a href="${safe(w.url)}" target="_blank" rel="noopener noreferrer">${esc(w.name)}</a></h3><dl class="specs"><div><dt>Case</dt><dd>${esc(w.case||"—")}</dd></div><div><dt>Strap</dt><dd>${esc(w.strap||"—")}</dd></div><div><dt>Finish</dt><dd>${esc(w.finish||"—")}</dd></div><div><dt>Budget</dt><dd>${esc(w.budget||"—")}</dd></div></dl><div class="best"><span>Best for</span><strong>${esc(w.best||"—")}</strong></div><p class="note">${esc(w.notes)}</p><div class="actions"><a class="retailer" href="${safe(w.url)}" target="_blank" rel="noopener noreferrer">${esc(w.retailer||"Retailer")}</a><a class="buy small" href="${safe(w.url)}" target="_blank" rel="noopener noreferrer">View product ↗</a></div></article>`}
-function filter(){const text=q.value.trim().toLowerCase();let shown=0;document.querySelectorAll(".watch").forEach(cardEl=>{const w=watches[+cardEl.dataset.i],hay=Object.values(w).join(" ").toLowerCase(),ok=(!text||hay.includes(text))&&(!segment.value||w.segment===segment.value)&&(!similarity.value||w.similarity===similarity.value)&&(!budget.value||w.budget===budget.value);cardEl.hidden=!ok;if(ok)shown++});count.textContent=shown;empty.style.display=shown?"none":"block"}
-[q,segment,similarity,budget].forEach(x=>{x.addEventListener("input",filter);x.addEventListener("change",filter)});
-fetch("watches.tsv").then(r=>{if(!r.ok)throw Error("Unable to load watches.tsv");return r.text()}).then(text=>{const rows=text.trim().split(/\r?\n/).map(r=>r.split("\t")),headers=rows.shift();watches=rows.map(r=>Object.fromEntries(headers.map((h,i)=>[h,r[i]??""])));[...new Set(watches.map(w=>w.segment).filter(Boolean))].forEach(v=>segment.add(new Option(v,v)));grid.innerHTML=watches.map(card).join("");status.remove();filter()}).catch(err=>{status.textContent="Watch data could not be loaded. Please refresh the page.";console.error(err)});
-</script>
+  <main id="top">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow">Curated product comparison</p>
+        <h1 id="hero-title">Less searching.<br><span class="gradient-word">Better choosing.</span></h1>
+        <p class="hero-lede">목걸이와 시계를 한곳에서 간결하게 비교하고, 마음에 드는 제품의 구매 페이지로 바로 이동하세요.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#collection">제품 둘러보기 <span class="arrow" aria-hidden="true">→</span></a>
+          <button class="button button-secondary" id="explore-watches" type="button">시계 컬렉션 보기</button>
+        </div>
+        <ul class="hero-stats">
+          <li class="stat"><strong>5</strong><span>necklaces</span></li>
+          <li class="stat"><strong id="hero-watch-count">36</strong><span>watches</span></li>
+          <li class="stat"><strong>3</strong><span>compare at once</span></li>
+        </ul>
+      </div>
+
+      <div class="product-stage" aria-hidden="true" data-reveal>
+        <span class="orbit"></span>
+        <span class="pendant"></span>
+        <span class="watch"><span class="watch-hand"></span></span>
+        <span class="stage-label">Curated, not crowded</span>
+      </div>
+    </section>
+
+    <section class="collection-section" id="collection" aria-label="Product collections">
+      <div class="container">
+        <section id="necklace-panel" role="tabpanel" aria-labelledby="necklace-tab">
+          <div class="section-intro" data-reveal>
+            <div>
+              <p class="eyebrow">Necklace collection</p>
+              <h2 id="necklace-title">에그 드롭,<br>다섯 가지 선택.</h2>
+              <p>가격과 브랜드를 빠르게 살펴보고 원하는 제품으로 바로 이동할 수 있습니다.</p>
+            </div>
+            <p class="result-count"><strong>5</strong> products</p>
+          </div>
+          <ul class="product-grid" id="necklace-grid"></ul>
+        </section>
+
+        <section id="watch-panel" role="tabpanel" aria-labelledby="watch-tab" hidden>
+          <div class="section-intro" data-reveal>
+            <div>
+              <p class="eyebrow">Watch collection</p>
+              <h2 id="watch-title">Coach Sammy의<br>감각을 기준으로.</h2>
+              <p>비슷한 실루엣부터 정확한 모델까지, 예산과 스타일에 맞춰 좁혀보세요.</p>
+            </div>
+            <p class="result-count" aria-live="polite"><strong id="watch-count">0</strong> products</p>
+          </div>
+
+          <div class="filter-panel" role="search" aria-label="시계 필터" data-reveal>
+            <div class="field field-search">
+              <label for="search">Search</label>
+              <div class="search-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+                <input class="search-control" id="search" type="search" placeholder="Brand, model, retailer…" autocomplete="off">
+              </div>
+            </div>
+            <div class="field">
+              <label for="segment">Category</label>
+              <select class="control" id="segment"><option value="">All categories</option></select>
+            </div>
+            <div class="field">
+              <label for="similarity">Similarity</label>
+              <select class="control" id="similarity"><option value="">All levels</option><option>Exact</option><option>High</option><option>Medium</option></select>
+            </div>
+            <div class="field">
+              <label for="sort">Sort</label>
+              <select class="control" id="sort"><option value="recommended">Recommended</option><option value="price-low">Price: low to high</option><option value="price-high">Price: high to low</option><option value="brand">Brand A–Z</option></select>
+            </div>
+            <button class="clear-button" id="clear-filters" type="button" disabled>Clear</button>
+          </div>
+
+          <div class="skeleton-grid" id="watch-loading" role="status" aria-label="시계 데이터 불러오는 중">
+            <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+          </div>
+          <ul class="product-grid" id="watch-grid"></ul>
+          <div class="empty-state" id="empty-state" hidden><strong>조건에 맞는 제품이 없습니다.</strong><span>검색어나 필터를 조정해 주세요.</span></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <aside class="compare-tray" id="compare-tray" aria-live="polite" aria-label="비교할 제품">
+    <div class="compare-summary"><strong><span id="compare-count">0</span> selected</strong><span id="compare-names">최대 3개 제품을 선택하세요.</span></div>
+    <div class="compare-actions">
+      <button class="tray-button tray-clear" id="compare-clear" type="button">Clear</button>
+      <button class="tray-button tray-open" id="compare-open" type="button">Compare</button>
+    </div>
+  </aside>
+
+  <dialog class="compare-dialog" id="compare-dialog" aria-labelledby="compare-title">
+    <div class="dialog-head">
+      <h2 id="compare-title">Product comparison</h2>
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="비교 창 닫기">✕</button>
+    </div>
+    <div class="comparison-wrap" id="comparison-content"></div>
+  </dialog>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>가격과 재고는 판매처에서 변경될 수 있습니다. 구매 전 판매 페이지를 확인해 주세요.</p>
+      <p>Curated · 2026.07.10</p>
+    </div>
+  </footer>
+
+  <script>
+    const necklaces = [
+      { id: "necklace-1", type: "necklace", brand: "누아즈", name: "써지컬스틸 에그드롭 목걸이", price: 19950, priceLabel: "₩19,950", retailer: "Zigzag", note: "지그재그 쿠폰할인가", url: "https://zigzag.kr/catalog/products/168649635" },
+      { id: "necklace-2", type: "necklace", brand: "노트", name: "에그 드롭 롱 목걸이", price: 16150, priceLabel: "₩16,150", retailer: "Zigzag", note: "지그재그 쿠폰할인가", url: "https://zigzag.kr/catalog/products/170030642" },
+      { id: "necklace-3", type: "necklace", brand: "헤이민", name: "에그드롭 써지컬 목걸이", price: 23750, priceLabel: "₩23,750", retailer: "Zigzag", note: "지그재그 쿠폰할인가", url: "https://zigzag.kr/catalog/products/168969671" },
+      { id: "necklace-4", type: "necklace", brand: "모에", name: "물방울 펜던트 뱀줄 슬라이드 롱 목걸이", price: 20800, priceLabel: "₩20,800", retailer: "Zigzag", note: "지그재그 쿠폰할인가", url: "https://zigzag.kr/catalog/products/170019114" },
+      { id: "necklace-5", type: "necklace", brand: "로렌하이", name: "러히드 실버 에그 드롭 롱 목걸이", price: 22900, priceLabel: "₩22,900", retailer: "Laurenhi", note: "로렌하이 판매가", url: "https://laurenhi.com/product/%EB%AF%B8%EB%8B%88%EB%AC%B4%EB%93%9C%EB%A3%A9%EC%99%84%EC%84%B1%EB%8F%84up%EC%9D%80%EC%9D%80%ED%95%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8%EB%9F%AC%ED%9E%88%EB%93%9C-%EC%8B%A4%EB%B2%84-%EC%97%90%EA%B7%B8-%EB%93%9C%EB%A1%AD-%EB%A1%B1-%EB%AA%A9%EA%B1%B8%EC%9D%B4%EC%8D%A8%EC%A7%80%EC%BB%AC%EC%8A%A4%ED%8B%B8-1-color/31828/" }
+    ];
+
+    const state = { watches: [], query: "", segment: "", similarity: "", sort: "recommended", selected: new Set() };
+    const productIndex = new Map(necklaces.map(product => [product.id, product]));
+    const $ = selector => document.querySelector(selector);
+    const $$ = selector => [...document.querySelectorAll(selector)];
+    const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[char]);
+    const safeUrl = value => /^https:\/\//i.test(String(value)) ? String(value) : "#";
+    const usd = value => value === null || value === "" || Number.isNaN(Number(value)) ? "Price unavailable" : new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(Number(value));
+    const productImage = product => `https://api.microlink.io/?url=${encodeURIComponent(safeUrl(product.url))}&embed=image.url`;
+    const fallbackIcon = type => type === "watch"
+      ? `<svg viewBox="0 0 160 200" fill="none" stroke="currentColor" stroke-width="5" aria-hidden="true"><path d="M59 49 64 9h32l5 40M59 151l5 40h32l5-40"/><ellipse cx="80" cy="100" rx="52" ry="62"/><path d="M80 69v34l22 15" stroke-linecap="round"/></svg>`
+      : `<svg viewBox="0 0 180 200" fill="none" stroke="currentColor" stroke-width="4" aria-hidden="true"><path d="M28 26c9 54 26 81 62 81s53-27 62-81" stroke-linecap="round"/><path d="M90 102c-27 0-39 20-39 43 0 27 17 44 39 44s39-17 39-44c0-23-12-43-39-43Z"/></svg>`;
+
+    function necklaceCard(product) {
+      return `
+        <li class="product-card" data-reveal>
+          <a class="card-click-target" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(product.name)} 구매 페이지 열기"></a>
+          <figure class="product-media"><span class="media-badge">Curated pick</span><img class="product-image" src="${esc(productImage(product))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="this.closest('.product-media').classList.add('image-error')"><span class="product-fallback">${fallbackIcon("necklace")}</span></figure>
+          <div class="product-copy">
+            <div class="card-top"><div class="badges"><span class="badge">${esc(product.brand)}</span></div><span class="price">${esc(product.priceLabel)}</span></div>
+            <p class="category-label">Egg-drop necklace</p>
+            <h3>${esc(product.name)}</h3>
+            <p class="card-note">${esc(product.note)} · ${esc(product.retailer)}</p>
+            <div class="card-actions"><span class="shop-label">카드 눌러 구매하기 <span aria-hidden="true">↗</span></span><button class="compare-toggle" type="button" data-compare="${esc(product.id)}" aria-pressed="false">Compare</button></div>
+          </div>
+        </li>`;
+    }
+
+    function watchCard(product) {
+      const similarityClass = product.similarity === "Exact" ? "badge-exact" : product.similarity === "Medium" ? "badge-medium" : "";
+      return `
+        <li class="product-card" data-reveal>
+          <a class="card-click-target" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer" aria-label="${esc(product.name)} product page"></a>
+          <figure class="product-media"><span class="media-badge">${esc(product.similarity)} match</span><img class="product-image" src="${esc(productImage(product))}" alt="${esc(product.name)}" loading="lazy" decoding="async" onerror="this.closest('.product-media').classList.add('image-error')"><span class="product-fallback">${fallbackIcon("watch")}</span></figure>
+          <div class="product-copy">
+            <div class="card-top"><div class="badges"><span class="badge">${esc(product.brand)}</span><span class="badge badge-neutral ${similarityClass}">${esc(product.similarity)}</span></div><span class="price">${esc(product.priceLabel)}</span></div>
+            <p class="category-label">${esc(product.segment)}</p>
+            <h3>${esc(product.name)}</h3>
+            <p class="card-note">${esc(product.finish || product.notes)} · ${esc(product.retailer)}</p>
+            <div class="card-actions"><span class="shop-label">View product <span aria-hidden="true">↗</span></span><button class="compare-toggle" type="button" data-compare="${esc(product.id)}" aria-pressed="${state.selected.has(product.id)}">Compare</button></div>
+          </div>
+        </li>`;
+    }
+
+    function parseTsv(text) {
+      const rows = text.trim().split(/\r?\n/).map(row => row.split("\t"));
+      const headers = rows.shift();
+      return rows.map((row, index) => {
+        const raw = Object.fromEntries(headers.map((header, column) => [header, row[column] ?? ""]));
+        const price = raw.price === "" ? null : Number(raw.price);
+        return { ...raw, id: `watch-${index + 1}`, type: "watch", price, priceLabel: usd(price) };
+      });
+    }
+
+    function visibleWatches() {
+      const query = state.query.trim().toLowerCase();
+      const rank = { Exact: 0, High: 1, Medium: 2 };
+      const items = state.watches.filter(product => {
+        const haystack = Object.values(product).join(" ").toLowerCase();
+        return (!query || haystack.includes(query)) && (!state.segment || product.segment === state.segment) && (!state.similarity || product.similarity === state.similarity);
+      });
+      return items.sort((a, b) => {
+        if (state.sort === "price-low") return (a.price ?? Infinity) - (b.price ?? Infinity);
+        if (state.sort === "price-high") return (b.price ?? -Infinity) - (a.price ?? -Infinity);
+        if (state.sort === "brand") return a.brand.localeCompare(b.brand);
+        return (rank[a.similarity] ?? 9) - (rank[b.similarity] ?? 9);
+      });
+    }
+
+    function renderWatches() {
+      const products = visibleWatches();
+      $("#watch-count").textContent = products.length;
+      $("#watch-grid").innerHTML = products.map(watchCard).join("");
+      $("#empty-state").hidden = products.length !== 0;
+      $("#clear-filters").disabled = !(state.query || state.segment || state.similarity || state.sort !== "recommended");
+      bindCompareButtons();
+      observeReveals();
+    }
+
+    function switchCategory(category, { updateHash = true, scroll = false } = {}) {
+      const isWatch = category === "watch";
+      $$("[role='tab']").forEach(tab => {
+        const active = tab.dataset.category === category;
+        tab.setAttribute("aria-selected", active);
+        tab.tabIndex = active ? 0 : -1;
+      });
+      $("#necklace-panel").hidden = isWatch;
+      $("#watch-panel").hidden = !isWatch;
+      if (updateHash) history.replaceState(null, "", isWatch ? "#watches" : "#necklaces");
+      if (scroll) $("#collection").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+      requestAnimationFrame(observeReveals);
+    }
+
+    function bindCompareButtons() {
+      $$('[data-compare]').forEach(button => {
+        button.setAttribute("aria-pressed", state.selected.has(button.dataset.compare));
+        button.onclick = () => toggleCompare(button.dataset.compare);
+      });
+    }
+
+    function toggleCompare(id) {
+      if (state.selected.has(id)) state.selected.delete(id);
+      else if (state.selected.size < 3) state.selected.add(id);
+      else {
+        const tray = $("#compare-tray");
+        tray.animate([{ transform: "translate(50%, 0)" }, { transform: "translate(50%, -8px)" }, { transform: "translate(50%, 0)" }], { duration: 350, easing: "ease-out" });
+        return;
+      }
+      updateCompareUi();
+    }
+
+    function updateCompareUi() {
+      const selectedProducts = [...state.selected].map(id => productIndex.get(id)).filter(Boolean);
+      const count = selectedProducts.length;
+      $("#compare-count").textContent = count;
+      $("#compare-names").textContent = count ? selectedProducts.map(product => product.brand).join(" · ") : "최대 3개 제품을 선택하세요.";
+      $("#compare-tray").classList.toggle("is-visible", count > 0);
+      $("#compare-open").disabled = count < 2;
+      $$('[data-compare]').forEach(button => button.setAttribute("aria-pressed", state.selected.has(button.dataset.compare)));
+    }
+
+    function openComparison() {
+      const products = [...state.selected].map(id => productIndex.get(id)).filter(Boolean);
+      if (products.length < 2) return;
+      const rows = [
+        ["Brand", product => product.brand], ["Price", product => product.priceLabel], ["Category", product => product.segment || "Necklace"],
+        ["Case", product => product.case || "—"], ["Strap", product => product.strap || "—"], ["Finish", product => product.finish || "Surgical steel"],
+        ["Best for", product => product.best || product.note || "—"], ["Retailer", product => product.retailer || "—"]
+      ];
+      $("#comparison-content").innerHTML = `<table class="comparison-table"><thead><tr><th>Feature</th>${products.map(product => `<th>${esc(product.name)}<br><a class="table-link" href="${safeUrl(product.url)}" target="_blank" rel="noopener noreferrer">View product ↗</a></th>`).join("")}</tr></thead><tbody>${rows.map(([label, getter]) => `<tr><td>${esc(label)}</td>${products.map(product => `<td>${esc(getter(product))}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+      $("#compare-dialog").showModal();
+    }
+
+    let revealObserver;
+    function observeReveals() {
+      if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        $$('[data-reveal]').forEach(element => element.classList.add("is-visible"));
+        return;
+      }
+      revealObserver ||= new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add("is-visible"); revealObserver.unobserve(entry.target); }
+      }), { threshold: .08, rootMargin: "0px 0px -30px" });
+      $$('[data-reveal]:not(.is-visible)').forEach(element => revealObserver.observe(element));
+    }
+
+    function setupInteractions() {
+      const tabs = $$("[role='tab']");
+      tabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => switchCategory(tab.dataset.category, { scroll: true }));
+        tab.addEventListener("keydown", event => {
+          if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+          event.preventDefault();
+          const next = (index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length;
+          tabs[next].focus();
+          switchCategory(tabs[next].dataset.category);
+        });
+      });
+      $("#explore-watches").addEventListener("click", () => switchCategory("watch", { scroll: true }));
+      $("#theme-toggle").addEventListener("click", () => {
+        const next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        localStorage.setItem("compare-theme", next);
+        $("#theme-toggle").setAttribute("aria-label", next === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환");
+        document.querySelector('meta[name="theme-color"]').content = next === "dark" ? "#000000" : "#f5f5f7";
+      });
+      $("#search").addEventListener("input", event => { state.query = event.target.value; renderWatches(); });
+      $("#segment").addEventListener("change", event => { state.segment = event.target.value; renderWatches(); });
+      $("#similarity").addEventListener("change", event => { state.similarity = event.target.value; renderWatches(); });
+      $("#sort").addEventListener("change", event => { state.sort = event.target.value; renderWatches(); });
+      $("#clear-filters").addEventListener("click", () => {
+        state.query = state.segment = state.similarity = ""; state.sort = "recommended";
+        $("#search").value = $("#segment").value = $("#similarity").value = ""; $("#sort").value = "recommended";
+        renderWatches();
+      });
+      $("#compare-clear").addEventListener("click", () => { state.selected.clear(); updateCompareUi(); });
+      $("#compare-open").addEventListener("click", openComparison);
+      $("#dialog-close").addEventListener("click", () => $("#compare-dialog").close());
+      $("#compare-dialog").addEventListener("click", event => { if (event.target === $("#compare-dialog")) $("#compare-dialog").close(); });
+    }
+
+    async function loadWatches() {
+      try {
+        const response = await fetch("watches.tsv");
+        if (!response.ok) throw new Error(`Unable to load watches.tsv (${response.status})`);
+        state.watches = parseTsv(await response.text());
+        state.watches.forEach(product => productIndex.set(product.id, product));
+        $("#hero-watch-count").textContent = state.watches.length;
+        [...new Set(state.watches.map(product => product.segment).filter(Boolean))].forEach(value => $("#segment").add(new Option(value, value)));
+        $("#watch-loading").remove();
+        renderWatches();
+      } catch (error) {
+        $("#watch-loading").innerHTML = `<div class="empty-state"><strong>시계 데이터를 불러오지 못했습니다.</strong><span>페이지를 새로고침해 주세요.</span></div>`;
+        console.error(error);
+      }
+    }
+
+    $("#necklace-grid").innerHTML = necklaces.map(necklaceCard).join("");
+    setupInteractions();
+    bindCompareButtons();
+    observeReveals();
+    loadWatches();
+    switchCategory(location.hash === "#watches" ? "watch" : "necklace", { updateHash: false });
+  </script>
 </body>
 </html>
