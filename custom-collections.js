@@ -49,6 +49,44 @@
     const match=String(text||"").match(/(?:US\$|\$|₩|€|£)\s?\d[\d,.]*(?:\.\d{2})?|(?:USD|KRW)\s?\d[\d,.]*/i)?.[0]||"";
     return match.replace(/[.,]$/,"");
   };
+  const flattenSchemas=value=>{
+    const schemas=[];
+    const visit=item=>{
+      if(!item)return;
+      if(Array.isArray(item)){item.forEach(visit);return}
+      if(typeof item==="string"){try{visit(JSON.parse(item))}catch{}return}
+      if(typeof item!=="object")return;
+      schemas.push(item);visit(item["@graph"]);
+    };
+    visit(value);return schemas;
+  };
+  const isProductSchema=item=>{
+    const types=Array.isArray(item?.["@type"])?item["@type"]:[item?.["@type"]];
+    return types.some(type=>String(type||"").toLowerCase()==="product")||Boolean(item?.offers&&item?.name);
+  };
+  const firstValue=value=>Array.isArray(value)?value.find(Boolean):value;
+  const schemaImage=product=>{
+    const image=firstValue(product?.image);
+    return typeof image==="string"?image:(image?.url||image?.contentUrl||"");
+  };
+  const formatSchemaPrice=(value,currency="")=>{
+    if(value===undefined||value===null||value==="")return"";
+    const raw=typeof value==="object"?(value.price??value.value??value.amount):value;
+    const number=Number(String(raw).replace(/[^0-9.-]/g,""));
+    if(!Number.isFinite(number))return String(raw||"");
+    const code=String(currency||"").toUpperCase(),symbols={USD:"$",KRW:"₩",EUR:"€",GBP:"£",JPY:"¥",CAD:"CA$",AUD:"A$"};
+    const digits=Number.isInteger(number)?0:2;
+    return`${symbols[code]||`${code}${code?" ":""}`}${new Intl.NumberFormat("en-US",{minimumFractionDigits:0,maximumFractionDigits:digits}).format(number)}`;
+  };
+  const schemaPrice=product=>{
+    const offer=firstValue(product?.offers)||{};
+    const nested=firstValue(offer?.offers)||{};
+    const specification=firstValue(offer?.priceSpecification)||{};
+    const value=offer.price??offer.lowPrice??nested.price??specification.price;
+    const currency=offer.priceCurrency??nested.priceCurrency??specification.priceCurrency;
+    return formatSchemaPrice(value,currency);
+  };
+  const cleanDescription=value=>String(value||"").replace(/<[^>]*>/g," ").replace(/&nbsp;|&#160;/gi," ").replace(/&amp;/gi,"&").replace(/\s+/g," ").trim();
   const fallbackMetadata=url=>{
     const name=nameFromUrl(url);
     return{name,category:inferCategory(name,url),price:"",note:`${new URL(url).hostname.replace(/^www\./,"")}에서 가져온 제품 링크입니다.`,image:"",url,source:"url"};
@@ -56,12 +94,17 @@
   async function fetchProductMetadata(url,signal){
     const fallback=fallbackMetadata(url);
     try{
-      const response=await fetch(`https://api.microlink.io/?url=${encodeURIComponent(url)}&audio=false&video=false&screenshot=false`,{signal});
+      const schemaSelector=encodeURIComponent('script[type="application/ld+json"]');
+      const response=await fetch(`https://api.microlink.io/?url=${encodeURIComponent(url)}&data.schemas.selectorAll=${schemaSelector}&data.schemas.attr=text&audio=false&video=false&screenshot=false`,{signal});
       if(!response.ok)throw new Error(`Metadata ${response.status}`);
       const payload=await response.json(),data=payload?.data||{};
-      const title=cleanTitle(data.title,data.publisher)||fallback.name;
-      const description=String(data.description||"").replace(/\s+/g," ").trim();
-      return{name:title,category:inferCategory(`${title} ${description} ${data.publisher||""}`,url),price:extractPrice(data,`${title} ${description}`),note:description.slice(0,220)||fallback.note,image:data.image?.url||"",url,source:"metadata"};
+      const product=flattenSchemas(data.schemas).find(isProductSchema);
+      const brand=typeof product?.brand==="string"?product.brand:product?.brand?.name||"";
+      const title=cleanTitle(product?.name||data.title,data.publisher||brand)||fallback.name;
+      const description=cleanDescription(product?.description||data.description);
+      const image=schemaImage(product)||data.image?.url||"";
+      const price=schemaPrice(product)||extractPrice(data,`${title} ${description}`);
+      return{name:title,category:inferCategory(`${title} ${description} ${brand} ${data.publisher||""}`,url),price,note:description.slice(0,220)||fallback.note,image,url,source:"metadata"};
     }catch(error){if(error.name==="AbortError")throw error;return fallback}
   }
 
