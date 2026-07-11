@@ -53,10 +53,8 @@
     if(!value||/^(?:img|dsc|image|photo|screenshot)\s*\d*$/i.test(value))return"New product photo";
     return value.replace(/\b[a-z]/g,char=>char.toUpperCase());
   };
-  const blobUrl=blob=>{
-    if(globalThis.URL?.createObjectURL)return Promise.resolve({url:URL.createObjectURL(blob),objectUrl:true});
-    return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve({url:reader.result,objectUrl:false});reader.onerror=()=>reject(reader.error);reader.readAsDataURL(blob)});
-  };
+  const blobDataUrl=blob=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(reader.result);reader.onerror=()=>reject(reader.error);reader.readAsDataURL(blob)});
+  const blobUrl=blob=>globalThis.URL?.createObjectURL?Promise.resolve({url:URL.createObjectURL(blob),objectUrl:true}):blobDataUrl(blob).then(url=>({url,objectUrl:false}));
 
   const categoryRules=[
     ["My Necklaces",/necklace|pendant|목걸이|chain jewelry|egg.?drop/i],
@@ -180,7 +178,7 @@
           <div class="custom-or"><span>OR</span></div>
           <div class="custom-photo-drop" id="custom-photo-drop">
             <input id="custom-photo" type="file" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif,.bmp,.tif,.tiff,.svg" hidden>
-            <button class="custom-photo-empty" id="custom-photo-empty" type="button"><span class="custom-photo-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="4"/><circle cx="9" cy="10" r="2"/><path d="m5 18 5-5 3 3 2-2 4 4"/><path d="M12 2v5m-2-2 2 2 2-2"/></svg></span><span><strong>사진을 놓거나 눌러서 선택</strong><small>JPG, JPEG, PNG, WEBP, GIF, AVIF, HEIC 등 · 최대 30 MB</small></span></button>
+            <button class="custom-photo-empty" id="custom-photo-empty" type="button"><span class="custom-photo-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="4"/><circle cx="9" cy="10" r="2"/><path d="m5 18 5-5 3 3 2-2 4 4"/><path d="M12 2v5m-2-2 2 2 2-2"/></svg></span><span><strong>사진을 놓거나 눌러서 선택</strong><small>JPG, JPEG, PNG, WEBP 등 브라우저 지원 이미지 · 최대 30 MB</small></span></button>
             <div class="custom-photo-preview" id="custom-photo-preview" hidden><img id="custom-photo-preview-image" alt="선택한 제품 사진 미리보기"><span><strong id="custom-photo-name"></strong><small id="custom-photo-size"></small></span><button class="custom-photo-remove" id="custom-photo-remove" type="button" aria-label="선택한 사진 제거">✕</button></div>
           </div>
           <p class="custom-photo-status" id="custom-photo-status" role="status">사진을 드래그하거나 클립보드에서 붙여넣을 수도 있어요.</p>
@@ -247,8 +245,15 @@
     clearPhotoSelection(false);pendingPhoto=file;
     try{
       const preview=await blobUrl(file);pendingPhotoUrl=preview.objectUrl?preview.url:"";
-      const previewImage=$("#custom-photo-preview-image");
-      previewImage.onerror=()=>{if(pendingPhoto===file){pendingPhoto=null;setPhotoStatus("이 브라우저에서 표시할 수 없는 이미지예요. JPG, PNG 또는 WEBP로 다시 시도해 주세요.","error")}};
+      const previewImage=$("#custom-photo-preview-image");delete previewImage.dataset.dataFallback;
+      previewImage.onerror=async()=>{
+        if(pendingPhoto!==file)return;
+        if(preview.objectUrl&&!previewImage.dataset.dataFallback){
+          previewImage.dataset.dataFallback="true";if(pendingPhotoUrl&&globalThis.URL?.revokeObjectURL)URL.revokeObjectURL(pendingPhotoUrl);pendingPhotoUrl="";
+          try{previewImage.src=await blobDataUrl(file);return}catch{}
+        }
+        pendingPhoto=null;setPhotoStatus("이 브라우저에서 표시할 수 없는 이미지예요. JPG, PNG 또는 WEBP로 다시 시도해 주세요.","error");
+      };
       previewImage.src=preview.url;
       $("#custom-photo-name").textContent=file.name||"Pasted product photo";
       $("#custom-photo-size").textContent=`${String(file.type||file.name.split(".").pop()||"image").replace(/^image\//,"").toUpperCase()} · ${formatFileSize(file.size)}`;
@@ -342,9 +347,14 @@
     $$('[data-custom-image]',root).forEach(image=>{
       if(image.dataset.bound)return;image.dataset.bound="1";
       const media=image.closest(".media"),url=image.dataset.pageUrl,direct=image.dataset.productImage,imageKey=image.dataset.imageKey;
+      let uploadedBlob=null;
       image.onload=()=>{image.classList.add("loaded");media?.classList.add("has-image")};
       image.onerror=()=>{
         image.classList.remove("loaded");media?.classList.remove("has-image");
+        if(image.dataset.stage==="uploaded"&&image.dataset.objectUrl&&!image.dataset.dataFallback&&uploadedBlob){
+          URL.revokeObjectURL(image.dataset.objectUrl);delete image.dataset.objectUrl;image.dataset.dataFallback="true";
+          blobDataUrl(uploadedBlob).then(src=>{image.src=src}).catch(()=>{media?.classList.add("error")});return;
+        }
         if(image.dataset.stage==="uploaded"){if(image.dataset.objectUrl&&globalThis.URL?.revokeObjectURL)URL.revokeObjectURL(image.dataset.objectUrl);delete image.dataset.objectUrl;if(direct){image.dataset.stage="direct";image.src=direct;return}}
         if(image.dataset.stage==="direct"){image.dataset.stage="meta";image.src=metaImage(url);return}
         if(image.dataset.stage==="meta"){image.dataset.stage="shot";image.classList.add("screenshot");image.src=screenshotImage(url);return}
@@ -353,7 +363,7 @@
       };
       if(imageKey){
         image.dataset.stage="uploaded";
-        readProductPhoto(imageKey).then(async blob=>{if(!blob)throw new Error("Missing photo");const preview=await blobUrl(blob);if(preview.objectUrl)image.dataset.objectUrl=preview.url;image.src=preview.url}).catch(()=>{media?.classList.add("error")});
+        readProductPhoto(imageKey).then(async blob=>{if(!blob)throw new Error("Missing photo");uploadedBlob=blob;const preview=await blobUrl(blob);if(preview.objectUrl)image.dataset.objectUrl=preview.url;image.src=preview.url}).catch(()=>{media?.classList.add("error")});
       }else{image.dataset.stage=direct?"direct":"meta";image.src=direct||metaImage(url)}
     });
   }
