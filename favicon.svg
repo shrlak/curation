@@ -1,28 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
     <linearGradient id="canvas" x1="7" y1="5" x2="58" y2="61" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#83E6AD"/>
-      <stop offset=".44" stop-color="#1AA477"/>
-      <stop offset="1" stop-color="#4C6FFF"/>
+      <stop stop-color="#FFF4E8"/>
+      <stop offset="1" stop-color="#FFDFC2"/>
     </linearGradient>
-    <linearGradient id="orbit" x1="10" y1="15" x2="53" y2="52" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#FFF"/>
-      <stop offset="1" stop-color="#D8D1FF"/>
-    </linearGradient>
-    <radialGradient id="pearl" cx="0" cy="0" r="1" gradientTransform="translate(50 15) rotate(132) scale(10)">
-      <stop stop-color="#FFF"/>
-      <stop offset=".48" stop-color="#FFF0C8"/>
-      <stop offset="1" stop-color="#FF913D"/>
+    <radialGradient id="tomato" cx="0" cy="0" r="1" gradientTransform="translate(24 22) rotate(60) scale(24 26)">
+      <stop stop-color="#FF7A5C"/>
+      <stop offset=".5" stop-color="#F1402C"/>
+      <stop offset="1" stop-color="#C21E1E"/>
     </radialGradient>
-    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.4"/></filter>
+    <linearGradient id="leaf" x1="20" y1="6" x2="46" y2="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9BE888"/>
+      <stop offset="1" stop-color="#3E9A4B"/>
+    </linearGradient>
   </defs>
   <rect x="3" y="3" width="58" height="58" rx="18" fill="url(#canvas)"/>
-  <path d="M47.8 14.8A23 23 0 1 0 49.4 47" fill="none" stroke="#091F66" stroke-opacity=".18" stroke-width="9" stroke-linecap="round"/>
-  <path d="M47.8 14.8A23 23 0 1 0 49.4 47" fill="none" stroke="url(#orbit)" stroke-width="5.4" stroke-linecap="round"/>
-  <path d="m20.8 45.5 10-25.8a1.8 1.8 0 0 1 3.4 0l10 25.8M25.8 34.8h13.4" fill="none" stroke="#FFF" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="m28 35 3.6 3.6 7-7.4" fill="none" stroke="#B8E7FF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M48 10C43 5 43 1 45 0c5 2 7 5 6 10Zm3 1c2-6 6-8 10-7-1 5-4 8-10 9Z" fill="#D9FFD8"/>
-  <circle cx="49.4" cy="14.6" r="8.2" fill="#FFB05C" opacity=".5" filter="url(#glow)"/>
-  <circle cx="49.4" cy="14.6" r="6.8" fill="url(#pearl)" stroke="#FFF" stroke-width="1.3"/>
-  <circle cx="47.2" cy="12.5" r="1.7" fill="#FFF" opacity=".92"/>
+  <path d="M32 22c11.5 0 19 8.2 19 18.5S44.5 58 32 58 13 48.7 13 40.5 20.5 22 32 22Z" fill="url(#tomato)"/>
+  <ellipse cx="22.5" cy="30" rx="5.6" ry="3.4" fill="#FFF" opacity=".35" transform="rotate(-25 22.5 30)"/>
+  <path d="M32 23c-1.6-4.4-5.4-7.4-10-7.6.9 4.3 3.4 6.9 7 7.9-3.6-1-7.4-.3-9.8 2.4 3.6 2 7.6 1.4 10.2-1.2M32 23c1.6-4.4 5.4-7.4 10-7.6-.9 4.3-3.4 6.9-7 7.9 3.6-1 7.4-.3 9.8 2.4-3.6 2-7.6 1.4-10.2-1.2" fill="none" stroke="url(#leaf)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="32" cy="23.5" r="2.8" fill="#3E9A4B"/>
 </svg>
