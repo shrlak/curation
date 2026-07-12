@@ -235,7 +235,7 @@ def main():
             time.sleep(0.05)
 
     results.sort(key=lambda item: item["id"])
-    report = ROOT / "product-image-audit.json"
+    report = ROOT / "scripts" / "product-image-audit.json"
     report.write_text(json.dumps(results, ensure_ascii=False, indent=2), encoding="utf-8")
     manifest = ROOT / "src" / "data" / "product-images.js"
     entries = [
