@@ -3,3 +3,4 @@ dist
 *.local
 .DS_Store
 .vite
+product-image-audit.json

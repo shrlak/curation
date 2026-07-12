@@ -48,7 +48,14 @@ export default function CartDrawer({ open, onClose, favoriteIds, onRemove, color
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, x: 30 }}
                     >
-                      <ProductImage pageUrl={url} alt={item.name} type={item.type} fit="cover" />
+                      <ProductImage
+                        pageUrl={url}
+                        imageUrl={item.image}
+                        preferRemote={item.type === "scrub"}
+                        alt={item.name}
+                        type={item.type}
+                        fit="cover"
+                      />
                       <div>
                         <h3>{item.name}</h3>
                         <p>

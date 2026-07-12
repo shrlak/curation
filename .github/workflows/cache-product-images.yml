@@ -1,0 +1,68 @@
+name: Cache product images
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "scripts/cache_product_images.py"
+      - "src/data/necklaces.js"
+      - "src/data/watches.tsv"
+      - "src/data/lenses.tsv"
+      - "src/data/scrubs.tsv"
+      - ".github/workflows/cache-product-images.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: product-image-cache
+  cancel-in-progress: false
+
+jobs:
+  cache:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image tooling
+        run: python -m pip install Pillow==12.2.0
+
+      - name: Fetch and normalize product images
+        id: image-cache
+        continue-on-error: true
+        run: python scripts/cache_product_images.py .
+
+      - name: Upload image audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: product-image-audit
+          path: product-image-audit.json
+          if-no-files-found: warn
+
+      - name: Commit cached images
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- public/products src/data/product-images.js
+
+          if git diff --cached --quiet; then
+            echo "Product image cache is already current."
+          else
+            git commit -m "Cache product images"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
+
+      - name: Require complete image coverage
+        if: steps.image-cache.outcome != 'success'
+        run: |
+          echo "One or more product images still require a curated fallback."
+          exit 1

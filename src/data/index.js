@@ -1,7 +1,8 @@
 import watchesRaw from "./watches.tsv?raw";
 import lensesRaw from "./lenses.tsv?raw";
 import scrubsRaw from "./scrubs.tsv?raw";
-import { necklaces } from "./necklaces.js";
+import { necklaces as necklaceRows } from "./necklaces.js";
+import { productImageFor } from "./product-images.js";
 
 export const fmtPrice = (value) => {
   if (value === "" || value == null || Number.isNaN(Number(value))) return "Live price";
@@ -31,12 +32,14 @@ const hostname = (url) => {
 function normalize(rows, type) {
   return rows.map((row, index) => {
     const price = row.price === "" ? null : Number(row.price);
+    const id = `${type}-${index + 1}`;
     const item = {
       ...row,
-      id: `${type}-${index + 1}`,
+      id,
       type,
       price,
       priceLabel: fmtPrice(price),
+      image: productImageFor(id),
     };
     if (type === "lens") item.retailer = hostname(row.url);
     return item;
@@ -46,7 +49,7 @@ function normalize(rows, type) {
 export const watches = normalize(parseTsv(watchesRaw), "watch");
 export const lenses = normalize(parseTsv(lensesRaw), "lens");
 export const scrubs = normalize(parseTsv(scrubsRaw), "scrub");
-export { necklaces };
+export const necklaces = necklaceRows.map((item) => ({ ...item, image: productImageFor(item.id) }));
 
 // Fast lookup for quick view / cart hydration.
 export const productMap = new Map();
