@@ -75,8 +75,8 @@ export default function Nav({ route, go, favoriteCount, onOpenCart, onOpenAdd, t
           <button className="icon-btn" type="button" onClick={onOpenAdd} aria-label="Add a product or collection">
             {icons.add}
           </button>
-          <button className="icon-btn" type="button" onClick={onOpenCart} aria-label="Open cart">
-            {icons.cart}
+          <button className="icon-btn" type="button" onClick={onOpenCart} aria-label="Open saved list">
+            {icons.heart}
             {favoriteCount > 0 && <span className="count-badge">{favoriteCount}</span>}
           </button>
           <button className="icon-btn theme-btn" type="button" onClick={toggleTheme} aria-label="Toggle theme">

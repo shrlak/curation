@@ -3,6 +3,8 @@ import ProductImage from "./ProductImage.jsx";
 import { icons } from "./icons.jsx";
 import { productMap, variantUrl } from "../data/index.js";
 
+const httpsOnly = (url) => (/^https:\/\//i.test(String(url)) ? url : "#");
+
 export default function CartDrawer({ open, onClose, favoriteIds, onRemove, colorOf }) {
   const items = favoriteIds.map((id) => productMap.get(id)).filter(Boolean);
 
@@ -21,7 +23,7 @@ export default function CartDrawer({ open, onClose, favoriteIds, onRemove, color
             className="drawer-panel"
             role="dialog"
             aria-modal="true"
-            aria-label="Cart"
+            aria-label="Saved list"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -29,18 +31,19 @@ export default function CartDrawer({ open, onClose, favoriteIds, onRemove, color
             onClick={(e) => e.stopPropagation()}
           >
             <div className="drawer-head">
-              <h2>Cart</h2>
-              <button className="icon-btn" type="button" onClick={onClose} aria-label="Close cart">
+              <h2>Saved</h2>
+              <button className="icon-btn" type="button" onClick={onClose} aria-label="Close saved list">
                 {icons.close}
               </button>
             </div>
-            <div className="cart-list">
+            <ul className="cart-list">
               {items.length ? (
                 items.map((item) => {
                   const color = item.type === "scrub" ? colorOf(item) : "";
                   const url = item.type === "scrub" ? variantUrl(item, color) : item.url;
+                  const href = httpsOnly(url);
                   return (
-                    <motion.article
+                    <motion.li
                       className="cart-row"
                       key={item.id}
                       layout
@@ -63,20 +66,36 @@ export default function CartDrawer({ open, onClose, favoriteIds, onRemove, color
                           {color ? ` · ${color}` : ""}
                         </p>
                       </div>
-                      <button className="cart-remove" type="button" onClick={() => onRemove(item.id)}>
-                        Remove
-                      </button>
-                    </motion.article>
+                      <div className="cart-row-actions">
+                        <a
+                          className="cart-buy"
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={`Go to ${item.name} product page`}
+                        >
+                          {icons.cart}
+                        </a>
+                        <button
+                          className="cart-remove"
+                          type="button"
+                          onClick={() => onRemove(item.id)}
+                          aria-label={`Remove ${item.name} from saved list`}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    </motion.li>
                   );
                 })
               ) : (
-                <div className="empty">
-                  <strong>Your cart is empty.</strong>
+                <li className="empty">
+                  <strong>Your saved list is empty.</strong>
                   <br />
-                  Use the cart button on any product card.
-                </div>
+                  Tap the heart on any product card to save it here.
+                </li>
               )}
-            </div>
+            </ul>
           </motion.aside>
         </motion.div>
       )}
