@@ -61,7 +61,7 @@ jobs:
             echo "Pages fallback is already current."
           else
             git commit -m "Sync production build for GitHub Pages"
-            git push
+            git push origin HEAD:${GITHUB_REF_NAME}
           fi
 
       - name: Configure Pages
