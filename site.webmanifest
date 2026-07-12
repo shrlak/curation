@@ -1,0 +1,17 @@
+{
+  "name": "Curation for Abigail",
+  "short_name": "Curation",
+  "description": "Carefully prescribed and freshly picked products for Abigail.",
+  "start_url": "./#home",
+  "display": "standalone",
+  "background_color": "#f5f5f7",
+  "theme_color": "#1aa477",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
