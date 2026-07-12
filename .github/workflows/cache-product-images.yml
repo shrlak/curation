@@ -44,7 +44,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: product-image-audit
-          path: product-image-audit.json
+          path: scripts/product-image-audit.json
           if-no-files-found: warn
 
       - name: Commit cached images
@@ -52,7 +52,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A -- public/products src/data/product-images.js
+          git add -A -- public/products src/data/product-images.js scripts/product-image-audit.json
 
           if git diff --cached --quiet; then
             echo "Product image cache is already current."
