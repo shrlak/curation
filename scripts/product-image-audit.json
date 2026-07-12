@@ -1,0 +1,892 @@
+[
+  {
+    "id": "lens-1",
+    "name": "FE 14mm f/1.8 GM",
+    "url": "https://www.bhphotovideo.com/c/product/1635847-REG/sony_sel14f14gm_fe_24mm_f_1_4_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-10",
+    "name": "FE 50mm f/1.2 GM",
+    "url": "https://www.bhphotovideo.com/c/product/1630079-REG/sony_sel50f12gm_fe_50mm_f_1_2_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-11",
+    "name": "FE 50mm f/1.4 GM",
+    "url": "https://www.bhphotovideo.com/c/product/1752166-REG/sony_fe_50mm_f_1_4_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-12",
+    "name": "50mm f/1.4 DG DN Art",
+    "url": "https://www.bhphotovideo.com/c/product/1748158-REG/sigma_315965_50mm_f_1_4_dg_dn.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-13",
+    "name": "AF 50mm f/1.8 FE",
+    "url": "https://www.bhphotovideo.com/c/product/1629554-REG/viltrox_af_50_1_8_fe_50mm_f_1_8_lens_for.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-14",
+    "name": "50mm f/2 (Manual)",
+    "url": "https://www.bhphotovideo.com/c/product/1718058-REG/ttartisan_f5020_b_e_50mm_f_2_full_frame.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-15",
+    "name": "50mm f/1.4 Tilt (Manual)",
+    "url": "https://www.bhphotovideo.com/c/product/1731256-REG/ttartisan_t_f5014_b_e_50mm_f_1_4_tilt_lens.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-16",
+    "name": "FE 85mm f/1.8",
+    "url": "https://www.bhphotovideo.com/c/product/1317562-REG/sony_sel85f18_fe_85mm_f_1_8_lens.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-17",
+    "name": "FE 85mm f/1.4 GM II",
+    "url": "https://www.bhphotovideo.com/c/product/1849952-REG/sony_fe_85mm_f_1_4_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-18",
+    "name": "85mm f/1.4 DG DN Art",
+    "url": "https://www.bhphotovideo.com/c/product/1581240-REG/sigma_322965_85mm_f_1_4_dg_dn.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-19",
+    "name": "AF 85mm f/1.8 FE II",
+    "url": "https://www.bhphotovideo.com/c/product/1560731-REG/viltrox_af_85_1_8_ii_fe_e_mount_85mm_f_1_8_stm_ii.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-2",
+    "name": "FE 20mm f/1.8 G",
+    "url": "https://www.bhphotovideo.com/c/product/1549627-REG/sony_sel20f18g_fe_20mm_f_1_8_g.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-20",
+    "name": "AF 75mm f/1.8 FE",
+    "url": "https://www.bhphotovideo.com/c/product/1558714-REG/samyang_syio75af_e_af_75mm_f_1_8_fe.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-21",
+    "name": "AF 135mm f/1.8 FE",
+    "url": "https://www.bhphotovideo.com/c/product/1687241-REG/samyang_syio13518_e_af_135mm_f_1_8_fe.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-22",
+    "name": "AF 135mm f/1.8 LAB FE",
+    "url": "https://www.bhphotovideo.com/c/product/1856220-REG/viltrox_af13518e_af_135mm_f_1_8_fe.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-23",
+    "name": "FE 16-35mm f/2.8 GM II",
+    "url": "https://www.bhphotovideo.com/c/product/1784822-REG/sony_fe_16_35mm_f_2_8_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-24",
+    "name": "16-28mm f/2.8 DG DN",
+    "url": "https://www.bhphotovideo.com/c/product/1704533-REG/sigma_16_28mm_f_2_8_dg_contemporary.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-25",
+    "name": "17-28mm f/2.8 Di III RXD",
+    "url": "https://www.bhphotovideo.com/c/product/1609642-REG/tamron_afb070s_700_17_70mm_f_2_8_di_iii_a.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-26",
+    "name": "FE 24-70mm f/2.8 GM II",
+    "url": "https://www.bhphotovideo.com/c/product/1702384-REG/sony_fe_24_70mm_f_2_8_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-27",
+    "name": "24-70mm f/2.8 DG DN II Art",
+    "url": "https://www.bhphotovideo.com/c/product/1827260-REG/sigma_57a965_24_70mm_f2_8_dg_dn.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-28",
+    "name": "28-75mm f/2.8 Di III VXD G2",
+    "url": "https://www.bhphotovideo.com/c/product/1658157-REG/tamron_a063_28_75mm_f_2_8_di_iii.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-29",
+    "name": "AF 24-70mm f/2.8 FE",
+    "url": "https://www.bhphotovideo.com/c/product/1671786-REG/samyang_syio2470afz_e_24_70mm_f_2_8_af_zoom.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-3",
+    "name": "FE 24mm f/1.4 GM",
+    "url": "https://www.bhphotovideo.com/c/product/1435887-REG/sony_fe_24mm_f_1_4_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-30",
+    "name": "28-200mm f/2.8-5.6 Di III RXD",
+    "url": "https://www.bhphotovideo.com/c/product/1568708-REG/tamron_a071_28_200mm_f_2_8_5_6_di_iii.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-31",
+    "name": "FE 70-200mm f/2.8 GM II",
+    "url": "https://www.bhphotovideo.com/c/product/1666363-REG/sony_fe_70_200mm_f_2_8_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-32",
+    "name": "70-180mm f/2.8 Di III VC VXD G2",
+    "url": "https://www.bhphotovideo.com/c/product/1781149-REG/tamron_a065_70_180mm_f_2_8_di_iii.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-33",
+    "name": "35-150mm f/2-2.8 Di III VXD",
+    "url": "https://www.bhphotovideo.com/c/product/1658158-REG/tamron_a058_35_150mm_f_f_2_2_8_di_iii.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-34",
+    "name": "35-150mm f/2-2.8 FE",
+    "url": "https://www.bhphotovideo.com/c/product/1762306-REG/samyang_syio35150afz_e_e_af_35_150mm_f_2_2_8_lens.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-35",
+    "name": "AF 85mm F2.0 EVO",
+    "url": "https://viltrox.com/products/af-85mm-f2-0-fe",
+    "ok": true,
+    "file": "public/products/lens-35.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "lens-4",
+    "name": "24mm f/1.4 DG DN Art",
+    "url": "https://www.bhphotovideo.com/c/product/1719339-REG/sigma_24mm_f_1_4_dg_dn.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "image https://www.bhphotovideo.com/images/fb/sigma_24mm_f_1_4_dg_dn_1719339.jpg: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": [
+      "https://www.bhphotovideo.com/images/fb/sigma_24mm_f_1_4_dg_dn_1719339.jpg"
+    ]
+  },
+  {
+    "id": "lens-5",
+    "name": "AF 24mm f/1.8 E",
+    "url": "https://www.samys.com/p/Wide-Angle-Lenses/AF-24/1.8-FE/Viltrox-AF-24mm-f/1.8-Lens-for-Sony-E/266263.html?origin=product-search",
+    "ok": true,
+    "file": "public/products/lens-5.webp",
+    "image_url": "https://www.samys.com/images/product/main/S-084029x1000.jpg",
+    "source": "page metadata",
+    "errors": [
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ]
+  },
+  {
+    "id": "lens-6",
+    "name": "FE 35mm f/1.4 GM",
+    "url": "https://www.bhphotovideo.com/c/product/1613424-REG/sony_fe35f14gm_fe_35mm_f_1_4_gm.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-7",
+    "name": "FE 35mm f/1.8",
+    "url": "https://www.bhphotovideo.com/c/product/1492866-REG/sony_sel35f18f_35mm_f_1_8_fe_lens.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-8",
+    "name": "35mm f/1.4 DG DN Art",
+    "url": "https://www.bhphotovideo.com/c/product/1953414-REG/sigma_304965_35mm_f_1_4_dg_ii.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "lens-9",
+    "name": "AF 35mm f/1.8 FE",
+    "url": "https://www.bhphotovideo.com/c/product/1883305-REG/viltrox_af_35_1_2_fe_e_mount_af_35mm_f_1_2_fe.html",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "necklace-1",
+    "name": "써지컬스틸 에그드롭 목걸이",
+    "url": "https://zigzag.kr/catalog/products/168649635",
+    "ok": true,
+    "file": "public/products/necklace-1.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "necklace-2",
+    "name": "에그 드롭 롱 목걸이",
+    "url": "https://zigzag.kr/catalog/products/170030642",
+    "ok": true,
+    "file": "public/products/necklace-2.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "necklace-3",
+    "name": "에그드롭 써지컬 목걸이",
+    "url": "https://zigzag.kr/catalog/products/168969671",
+    "ok": true,
+    "file": "public/products/necklace-3.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "necklace-4",
+    "name": "물방울 펜던트 뱀줄 슬라이드 롱 목걸이",
+    "url": "https://zigzag.kr/catalog/products/170019114",
+    "ok": true,
+    "file": "public/products/necklace-4.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "necklace-5",
+    "name": "러히드 실버 에그 드롭 롱 목걸이",
+    "url": "https://laurenhi.com/product/%EB%AF%B8%EB%8B%88%EB%A9%80%EB%AC%B4%EB%93%9C%EB%A3%A9%EC%99%84%EC%84%B1%EB%8F%84up%EC%9D%80%EC%9D%80%ED%95%9C%ED%8F%AC%EC%9D%B8%ED%8A%B8%EB%9F%AC%ED%9E%88%EB%93%9C-%EC%8B%A4%EB%B2%84-%EC%97%90%EA%B7%B8-%EB%93%9C%EB%A1%AC-%EB%A1%B1-%EB%AA%A9%EA%B1%B8%EC%9D%B4%EC%8D%A8%EC%A7%80%EC%BB%AC%EC%8A%A4%ED%8B%B8-1-color/31828/",
+    "ok": true,
+    "file": "public/products/necklace-5.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-1",
+    "name": "THE SET — Catarina + Isabel Wide-Leg",
+    "url": "https://www.wearfigs.com/products/womens-isabel-scrub-pants?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-1.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-10",
+    "name": "Zamora Jogger Scrub Pant™",
+    "url": "https://www.wearfigs.com/collections/scrub-pants-womens/products/womens-zamora-scrub-pants?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-10.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-11",
+    "name": "Zamora High-Rise Jogger Scrub Pant™",
+    "url": "https://www.wearfigs.com/collections/scrub-pants-womens/products/womens-zamora-high-waisted-yoga-waistband-scrub-pants?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-11.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-12",
+    "name": "Yola High-Rise Slim Scrub Pant™",
+    "url": "https://www.wearfigs.com/collections/scrub-pants-womens/products/womens-yola-high-waisted-yoga-waistband-scrub-pants?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-12.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-2",
+    "name": "ContourKnit Scrub Jacket™",
+    "url": "https://www.wearfigs.com/collections/jackets-and-vests-womens/products/womens-on-shift-contourknit-outerwear?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-2.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-3",
+    "name": "Sydney Scrub Jacket",
+    "url": "https://www.wearfigs.com/collections/jackets-and-vests-womens/products/womens-sydney-scrub-jacket?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-3.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-4",
+    "name": "Salta Seamless Long-Sleeve Underscrub",
+    "url": "https://www.wearfigs.com/collections/underscrubs-womens/products/womens-salta-under-scrubs?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-4.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-5",
+    "name": "Supersoft Long-Sleeve Underscrub",
+    "url": "https://www.wearfigs.com/collections/underscrubs-womens/products/womens-super-soft-longsleeve-under-scrubs?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-5.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-6",
+    "name": "Catarina Scrub Top™",
+    "url": "https://www.wearfigs.com/collections/scrub-tops-womens/products/womens-catarina-scrub-top?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-6.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-7",
+    "name": "Casma Scrub Top™",
+    "url": "https://www.wearfigs.com/collections/scrub-tops-womens/products/womens-casma-scrub-top?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-7.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-8",
+    "name": "Rafaela Oversized Scrub Top™",
+    "url": "https://www.wearfigs.com/collections/scrub-tops-womens/products/womens-rafaela-scrub-top?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-8.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "scrub-9",
+    "name": "Isabel High-Rise Wide-Leg Scrub Pant",
+    "url": "https://www.wearfigs.com/products/womens-isabel-scrub-pants?color=Black",
+    "ok": true,
+    "file": "public/products/scrub-9.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-1",
+    "name": "Mini Oval Stainless Steel Bracelet Watch",
+    "url": "https://www.macys.com/shop/product/rosefield-mini-oval-womens-silver-tone-stainless-steel-bracelet-watch-22mm?ID=21888290&utm_medium=openaifeed&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-10",
+    "name": "Iris Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/iris-bracelet-watch-22-5mm/8931577?color=silver&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-11",
+    "name": "Iris Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/iris-bracelet-watch-22-5mm/8913721?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-11.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-12",
+    "name": "Heart Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/heart-bracelet-watch-22mm/8827013?color=gold%2Fwhite&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-13",
+    "name": "Cadie Stainless Steel Mesh Bracelet Watch",
+    "url": "https://www.macys.com/shop/product/coach-womens-cadie-stainless-steel-mesh-bracelet-watch-17.5-x-28.5mm?ID=14759162&utm_medium=openaifeed&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-14",
+    "name": "Elliot Mesh Strap Watch",
+    "url": "https://www.nordstrom.com/s/elliot-mesh-strap-watch-28mm/8272687?color=silver+white&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-15",
+    "name": "Sammy Mesh Bracelet Watch",
+    "url": "https://www.bloomingdales.com/shop/product/coach-sammy-mesh-bracelet-watch-22.5mm?ID=5664896&swatchColor=Silver%2FSilver",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-16",
+    "name": "Sammy Mesh Strap Watch",
+    "url": "https://www.nordstrom.com/s/sammy-mesh-strap-watch-22-5mm/8483277?color=silver&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
+    "ok": true,
+    "file": "public/products/watch-16.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-17",
+    "name": "Sammy Mesh Strap Watch",
+    "url": "https://www.nordstrom.com/s/sammy-mesh-strap-watch-22-5mm/8477572?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
+    "ok": true,
+    "file": "public/products/watch-17.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-18",
+    "name": "Sammy Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/coach-sammy-bracelet-watch-22-5mm/8478525?color=silver+white&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-19",
+    "name": "Sammy Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/sammy-bracelet-watch-22-5mm/8478524?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-2",
+    "name": "Mini Oval Watch Stainless Steel",
+    "url": "https://www.lyst.com/accessories/rosefield-mini-oval-watch-stainless-steel/?_country=US&atc_campaign=chatgpt_pla_product_feeds&atc_country=US&atc_grouping=seo&atc_medium=cpc&atc_source=chatgpt&link_id=1110377400&product=SXXWULW&show_express_checkout=true&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-2.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-20",
+    "name": "Sammy Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/sammy-bracelet-watch-22-5mm/8483280?color=black&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
+    "ok": true,
+    "file": "public/products/watch-20.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-21",
+    "name": "Sammy Rose Gold Tone Mesh Bracelet Watch",
+    "url": "https://www.macys.com/shop/product/coach-womens-sammy-rose-gold-tone-stainless-steel-mesh-bracelet-watch-22.5mm?ID=23248951&utm_medium=openaifeed",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "image https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": [
+      "https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg"
+    ]
+  },
+  {
+    "id": "watch-22",
+    "name": "Sammy Oval Watch",
+    "url": "https://www.bloomingdales.com/shop/product/coach-sammy-oval-watch-22.5mm?CategoryID=1230061&ID=5664899&swatchColor=Black%2FBlack",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "image https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": [
+      "https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg"
+    ]
+  },
+  {
+    "id": "watch-23",
+    "name": "Sammy Quartz Analog Stainless Steel Mesh Bracelet Watch",
+    "url": "https://www.dillards.com/p/coach-womens-sammy-quartz-analog-stainless-steel-mesh-bracelet-watch/520750363?cm_mmc=ChatGPT-_-COACH-_-063026-_-520750363&googleShop=Y",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-24",
+    "name": "Jane Tethered Mesh Bracelet Seiko Quartz Watch",
+    "url": "https://www.urbanoutfitters.com/shop/breda-jane-tethered-mesh-bracelet-seiko-quartz-18mm-watch?color=007&size=ALL&type=STANDARD&utm_medium=ai_organic&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-24.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-25",
+    "name": "Finer Quartz Analog Stainless Steel Mesh Bracelet Watch",
+    "url": "https://www.dillards.com/p/olivia-burton-womens-finer-quartz-analog-stainless-steel-mesh-bracelet-watch/520758321?cm_mmc=ChatGPT-_-Olivia+Burton-_-063026-_-520758321&googleShop=Y&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-26",
+    "name": "Metal Mesh Band Watch",
+    "url": "https://www.urbanoutfitters.com/shop/estelle-metal-mesh-band-watch?color=007&size=ALL&type=STANDARD&utm_medium=ai_organic&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-26.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-27",
+    "name": "Oval Leather Strap Watch",
+    "url": "https://www.nordstromrack.com/s/ettika-oval-leather-strap-watch/8669093?color=seafoam&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-27.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-28",
+    "name": "Gold-Tone Oval Analog Watch",
+    "url": "https://www.walmart.com/ip/Elgin-Adult-Female-Analog-Watch-in-Gold-with-Oval-Dial-Stainless-Steel-EG9759/42029484?utm_medium=feed&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-28.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-29",
+    "name": "Harlow Gold Tone Stainless Steel Bracelet Watch",
+    "url": "https://www.macys.com/shop/product/coach-womens-harlow-gold-tone-stainless-steel-bracelet-watch-23.8mm?ID=25545253&utm_medium=openaifeed&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "image https://assets.macysassets.com/app/navigation-wgl/static/images/logo.svg: UnidentifiedImageError: cannot identify image file <_io.BytesIO object at 0x7f868ca2a7f0>"
+    ],
+    "candidates": [
+      "https://assets.macysassets.com/app/navigation-wgl/static/images/logo.svg"
+    ]
+  },
+  {
+    "id": "watch-3",
+    "name": "Oval Pearl Silver Mesh Watch",
+    "url": "https://www.rosefieldwatches.com/products/the-oval-pearl-silver-mesh?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=40714965254340&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-3.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-30",
+    "name": "Museum Oval Bangle Watch",
+    "url": "https://www.dillards.com/p/movado-womens-museum-oval-quartz-analog-stainless-steel-bangle-bracelet-watch/520912521?cm_mmc=ChatGPT-_-Movado-_-063026-_-520912521&googleShop=Y&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-31",
+    "name": "The Mulberry Oval Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/the-mulberry-oval-bracelet-watch-22mm-x-34mm/9034533?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-32",
+    "name": "Ophelia Mini Leather Strap Watch",
+    "url": "https://www.nordstrom.com/s/ophelia-mini-leather-strap-watch-22mm-x-25-5mm/9039272?color=gold-tone%2Fblack&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-33",
+    "name": "Ophelia Mini Bracelet Watch",
+    "url": "https://www.lyst.com/accessories/daniel-wellington-ophelia-mini-bracelet-watch-22mm-x-5mm/?_country=US&atc_campaign=chatgpt_pla_product_feeds&atc_country=US&atc_grouping=seo&atc_medium=cpc&atc_source=chatgpt&link_id=1107840119&product=JEMWLSF&show_express_checkout=true&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-33.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-34",
+    "name": "Parisienne Mesh Strap Watch",
+    "url": "https://www.nordstrom.com/s/parisienne-mesh-strap-watch-30mm-x-22mm/8451970?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-35",
+    "name": "Classic Black Leather Strap Watch",
+    "url": "https://www.macys.com/shop/product/caravelle-womens-classic-black-leather-strap-watch-18.5mm?ID=26124337&utm_medium=openaifeed&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "image https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": [
+      "https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg"
+    ]
+  },
+  {
+    "id": "watch-36",
+    "name": "Small Sinfonia Mother-of-Pearl Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/emporio-armani-small-sinfonia-mother-of-pearl-bracelet-watch-22mm-x-28-2mm/8892284?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": true,
+    "file": "public/products/watch-36.webp",
+    "source": "repository cache",
+    "errors": []
+  },
+  {
+    "id": "watch-37",
+    "name": "Museum Bangle Oval Watch",
+    "url": "https://www.bloomingdales.com/shop/product/movado-museum-bangle-oval-watch-22mm-x-26mm?ID=5527070&swatchColor=White%2FSilver&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden",
+      "image https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": [
+      "https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg"
+    ]
+  },
+  {
+    "id": "watch-4",
+    "name": "Oval Gold-Tone Stainless Steel Mesh Watch",
+    "url": "https://www.macys.com/shop/product/anne-klein-womens-quartz-oval-gold-tone-stainless-steel-mesh-watch-26mm?ID=27177248&utm_medium=openaifeed&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-5",
+    "name": "Continental Oval Two-Tone Stainless Steel Mesh Watch",
+    "url": "https://www.macys.com/shop/product/anne-klein-womens-quartz-continental-oval-two-tone-stainless-steel-mesh-band-watch-26mm?ID=22073841&utm_medium=openaifeed&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-6",
+    "name": "Contemporary Oval Two-Tone Bracelet Watch",
+    "url": "https://www.macys.com/shop/product/anne-klein-womens-quartz-contemporary-oval-two-tone-metal-alloy-bracelet-watch-25mm?ID=21996914&utm_medium=openaifeed&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 403: Forbidden"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-7",
+    "name": "Consider It Oval Case Leather Watch",
+    "url": "https://anneklein.com/products/consider-it-oval-case-leather-watch-gold-tone-ivory?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=41052349366343&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [
+      "page: HTTPError: HTTP Error 404: Not Found"
+    ],
+    "candidates": []
+  },
+  {
+    "id": "watch-8",
+    "name": "The Oval Mother-of-Pearl Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/the-oval-mother-of-pearl-bracelet-watch-22mm-x-28mm/8988809?color=silver%2Fmint+green&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  },
+  {
+    "id": "watch-9",
+    "name": "The Oval Elongated Bracelet Watch",
+    "url": "https://www.nordstrom.com/s/the-oval-elongated-bracelet-watch-22mm-x-38mm/9036239?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
+    "ok": false,
+    "errors": [],
+    "candidates": []
+  }
+]
