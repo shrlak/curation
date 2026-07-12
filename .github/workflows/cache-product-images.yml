@@ -17,7 +17,7 @@ permissions:
 
 concurrency:
   group: product-image-cache
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   cache:
@@ -58,6 +58,8 @@ jobs:
             echo "Product image cache is already current."
           else
             git commit -m "Cache product images"
+            git fetch origin ${GITHUB_REF_NAME}
+            git rebase origin/${GITHUB_REF_NAME}
             git push origin HEAD:${GITHUB_REF_NAME}
           fi
 

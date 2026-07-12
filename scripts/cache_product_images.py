@@ -80,7 +80,7 @@ class MetadataParser(HTMLParser):
                 self._collect_json_images(child)
 
 
-def fetch(url, *, referer=None, timeout=30, max_bytes=None):
+def fetch(url, *, referer=None, timeout=20, max_bytes=None):
     headers = {
         "User-Agent": UA,
         "Accept": "text/html,application/xhtml+xml,application/json,image/avif,image/webp,image/apng,image/*,*/*;q=0.8",
@@ -122,7 +122,7 @@ def parse_necklaces(path):
 
 
 def page_metadata_images(page_url):
-    data, content_type, final_url = fetch(page_url, timeout=35, max_bytes=4_000_000)
+    data, content_type, final_url = fetch(page_url, timeout=20, max_bytes=4_000_000)
     if "html" not in content_type.lower() and not data.lstrip().startswith(b"<"):
         return [], final_url, f"unexpected page type {content_type}"
     parser = MetadataParser()
@@ -139,14 +139,14 @@ def page_metadata_images(page_url):
 
 def microlink_image(page_url):
     endpoint = f"https://api.microlink.io/?url={quote(page_url, safe='')}&meta=true"
-    data, _, _ = fetch(endpoint, timeout=45, max_bytes=2_000_000)
+    data, _, _ = fetch(endpoint, timeout=30, max_bytes=2_000_000)
     payload = json.loads(data.decode("utf-8"))
     image = ((payload.get("data") or {}).get("image") or {}).get("url")
     return image if isinstance(image, str) and image.startswith("https://") else ""
 
 
 def save_thumbnail(product, image_url, referer):
-    data, content_type, _ = fetch(image_url, referer=referer, timeout=45, max_bytes=20_000_000)
+    data, content_type, _ = fetch(image_url, referer=referer, timeout=30, max_bytes=20_000_000)
     if not content_type.lower().startswith("image/") and data[:4] not in (b"RIFF", b"\x89PNG") and data[:2] != b"\xff\xd8":
         raise ValueError(f"not an image ({content_type})")
     with Image.open(io.BytesIO(data)) as source:
@@ -225,7 +225,7 @@ def main():
     print(f"Auditing {len(products)} products", flush=True)
 
     results = []
-    with ThreadPoolExecutor(max_workers=6) as pool:
+    with ThreadPoolExecutor(max_workers=10) as pool:
         futures = {pool.submit(process, product): product for product in products}
         for completed, future in enumerate(as_completed(futures), 1):
             result = future.result()
