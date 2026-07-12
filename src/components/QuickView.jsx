@@ -44,7 +44,15 @@ export default function QuickView({ product, onClose, colorOf, setColor }) {
               {icons.close}
             </button>
             <div className="quick-layout">
-              <ProductImage className="quick-media" pageUrl={url} alt={product.name} type={product.type} fit="contain" />
+              <ProductImage
+                className="quick-media"
+                pageUrl={url}
+                imageUrl={product.image}
+                preferRemote={isScrub}
+                alt={product.name}
+                type={product.type}
+                fit="contain"
+              />
               <div className="quick-info">
                 <p className="eyebrow">{typeLine}</p>
                 <h2>{product.name}</h2>

@@ -29,7 +29,14 @@ export default function ProductCard({ product, isFav, onToggleFav, onQuick, colo
   return (
     <motion.li className="card" variants={rise} onPointerMove={onMove}>
       <a className="card-link" href={href} target="_blank" rel="noopener noreferrer" aria-label={`${product.name} product page`} />
-      <ProductImage pageUrl={url} alt={product.name} type={product.type} tag={mediaTag}>
+      <ProductImage
+        pageUrl={url}
+        imageUrl={product.image}
+        preferRemote={isScrub}
+        alt={product.name}
+        type={product.type}
+        tag={mediaTag}
+      >
         <button
           className="fav"
           type="button"

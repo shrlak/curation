@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { productImageUrl, RETRY_LIMIT } from "../lib/images.js";
 import { FallbackIcon } from "./icons.jsx";
 
@@ -9,6 +9,8 @@ import { FallbackIcon } from "./icons.jsx";
  */
 export default function ProductImage({
   pageUrl,
+  imageUrl = "",
+  preferRemote = false,
   alt,
   type = "necklace",
   fit = "contain",
@@ -16,27 +18,46 @@ export default function ProductImage({
   className = "media",
   children,
 }) {
+  const sources = useMemo(() => {
+    const available = [];
+    if (pageUrl && pageUrl !== "#") available.push("metadata");
+    if (imageUrl) available.push("cached");
+    if (!preferRemote) available.reverse();
+    return available;
+  }, [pageUrl, imageUrl, preferRemote]);
+  const [sourceIndex, setSourceIndex] = useState(0);
   const [retry, setRetry] = useState(0);
   const [status, setStatus] = useState("load"); // load | ok | err
 
   useEffect(() => {
+    setSourceIndex(0);
     setRetry(0);
     setStatus("load");
-  }, [pageUrl]);
+  }, [pageUrl, imageUrl, preferRemote]);
 
-  const usable = pageUrl && pageUrl !== "#";
-  const src = usable ? productImageUrl(pageUrl, retry) : "";
+  const source = sources[sourceIndex];
+  const src = source === "cached" ? imageUrl : source === "metadata" ? productImageUrl(pageUrl, retry) : "";
 
   const onError = () => {
-    if (retry < RETRY_LIMIT) setRetry((r) => r + 1);
-    else setStatus("err");
+    if (source === "metadata" && retry < RETRY_LIMIT) {
+      setRetry((value) => value + 1);
+      return;
+    }
+    if (sourceIndex + 1 < sources.length) {
+      setSourceIndex((value) => value + 1);
+      setRetry(0);
+      setStatus("load");
+      return;
+    }
+    setStatus("err");
   };
 
   return (
     <figure className={`${className} ${status === "ok" ? "has-image" : ""} ${status === "err" ? "err" : ""}`}>
       {tag ? <span className="media-tag">{tag}</span> : null}
-      {usable ? (
+      {src ? (
         <img
+          key={src}
           className={`product-img ${status === "ok" ? "loaded" : ""}`}
           src={src}
           alt={alt}

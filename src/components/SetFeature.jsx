@@ -11,7 +11,15 @@ export default function SetFeature({ product, color, onColor }) {
 
   return (
     <article className="set panel">
-      <ProductImage className="set-media" pageUrl={pantsUrl} alt={`${product.name} in ${color}`} type="scrub" fit="cover">
+      <ProductImage
+        className="set-media"
+        pageUrl={pantsUrl}
+        imageUrl={product.image}
+        preferRemote
+        alt={`${product.name} in ${color}`}
+        type="scrub"
+        fit="cover"
+      >
         <span className="badge accent set-badge">Wide-leg option</span>
       </ProductImage>
       <div className="set-copy">
