@@ -3,10 +3,16 @@ name: Deploy site to Pages
 on:
   push:
     branches: ["main"]
+    paths-ignore:
+      - "index.html"
+      - "assets/**"
+      - "favicon.svg"
+      - "site.webmanifest"
+      - ".nojekyll"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -32,6 +38,31 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      # This repository is currently configured to publish main/(root). Keep
+      # that branch-based Pages source synchronized with the same verified Vite
+      # build used by the Actions deployment. Generated-only commits are ignored
+      # by this workflow, so the synchronization cannot loop.
+      - name: Sync branch-based Pages fallback
+        if: github.event_name == 'push'
+        run: |
+          rm -rf assets
+          cp -R dist/assets assets
+          cp dist/index.html index.html
+          cp dist/favicon.svg favicon.svg
+          cp dist/site.webmanifest site.webmanifest
+          touch .nojekyll
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- index.html assets favicon.svg site.webmanifest .nojekyll
+
+          if git diff --cached --quiet; then
+            echo "Pages fallback is already current."
+          else
+            git commit -m "Sync production build for GitHub Pages"
+            git push
+          fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v6
