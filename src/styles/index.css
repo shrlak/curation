@@ -40,6 +40,7 @@
   --spring: cubic-bezier(0.34, 1.4, 0.5, 1);
   --nav-h: 68px;
   --edge: clamp(18px, 4vw, 40px);
+  --safe-top: env(safe-area-inset-top, 0px);
 
   --mx: 50vw;
   --my: 40vh;
@@ -98,6 +99,7 @@ a { color: inherit; text-decoration: none; }
 img, svg { display: block; max-width: 100%; }
 [hidden] { display: none !important; }
 ul { margin: 0; padding: 0; list-style: none; }
+figure { margin: 0; }
 h1, h2, h3, h4, p { margin: 0; }
 ::selection { background: color-mix(in srgb, var(--accent) 35%, transparent); color: var(--text); }
 
@@ -218,11 +220,12 @@ html[data-theme="light"] .spotlight { background: radial-gradient(360px 360px at
 /* -------------------------------------------------------------------------
    Header / nav
    ------------------------------------------------------------------------- */
-.skip { position: fixed; z-index: 999; top: 10px; left: 10px; transform: translateY(-160%);
+.skip { position: fixed; z-index: 999; top: calc(var(--safe-top) + 10px); left: 10px; transform: translateY(-160%);
   border-radius: 999px; padding: 10px 16px; background: var(--text); color: var(--bg); transition: 0.2s; }
 .skip:focus { transform: none; }
 
-.header { position: sticky; z-index: 90; top: 0; height: var(--nav-h);
+.header { position: sticky; z-index: 90; top: 0; height: calc(var(--nav-h) + var(--safe-top));
+  padding-top: var(--safe-top);
   border-bottom: 1px solid var(--line); background: var(--glass);
   backdrop-filter: saturate(160%) blur(22px); -webkit-backdrop-filter: saturate(160%) blur(22px); }
 .nav { height: 100%; width: min(1560px, 100% - var(--edge) * 2); margin-inline: auto;
@@ -264,7 +267,7 @@ html[data-theme="light"] .theme-btn .moon { display: none; }
 /* -------------------------------------------------------------------------
    Page / view transitions
    ------------------------------------------------------------------------- */
-.view { min-height: calc(100svh - var(--nav-h)); }
+.view { min-height: calc(100svh - var(--nav-h) - var(--safe-top)); }
 .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 34px; }
 .section-head h1 { max-width: 860px; font-size: clamp(2.6rem, 6vw, 5rem); line-height: 0.98; letter-spacing: -0.05em; font-weight: 680; }
 .section-head p:not(.eyebrow) { max-width: 560px; margin-top: 18px; color: var(--muted); font-size: 1.02rem; }
@@ -368,7 +371,7 @@ html[data-theme="light"] .theme-btn .moon { display: none; }
    Collection toolbar + grid
    ------------------------------------------------------------------------- */
 .collection { padding: clamp(60px, 8vw, 110px) 0 120px; }
-.toolbar { position: sticky; z-index: 30; top: calc(var(--nav-h) + 12px);
+.toolbar { position: sticky; z-index: 30; top: calc(var(--nav-h) + var(--safe-top) + 12px);
   display: grid; grid-template-columns: minmax(200px, 1.5fr) minmax(150px, 0.7fr) minmax(150px, 0.7fr) auto;
   gap: 9px; margin-bottom: 26px; padding: 10px; border: 1px solid var(--line); border-radius: 20px;
   background: var(--glass); backdrop-filter: blur(22px); box-shadow: var(--shadow); }
