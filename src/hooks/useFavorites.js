@@ -28,7 +28,7 @@ export function useFavorites(notify) {
     (id) => {
       setIds((prev) => {
         const on = prev.includes(id);
-        notify?.(on ? "Removed from cart." : "Added to cart.");
+        notify?.(on ? "Removed from saved list." : "Added to saved list.");
         return on ? prev.filter((x) => x !== id) : [...prev, id];
       });
     },

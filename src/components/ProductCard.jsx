@@ -42,14 +42,14 @@ export default function ProductCard({ product, isFav, onToggleFav, onQuick, colo
           type="button"
           data-on={isFav}
           aria-pressed={isFav}
-          aria-label={`${isFav ? "Remove" : "Add"} ${product.name} ${isFav ? "from" : "to"} cart`}
+          aria-label={`${isFav ? "Remove" : "Add"} ${product.name} ${isFav ? "from" : "to"} saved list`}
           onClick={(e) => {
             e.preventDefault();
             e.stopPropagation();
             onToggleFav(product.id);
           }}
         >
-          {icons.cart}
+          {isFav ? icons.heartFilled : icons.heart}
         </button>
         <button
           className="quick btn"
