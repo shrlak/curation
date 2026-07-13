@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { icons } from "./icons.jsx";
 import {
@@ -13,10 +13,22 @@ import {
 
 const EMPTY = { url: "", category: "", name: "", price: "", note: "" };
 const NEW_TAB = "__new_tab__";
+const PRESET_TABS = ["Necklaces", "Watches", "Lenses", "Scrubs"];
 
 export default function CustomCollectionDialog({ open, onClose, onSubmit, names, initialCategory, onNavigate }) {
   const [values, setValues] = useState(EMPTY);
   const [categorySelect, setCategorySelect] = useState("");
+  const dropdownNames = useMemo(() => {
+    const seen = new Set();
+    const merged = [];
+    for (const name of [...PRESET_TABS, ...names]) {
+      const key = name.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      merged.push(name);
+    }
+    return merged;
+  }, [names]);
   const autoRef = useRef({ category: true, name: true, price: true, note: true });
   const [analysis, setAnalysis] = useState({ message: "링크를 기다리는 중", state: "idle" });
   const [photoStatus, setPhotoStatus] = useState({ message: "사진을 드래그하거나 붙여넣을 수도 있어요.", state: "idle" });
@@ -35,7 +47,7 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
   useEffect(() => {
     if (!open) return;
     setValues({ ...EMPTY, category: initialCategory || "" });
-    setCategorySelect(initialCategory || (names.length === 0 ? NEW_TAB : ""));
+    setCategorySelect(initialCategory || (dropdownNames.length === 0 ? NEW_TAB : ""));
     autoRef.current = { category: !initialCategory, name: true, price: true, note: true };
     setAnalysis({ message: "링크를 기다리는 중", state: "idle" });
     setPhotoStatus({ message: "사진을 드래그하거나 붙여넣을 수도 있어요.", state: "idle" });
@@ -72,7 +84,7 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
       return next;
     });
     if (patch.category && autoRef.current.category) {
-      const match = names.find(
+      const match = dropdownNames.find(
         (name) => name.localeCompare(patch.category, undefined, { sensitivity: "accent" }) === 0,
       );
       setCategorySelect(match || NEW_TAB);
@@ -312,7 +324,7 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
                   <option value="" disabled>
                     탭을 선택하세요
                   </option>
-                  {names.map((name) => (
+                  {dropdownNames.map((name) => (
                     <option key={name} value={name}>
                       {name}
                     </option>
