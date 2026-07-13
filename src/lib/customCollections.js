@@ -240,8 +240,21 @@ export async function fetchProductMetadata(url, signal) {
   const fallback = fallbackMetadata(url);
   try {
     const schemaSelector = encodeURIComponent('script[type="application/ld+json"]');
+    // JSON-LD Product/Offer schemas cover a lot of stores, but plenty of sites
+    // only expose price via Open Graph / microdata meta tags — grab those too
+    // as a fallback so the price field auto-fills more reliably.
+    const priceMetaSelector = encodeURIComponent(
+      'meta[property="product:price:amount"],meta[property="og:price:amount"],meta[itemprop="price"]',
+    );
+    const currencyMetaSelector = encodeURIComponent(
+      'meta[property="product:price:currency"],meta[property="og:price:currency"],meta[itemprop="priceCurrency"]',
+    );
     const response = await fetch(
-      `https://api.microlink.io/?url=${encodeURIComponent(url)}&data.schemas.selectorAll=${schemaSelector}&data.schemas.attr=text&audio=false&video=false&screenshot=false`,
+      `https://api.microlink.io/?url=${encodeURIComponent(url)}` +
+        `&data.schemas.selectorAll=${schemaSelector}&data.schemas.attr=text` +
+        `&data.priceMeta.selectorAll=${priceMetaSelector}&data.priceMeta.attr=content` +
+        `&data.currencyMeta.selectorAll=${currencyMetaSelector}&data.currencyMeta.attr=content` +
+        `&audio=false&video=false&screenshot=false`,
       { signal },
     );
     if (!response.ok) throw new Error(`Metadata ${response.status}`);
@@ -252,7 +265,8 @@ export async function fetchProductMetadata(url, signal) {
     const title = cleanTitle(product?.name || data.title, data.publisher || brand) || fallback.name;
     const description = cleanDescription(product?.description || data.description);
     const image = schemaImage(product) || data.image?.url || "";
-    const price = schemaPrice(product) || extractPrice(data, `${title} ${description}`);
+    const metaPrice = formatSchemaPrice(firstValue(data.priceMeta), firstValue(data.currencyMeta));
+    const price = schemaPrice(product) || metaPrice || extractPrice(data, `${title} ${description}`);
     return {
       name: title,
       category: inferCategory(`${title} ${description} ${brand} ${data.publisher || ""}`, url),

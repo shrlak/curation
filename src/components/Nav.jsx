@@ -12,6 +12,24 @@ const BASE_TABS = [
   { route: "scrubs", label: "Scrubs", icon: "scrub" },
 ];
 
+function TabContent({ tab }) {
+  const icon = icons[tab.icon] || icons.folder;
+  if (tab.isCustom) {
+    return (
+      <>
+        <span>{tab.label}</span>
+        {icon}
+      </>
+    );
+  }
+  return (
+    <>
+      {icon}
+      <span>{tab.label}</span>
+    </>
+  );
+}
+
 function Tab({ tab, active, onClick }) {
   return (
     <button className="tab" type="button" data-active={active} onClick={onClick} aria-current={active ? "page" : undefined}>
@@ -22,8 +40,7 @@ function Tab({ tab, active, onClick }) {
           transition={{ type: "spring", stiffness: 420, damping: 34 }}
         />
       )}
-      {icons[tab.icon] || icons.folder}
-      <span>{tab.label}</span>
+      <TabContent tab={tab} />
     </button>
   );
 }
@@ -47,7 +64,7 @@ export default function Nav({ route, go, favoriteCount, onOpenCart, onOpenAdd, t
     };
   }, []);
 
-  const custom = customTabs.map((c) => ({ route: c.id, label: c.name, icon: "folder" }));
+  const custom = customTabs.map((c) => ({ route: c.id, label: c.name, icon: "folder", isCustom: true }));
   const tabs = [...BASE_TABS, ...custom];
 
   const selectTab = (route) => {
@@ -134,8 +151,7 @@ export default function Nav({ route, go, favoriteCount, onOpenCart, onOpenAdd, t
                       aria-current={route === tab.route ? "page" : undefined}
                       onClick={() => selectTab(tab.route)}
                     >
-                      {icons[tab.icon] || icons.folder}
-                      <span>{tab.label}</span>
+                      <TabContent tab={tab} />
                     </button>
                   </li>
                 ))}
