@@ -5,23 +5,19 @@
     "url": "https://www.bhphotovideo.com/c/product/1635847-REG/sony_sel14f14gm_fe_24mm_f_1_4_gm.html",
     "ok": true,
     "file": "public/products/lens-1.webp",
-    "image_url": "https://www.fujiya-camera.co.jp/img/goods/L/C4548736131187_l.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-10",
     "name": "FE 50mm f/1.2 GM",
     "url": "https://www.bhphotovideo.com/c/product/1630079-REG/sony_sel50f12gm_fe_50mm_f_1_2_gm.html",
-    "ok": false,
+    "ok": true,
+    "file": "public/products/lens-10.webp",
+    "image_url": "https://www.avbroadcast.fr/media/catalog/product/cache/1/image/933x/602f0fa2c1f0d1ba5e241f914e856ff9/s/o/sony-fe-50mm-f1.2-gm-objectif/FE-50-mm-F1.2-GM-SEL50F12GM-Objectif-standard-plein-format-a-focale-fixe-et-a-monture-E-pour-FR7_.-Sony-31.jpg",
+    "source": "curated product image",
     "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "image https://dukefotografia.com/65025-home_default/sony-objetivo-fe-50mm-f12-gm-sel50f12gm-sony.jpg: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://dukefotografia.com/65025-home_default/sony-objetivo-fe-50mm-f12-gm-sel50f12gm-sony.jpg"
+      "page: HTTPError: HTTP Error 403: Forbidden"
     ]
   },
   {
@@ -30,11 +26,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1752166-REG/sony_fe_50mm_f_1_4_gm.html",
     "ok": true,
     "file": "public/products/lens-11.webp",
-    "image_url": "https://microless.com/cdn/products/e337e598f113b2b3d829429a26257f31-hi.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-12",
@@ -42,23 +35,19 @@
     "url": "https://www.bhphotovideo.com/c/product/1748158-REG/sigma_315965_50mm_f_1_4_dg_dn.html",
     "ok": true,
     "file": "public/products/lens-12.webp",
-    "image_url": "https://omaxphoto.com/cdn/shop/files/50mm1.4sigma2.jpg?v=1741433399&width=5000",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-13",
     "name": "AF 50mm f/1.8 FE",
     "url": "https://www.bhphotovideo.com/c/product/1629554-REG/viltrox_af_50_1_8_fe_50mm_f_1_8_lens_for.html",
-    "ok": false,
+    "ok": true,
+    "file": "public/products/lens-13.webp",
+    "image_url": "https://www.syntex.tv/media/produkty/17233/2_thumb_syntex-viltrox-50mm-f1-8-e-mount-main-01.jpg",
+    "source": "curated product image",
     "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "image https://dukefotografia.com/59431-home_default/viltrox-af-50mm-f18-fe-sony-full-frame-viltrox.jpg: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://dukefotografia.com/59431-home_default/viltrox-af-50mm-f18-fe-sony-full-frame-viltrox.jpg"
+      "page: HTTPError: HTTP Error 403: Forbidden"
     ]
   },
   {
@@ -67,11 +56,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1718058-REG/ttartisan_f5020_b_e_50mm_f_2_full_frame.html",
     "ok": true,
     "file": "public/products/lens-14.webp",
-    "image_url": "https://www.fotofenice.com/35324-large_default/obiettivo-ttartisan-50mm-f2-per-mirrorless-sony-e.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-15",
@@ -79,11 +65,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1731256-REG/ttartisan_t_f5014_b_e_50mm_f_1_4_tilt_lens.html",
     "ok": true,
     "file": "public/products/lens-15.webp",
-    "image_url": "https://cdn.shopify.com/s/files/1/0672/3806/8470/files/LensaTTArtisanTilt50mmf1.47_e34ff733-4536-4148-b2b4-a34dedb0a5b9.jpg?v=1718001553",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-16",
@@ -91,11 +74,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1317562-REG/sony_sel85f18_fe_85mm_f_1_8_lens.html",
     "ok": true,
     "file": "public/products/lens-16.webp",
-    "image_url": "https://fstudio.vtexassets.com/arquivos/ids/672105-1200-1200?aspect=true&height=1200&width=1200",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-17",
@@ -103,11 +83,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1849952-REG/sony_fe_85mm_f_1_4_gm.html",
     "ok": true,
     "file": "public/products/lens-17.webp",
-    "image_url": "https://www.camera-warehouse.com.au/media/catalog/product/cache/4c60323fdbce02b8f1d369b207d25a05/s/o/sony_sel85f14gm2_1.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-18",
@@ -115,11 +92,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1581240-REG/sigma_322965_85mm_f_1_4_dg_dn.html",
     "ok": true,
     "file": "public/products/lens-18.webp",
-    "image_url": "https://cdn.uniquephoto.com/resources/uniquephoto/images/products/processed/SGL322965.superZoom.a.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-19",
@@ -127,12 +101,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1560731-REG/viltrox_af_85_1_8_ii_fe_e_mount_85mm_f_1_8_stm_ii.html",
     "ok": true,
     "file": "public/products/lens-19.webp",
-    "image_url": "https://www.cameraland.nl/media/catalog/product/v/i/viltrox-af-85mm-1-8-xfii-fuji-x_1_1.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-2",
@@ -140,11 +110,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1549627-REG/sony_sel20f18g_fe_20mm_f_1_8_g.html",
     "ok": true,
     "file": "public/products/lens-2.webp",
-    "image_url": "https://d1uzk9o9cg136f.cloudfront.net/f/16783155/rc/2020/02/26/f6dfcdf30539ec7d7243a1e9cf2bc514559fba64_large.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-20",
@@ -152,12 +119,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1558714-REG/samyang_syio75af_e_af_75mm_f_1_8_fe.html",
     "ok": true,
     "file": "public/products/lens-20.webp",
-    "image_url": "https://samyangus.com/cdn/shop/products/Rokinon_IO75AF-E_1.jpg?v=1600437281&width=1080",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-21",
@@ -165,12 +128,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1687241-REG/samyang_syio13518_e_af_135mm_f_1_8_fe.html",
     "ok": true,
     "file": "public/products/lens-21.webp",
-    "image_url": "https://img-cdn.heureka.group/v1/67ab9006-1bfb-433b-a12d-e4660f601f0d.jpg?height=1200&width=1200",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-22",
@@ -178,12 +137,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1856220-REG/viltrox_af13518e_af_135mm_f_1_8_fe.html",
     "ok": true,
     "file": "public/products/lens-22.webp",
-    "image_url": "https://viltroxjapan.jp/cdn/shop/files/4573620730320_2e33fece-1449-4b28-8ea7-a37ab665b069.jpg?v=1738918238&width=1946",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-23",
@@ -191,12 +146,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1784822-REG/sony_fe_16_35mm_f_2_8_gm.html",
     "ok": true,
     "file": "public/products/lens-23.webp",
-    "image_url": "https://prophotosupply.com/cdn/shop/files/SEL1635GM2_A-3000px.png?v=1693339214&width=1946",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-24",
@@ -204,12 +155,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1704533-REG/sigma_16_28mm_f_2_8_dg_contemporary.html",
     "ok": true,
     "file": "public/products/lens-24.webp",
-    "image_url": "https://media.foto-erhardt.de/images/product_images/original_images/248/sigma-16-28mm-f28-dg-dn-c-sony-e-165414924724810304.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-25",
@@ -217,12 +164,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1609642-REG/tamron_afb070s_700_17_70mm_f_2_8_di_iii_a.html",
     "ok": true,
     "file": "public/products/lens-25.webp",
-    "image_url": "https://static01.galaxus.com/productimages/3/6/1/3/6/4/5/2/Tamron-17-28mm-III-RXD-A046-cover.jpg_720.jpeg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-26",
@@ -230,12 +173,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1702384-REG/sony_fe_24_70mm_f_2_8_gm.html",
     "ok": true,
     "file": "public/products/lens-26.webp",
-    "image_url": "https://i.ebayimg.com/images/g/GhsAAOSwgVtkkIKo/s-l1600.webp",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-27",
@@ -243,12 +182,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1827260-REG/sigma_57a965_24_70mm_f2_8_dg_dn.html",
     "ok": true,
     "file": "public/products/lens-27.webp",
-    "image_url": "https://cdn.uniquephoto.com/resources/uniquephoto/images/products/processed/SGL57A965.superZoom.g.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-28",
@@ -256,12 +191,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1658157-REG/tamron_a063_28_75mm_f_2_8_di_iii.html",
     "ok": true,
     "file": "public/products/lens-28.webp",
-    "image_url": "https://www.tamron.com/jp/consumer/pc_file/file/a063_main.webp",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-29",
@@ -269,12 +200,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1671786-REG/samyang_syio2470afz_e_24_70mm_f_2_8_af_zoom.html",
     "ok": true,
     "file": "public/products/lens-29.webp",
-    "image_url": "https://dtz3um9jw7ngl.cloudfront.net/p/l/9245024S/9245024S.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-3",
@@ -282,11 +209,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1435887-REG/sony_fe_24mm_f_1_4_gm.html",
     "ok": true,
     "file": "public/products/lens-3.webp",
-    "image_url": "https://bizweb.dktcdn.net/thumb/1024x1024/100/507/659/products/ong-kinh-sony-fe-24mm-f1-4-gm-hang-chinh-hang.jpg?v=1709714447990",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-30",
@@ -294,12 +218,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1568708-REG/tamron_a071_28_200mm_f_2_8_5_6_di_iii.html",
     "ok": true,
     "file": "public/products/lens-30.webp",
-    "image_url": "https://www.fujiya-camera.co.jp/img/goods/L/C4960371006703_l.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-31",
@@ -307,12 +227,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1666363-REG/sony_fe_70_200mm_f_2_8_gm.html",
     "ok": true,
     "file": "public/products/lens-31.webp",
-    "image_url": "https://i.ebayimg.com/images/g/hpYAAeSwrKto~v3n/s-l1600.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-32",
@@ -320,12 +236,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1781149-REG/tamron_a065_70_180mm_f_2_8_di_iii.html",
     "ok": true,
     "file": "public/products/lens-32.webp",
-    "image_url": "https://www.tamron.com/jp/consumer/pc_file/file/a065_main.webp",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-33",
@@ -333,12 +245,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1658158-REG/tamron_a058_35_150mm_f_f_2_2_8_di_iii.html",
     "ok": true,
     "file": "public/products/lens-33.webp",
-    "image_url": "https://fotocuratolo.it/prodotti/3533/XXL/3533foto.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-34",
@@ -346,12 +254,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1762306-REG/samyang_syio35150afz_e_e_af_35_150mm_f_2_2_8_lens.html",
     "ok": true,
     "file": "public/products/lens-34.webp",
-    "image_url": "https://www.kamera-express.nl/media/9e75f3ab-16b0-44a7-9f67-2e90954485de/samyang-af-35-150mm-f-2-2-8-sony-fe.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "microlink: HTTPError: HTTP Error 429: Too Many Requests"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-35",
@@ -368,11 +272,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1719339-REG/sigma_24mm_f_1_4_dg_dn.html",
     "ok": true,
     "file": "public/products/lens-4.webp",
-    "image_url": "https://www.fotopro.es/26402-large_default/sigma-24mm-f-14-dg-dn-art.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-5",
@@ -389,25 +290,19 @@
     "url": "https://www.bhphotovideo.com/c/product/1613424-REG/sony_fe35f14gm_fe_35mm_f_1_4_gm.html",
     "ok": true,
     "file": "public/products/lens-6.webp",
-    "image_url": "https://cdn11.bigcommerce.com/s-745x53acpn/images/stencil/1280x1280/products/8543/38302/20260107_Sony_TITU_Jan1_Mar31_Web_Pic_10467__84654.1767830258.jpg?c=2",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-7",
     "name": "FE 35mm f/1.8",
     "url": "https://www.bhphotovideo.com/c/product/1492866-REG/sony_sel35f18f_35mm_f_1_8_fe_lens.html",
-    "ok": false,
+    "ok": true,
+    "file": "public/products/lens-7.webp",
+    "image_url": "https://www.kamera-express.nl/media/34627494-bdb3-40c3-b38a-dad022fedf0c/sony-fe-35mm-f-1-8.jpg",
+    "source": "curated product image",
     "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "image https://www.sony.com.au/image/4f8ed826f02307ff822d4ab29ff6220f?fmt=png-alpha&wid=480: HTTPError: HTTP Error 403: Forbidden",
-      "image https://www.bhphotovideo.com/images/fb/sony_sel35f18f_35mm_f_1_8_fe_lens_1492866.jpg: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://www.sony.com.au/image/4f8ed826f02307ff822d4ab29ff6220f?fmt=png-alpha&wid=480",
-      "https://www.bhphotovideo.com/images/fb/sony_sel35f18f_35mm_f_1_8_fe_lens_1492866.jpg"
+      "page: HTTPError: HTTP Error 403: Forbidden"
     ]
   },
   {
@@ -416,11 +311,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1953414-REG/sigma_304965_35mm_f_1_4_dg_ii.html",
     "ok": true,
     "file": "public/products/lens-8.webp",
-    "image_url": "https://cdn.webshopapp.com/shops/254654/files/368504290/800x1024x2/sigma-sigma-35mm-f14-dg-dn-art-sony-e-mount.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "lens-9",
@@ -428,11 +320,8 @@
     "url": "https://www.bhphotovideo.com/c/product/1883305-REG/viltrox_af_35_1_2_fe_e_mount_af_35mm_f_1_2_fe.html",
     "ok": true,
     "file": "public/products/lens-9.webp",
-    "image_url": "https://www.photonet.cz/image/catalog/viltrox-af-35mm-f1-8-fe-sony_99.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "necklace-1",
@@ -593,23 +482,18 @@
     "url": "https://www.macys.com/shop/product/rosefield-mini-oval-womens-silver-tone-stainless-steel-bracelet-watch-22mm?ID=21888290&utm_medium=openaifeed&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-1.webp",
-    "image_url": "https://cdna.lystit.com/520/650/n/photos/macys/65532e15/rosefield-designer-Silver-Mini-Oval-Tone-Stainless-Steel-Bracelet-Watch-22mm.jpeg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-10",
     "name": "Iris Bracelet Watch",
     "url": "https://www.nordstrom.com/s/iris-bracelet-watch-22-5mm/8931577?color=silver&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
-    "ok": false,
-    "errors": [
-      "image https://www.kay.com/productimages/processed/V-331799104_0_800.jpg?pristine=true: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://www.kay.com/productimages/processed/V-331799104_0_800.jpg?pristine=true"
-    ]
+    "ok": true,
+    "file": "public/products/watch-10.webp",
+    "image_url": "https://watchfactory.com.au/cdn/shop/files/14504416_4e1210b1-b4b4-48b7-8acd-9985da681a8e.jpg?v=1749177162&width=2048",
+    "source": "curated product image",
+    "errors": []
   },
   {
     "id": "watch-11",
@@ -624,13 +508,11 @@
     "id": "watch-12",
     "name": "Heart Bracelet Watch",
     "url": "https://www.nordstrom.com/s/heart-bracelet-watch-22mm/8827013?color=gold%2Fwhite&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
-    "ok": false,
-    "errors": [
-      "image https://www.kay.com/productimages/processed/V-331800300_0_800.jpg?pristine=true: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://www.kay.com/productimages/processed/V-331800300_0_800.jpg?pristine=true"
-    ]
+    "ok": true,
+    "file": "public/products/watch-12.webp",
+    "image_url": "https://dimg.dillards.com/is/image/DillardsZoom/mainProduct/coach-womens-sammy-quartz-analog-stainless-steel-heart-bracelet-watch/00000000_zi_eb7152da-9e39-47f3-a55b-ce990ef57901.jpg",
+    "source": "curated product image",
+    "errors": []
   },
   {
     "id": "watch-13",
@@ -638,11 +520,8 @@
     "url": "https://www.macys.com/shop/product/coach-womens-cadie-stainless-steel-mesh-bracelet-watch-17.5-x-28.5mm?ID=14759162&utm_medium=openaifeed&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-13.webp",
-    "image_url": "https://slimages.macysassets.com/is/image/MCY/products/3/optimized/22992373_fpx.tif",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-14",
@@ -650,23 +529,19 @@
     "url": "https://www.nordstrom.com/s/elliot-mesh-strap-watch-28mm/8272687?color=silver+white&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
     "ok": true,
     "file": "public/products/watch-14.webp",
-    "image_url": "https://www.reeds.com/media/catalog/product/cache/38c3c1b8e53ef11aa9803a5390245afc/c/o/coach_elliot_white_sunray_dial_mesh_stainless_steel_bracelet_watch_36mm-14504207-1-14504207-hxf8172fb5.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
     "id": "watch-15",
     "name": "Sammy Mesh Bracelet Watch",
     "url": "https://www.bloomingdales.com/shop/product/coach-sammy-mesh-bracelet-watch-22.5mm?ID=5664896&swatchColor=Silver%2FSilver",
-    "ok": false,
+    "ok": true,
+    "file": "public/products/watch-15.webp",
+    "image_url": "https://myer-media.com.au/wcsstore/MyerCatalogAssetStore/images/10/105/1511/402/1/266750020/266750020_1_720x928.webp?q=75&w=1920",
+    "source": "curated product image",
     "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "image https://www.kay.com/productimages/processed/V-331502207_0_800.jpg?pristine=true: HTTPError: HTTP Error 403: Forbidden",
-      "image https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://www.kay.com/productimages/processed/V-331502207_0_800.jpg?pristine=true",
-      "https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg"
+      "page: HTTPError: HTTP Error 403: Forbidden"
     ]
   },
   {
@@ -691,13 +566,11 @@
     "id": "watch-18",
     "name": "Sammy Bracelet Watch",
     "url": "https://www.nordstrom.com/s/coach-sammy-bracelet-watch-22-5mm/8478525?color=silver+white&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
-    "ok": false,
-    "errors": [
-      "image https://www.zales.com/productimages/processed/V-20598112_0_800.jpg?pristine=true: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://www.zales.com/productimages/processed/V-20598112_0_800.jpg?pristine=true"
-    ]
+    "ok": true,
+    "file": "public/products/watch-18.webp",
+    "image_url": "https://watchfactory.com.au/cdn/shop/files/14504416_4e1210b1-b4b4-48b7-8acd-9985da681a8e.jpg?v=1749177162&width=2048",
+    "source": "curated product image",
+    "errors": []
   },
   {
     "id": "watch-19",
@@ -705,8 +578,7 @@
     "url": "https://www.nordstrom.com/s/sammy-bracelet-watch-22-5mm/8478524?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic",
     "ok": true,
     "file": "public/products/watch-19.webp",
-    "image_url": "https://dimg.dillards.com/is/image/DillardsZoom/alt/coach-womens-sammy-quartz-analog-gold-tone-stainless-steel-bracelet-watch/00000000_zi_f00c5e6d-3203-474b-84cd-6edac360529d.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
@@ -733,11 +605,8 @@
     "url": "https://www.macys.com/shop/product/coach-womens-sammy-rose-gold-tone-stainless-steel-mesh-bracelet-watch-22.5mm?ID=23248951&utm_medium=openaifeed",
     "ok": true,
     "file": "public/products/watch-21.webp",
-    "image_url": "https://production.atgwasl.com/dw/image/v2/BDSP_PRD/on/demandware.static/-/Sites-coach-master-catalog/default/dwb84d3105/sfcc-coach-production/2/1/8/6/1/218616830_E1.jpg?sw=1000&sh=1250&q=90",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-22",
@@ -745,11 +614,8 @@
     "url": "https://www.bloomingdales.com/shop/product/coach-sammy-oval-watch-22.5mm?CategoryID=1230061&ID=5664899&swatchColor=Black%2FBlack",
     "ok": true,
     "file": "public/products/watch-22.webp",
-    "image_url": "https://slimages.macysassets.com/is/image/MCY/products/2/optimized/28662402_fpx.tif",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-23",
@@ -757,8 +623,7 @@
     "url": "https://www.dillards.com/p/coach-womens-sammy-quartz-analog-stainless-steel-mesh-bracelet-watch/520750363?cm_mmc=ChatGPT-_-COACH-_-063026-_-520750363&googleShop=Y",
     "ok": true,
     "file": "public/products/watch-23.webp",
-    "image_url": "https://dimg.dillards.com/is/image/DillardsZoom/alt/coach-womens-sammy-quartz-analog-stainless-steel-mesh-bracelet-watch/00000001_zi_32d2b504-0114-4a15-a065-1514c0a1f084.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
@@ -776,8 +641,7 @@
     "url": "https://www.dillards.com/p/olivia-burton-womens-finer-quartz-analog-stainless-steel-mesh-bracelet-watch/520758321?cm_mmc=ChatGPT-_-Olivia+Burton-_-063026-_-520758321&googleShop=Y&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-25.webp",
-    "image_url": "https://dimg.dillards.com/is/image/DillardsZoom/alt/olivia-burton-womens-finer-quartz-analog-stainless-steel-mesh-bracelet-watch/00000000_zi_4520bc51-87cc-4838-b26b-7c53e380ec9d.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
@@ -813,11 +677,8 @@
     "url": "https://www.macys.com/shop/product/coach-womens-harlow-gold-tone-stainless-steel-bracelet-watch-23.8mm?ID=25545253&utm_medium=openaifeed&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-29.webp",
-    "image_url": "https://slimages.macysassets.com/is/image/MCY/products/8/optimized/35417478_fpx.tif",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-3",
@@ -834,8 +695,7 @@
     "url": "https://www.dillards.com/p/movado-womens-museum-oval-quartz-analog-stainless-steel-bangle-bracelet-watch/520912521?cm_mmc=ChatGPT-_-Movado-_-063026-_-520912521&googleShop=Y&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-30.webp",
-    "image_url": "https://dimg.dillards.com/is/image/DillardsZoom/alt/movado-womens-museum-oval-quartz-analog-stainless-steel-bangle-bracelet-watch/00000000_zi_cec4f5fe-5941-4fd8-a014-6a9202694270.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
@@ -844,8 +704,7 @@
     "url": "https://www.nordstrom.com/s/the-mulberry-oval-bracelet-watch-22mm-x-34mm/9034533?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-31.webp",
-    "image_url": "https://watch-connection.com/cdn/shop/files/imgi_113_61qBdp2KBrL._AC_SL1500.jpg?v=1758580980",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
@@ -854,8 +713,7 @@
     "url": "https://www.nordstrom.com/s/ophelia-mini-leather-strap-watch-22mm-x-25-5mm/9039272?color=gold-tone%2Fblack&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-32.webp",
-    "image_url": "https://www.hollandwatchgroup.com/pictures/daniel-wellington-dw00100890-ophelia-mini-19226477.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
@@ -873,23 +731,19 @@
     "url": "https://www.nordstrom.com/s/parisienne-mesh-strap-watch-30mm-x-22mm/8451970?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-34.webp",
-    "image_url": "https://www.bijourama.com/media/produits/lacoste/img/montre-lacoste--femme-2001453_3690217_1140x1140.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   },
   {
     "id": "watch-35",
     "name": "Classic Black Leather Strap Watch",
     "url": "https://www.macys.com/shop/product/caravelle-womens-classic-black-leather-strap-watch-18.5mm?ID=26124337&utm_medium=openaifeed&utm_source=chatgpt.com",
-    "ok": false,
+    "ok": true,
+    "file": "public/products/watch-35.webp",
+    "image_url": "https://citizenwatch.widen.net/content/ekfcfzt9aj/webp/Vintage%2BClassic.webp?color=F9F8F6&crop=false&height=625&keep=c&quality=80&u=41zuoe&width=500",
+    "source": "curated product image",
     "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden",
-      "image https://www.zales.com/productimages/processed/V-20349509_0_800.jpg?pristine=true: HTTPError: HTTP Error 403: Forbidden",
-      "image https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg: HTTPError: HTTP Error 403: Forbidden"
-    ],
-    "candidates": [
-      "https://www.zales.com/productimages/processed/V-20349509_0_800.jpg?pristine=true",
-      "https://www.akamai.com/site/ko/images/logo/akamai-logo1.svg"
+      "page: HTTPError: HTTP Error 403: Forbidden"
     ]
   },
   {
@@ -907,11 +761,8 @@
     "url": "https://www.bloomingdales.com/shop/product/movado-museum-bangle-oval-watch-22mm-x-26mm?ID=5527070&swatchColor=White%2FSilver&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-37.webp",
-    "image_url": "https://dimg.dillards.com/is/image/DillardsZoom/alt/movado-womens-museum-oval-quartz-analog-stainless-steel-bangle-bracelet-watch/00000000_zi_cec4f5fe-5941-4fd8-a014-6a9202694270.jpg",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-4",
@@ -919,11 +770,8 @@
     "url": "https://www.macys.com/shop/product/anne-klein-womens-quartz-oval-gold-tone-stainless-steel-mesh-watch-26mm?ID=27177248&utm_medium=openaifeed&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-4.webp",
-    "image_url": "https://anneklein.com/cdn/shop/files/AK-5326RGRG_5c3382cc-65d2-4bfd-985c-74c91336e2f5_2048x.jpg?v=1755806048",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-5",
@@ -931,11 +779,8 @@
     "url": "https://www.macys.com/shop/product/anne-klein-womens-quartz-continental-oval-two-tone-stainless-steel-mesh-band-watch-26mm?ID=22073841&utm_medium=openaifeed&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-5.webp",
-    "image_url": "https://anneklein.com/cdn/shop/files/AK-5327SVTT_2048x.jpg?v=1759867773",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-6",
@@ -943,11 +788,8 @@
     "url": "https://www.macys.com/shop/product/anne-klein-womens-quartz-contemporary-oval-two-tone-metal-alloy-bracelet-watch-25mm?ID=21996914&utm_medium=openaifeed&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-6.webp",
-    "image_url": "https://anneklein.com/cdn/shop/files/AK-5021SVTT_2048x.jpg?v=1755269065",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 403: Forbidden"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-7",
@@ -955,23 +797,18 @@
     "url": "https://anneklein.com/products/consider-it-oval-case-leather-watch-gold-tone-ivory?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=41052349366343&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-7.webp",
-    "image_url": "https://anneklein.com/cdn/shop/files/AK-5154SVYL_2048x.jpg?v=1755268952",
-    "source": "curated product image",
-    "errors": [
-      "page: HTTPError: HTTP Error 404: Not Found"
-    ]
+    "source": "repository cache",
+    "errors": []
   },
   {
     "id": "watch-8",
     "name": "The Oval Mother-of-Pearl Bracelet Watch",
     "url": "https://www.nordstrom.com/s/the-oval-mother-of-pearl-bracelet-watch-22mm-x-28mm/8988809?color=silver%2Fmint+green&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
-    "ok": false,
-    "errors": [
-      "image https://editorialist.com/thumbnail/1200/2026/1/040/359/745/40359745~silvermother%20of%20pearl_1779283371617_0.webp?quali: HTTPError: HTTP Error 410: Gone"
-    ],
-    "candidates": [
-      "https://editorialist.com/thumbnail/1200/2026/1/040/359/745/40359745~silvermother%20of%20pearl_1779283371617_0.webp?quality=100&width=1200"
-    ]
+    "ok": true,
+    "file": "public/products/watch-8.webp",
+    "image_url": "https://s7.toryburch.com/is/image/ToryBurch/style/oval-watch-front.TB_185711_000_SLFRO.pdp-767x872.jpg",
+    "source": "curated product image",
+    "errors": []
   },
   {
     "id": "watch-9",
@@ -979,8 +816,7 @@
     "url": "https://www.nordstrom.com/s/the-oval-elongated-bracelet-watch-22mm-x-38mm/9036239?color=gold&size=one+size&utm_campaign=genai_shopping&utm_medium=organic&utm_source=chatgpt.com",
     "ok": true,
     "file": "public/products/watch-9.webp",
-    "image_url": "https://s7.toryburch.com/is/image/ToryBurch/style/elongated-oval-watch-front.TB_185731_000_SLFRO.pdp-767x872.jpg",
-    "source": "curated product image",
+    "source": "repository cache",
     "errors": []
   }
 ]
