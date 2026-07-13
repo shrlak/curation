@@ -1,6 +1,8 @@
-import { useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { icons } from "./icons.jsx";
+
+const isMobileViewport = () => window.matchMedia("(max-width: 720px)").matches;
 
 const BASE_TABS = [
   { route: "home", label: "Home", icon: "home" },
@@ -28,6 +30,7 @@ function Tab({ tab, active, onClick }) {
 
 export default function Nav({ route, go, favoriteCount, onOpenCart, onOpenAdd, theme, toggleTheme, customTabs }) {
   const progressRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -47,10 +50,20 @@ export default function Nav({ route, go, favoriteCount, onOpenCart, onOpenAdd, t
   const custom = customTabs.map((c) => ({ route: c.id, label: c.name, icon: "folder" }));
   const tabs = [...BASE_TABS, ...custom];
 
+  const selectTab = (route) => {
+    go(route);
+    setMenuOpen(false);
+  };
+
+  const onBrandClick = () => {
+    if (isMobileViewport()) setMenuOpen(true);
+    else go("home");
+  };
+
   return (
     <header className="header">
       <nav className="nav" aria-label="Main navigation">
-        <button className="brand" type="button" onClick={() => go("home")} aria-label="Home">
+        <button className="brand" type="button" onClick={onBrandClick} aria-label="Home and site menu">
           <span className="brand-mark" aria-hidden="true">
             <img src="./favicon.svg" alt="" />
           </span>
@@ -83,6 +96,54 @@ export default function Nav({ route, go, favoriteCount, onOpenCart, onOpenAdd, t
       <div className="progress">
         <span ref={progressRef} />
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            className="overlay drawer nav-menu-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setMenuOpen(false)}
+          >
+            <motion.aside
+              className="drawer-panel nav-menu-panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Site menu"
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 34 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="drawer-head">
+                <h2>Menu</h2>
+                <button className="icon-btn" type="button" onClick={() => setMenuOpen(false)} aria-label="Close menu">
+                  {icons.close}
+                </button>
+              </div>
+              <ul className="nav-menu-list">
+                {tabs.map((tab) => (
+                  <li key={tab.route}>
+                    <button
+                      className="nav-menu-item"
+                      type="button"
+                      data-active={route === tab.route}
+                      aria-current={route === tab.route ? "page" : undefined}
+                      onClick={() => selectTab(tab.route)}
+                    >
+                      {icons[tab.icon] || icons.folder}
+                      <span>{tab.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </motion.aside>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
