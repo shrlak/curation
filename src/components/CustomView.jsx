@@ -11,7 +11,7 @@ const rise = {
 const grid = { hidden: {}, show: { transition: { staggerChildren: 0.05 } } };
 
 const sourceOf = (item) => {
-  if (item.imageKey) return "Uploaded photo";
+  if (item.imageName) return "Uploaded photo";
   try {
     return new URL(item.url).hostname.replace(/^www\./, "");
   } catch {
@@ -43,7 +43,7 @@ export default function CustomView({ category, onRemove, onAdd }) {
           <button className="btn primary" type="button" onClick={() => onAdd(category.name)}>
             새로운 pick 추가하기 <span aria-hidden="true">＋</span>
           </button>
-          <span>이 브라우저에 안전하게 저장됨</span>
+          <span>모든 기기에서 자동으로 동기화됨</span>
         </div>
 
         <motion.ul className="grid" variants={grid} initial="hidden" animate="show">
@@ -57,7 +57,7 @@ export default function CustomView({ category, onRemove, onAdd }) {
                   rel="noopener noreferrer"
                   aria-label={`${item.name} 자세히 보기`}
                 />
-                <CustomImage item={item} tag={item.imageKey ? "Your photo" : "Freshly added"}>
+                <CustomImage item={item} tag={item.imageName ? "Your photo" : "Freshly added"}>
                   <button
                     className="card-del"
                     type="button"

@@ -12,9 +12,11 @@ import {
 } from "../lib/customCollections.js";
 
 const EMPTY = { url: "", category: "", name: "", price: "", note: "" };
+const NEW_TAB = "__new_tab__";
 
 export default function CustomCollectionDialog({ open, onClose, onSubmit, names, initialCategory, onNavigate }) {
   const [values, setValues] = useState(EMPTY);
+  const [categorySelect, setCategorySelect] = useState("");
   const autoRef = useRef({ category: true, name: true, price: true, note: true });
   const [analysis, setAnalysis] = useState({ message: "링크를 기다리는 중", state: "idle" });
   const [photoStatus, setPhotoStatus] = useState({ message: "사진을 드래그하거나 붙여넣을 수도 있어요.", state: "idle" });
@@ -33,6 +35,7 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
   useEffect(() => {
     if (!open) return;
     setValues({ ...EMPTY, category: initialCategory || "" });
+    setCategorySelect(initialCategory || (names.length === 0 ? NEW_TAB : ""));
     autoRef.current = { category: !initialCategory, name: true, price: true, note: true };
     setAnalysis({ message: "링크를 기다리는 중", state: "idle" });
     setPhotoStatus({ message: "사진을 드래그하거나 붙여넣을 수도 있어요.", state: "idle" });
@@ -60,6 +63,7 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
     setValues((v) => {
       const next = { ...v };
       for (const [field, value] of Object.entries(patch)) {
+        if (field === "category") continue;
         if (value && (v[field] === "" || autoRef.current[field])) {
           next[field] = value;
           autoRef.current[field] = true;
@@ -67,6 +71,19 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
       }
       return next;
     });
+    if (patch.category && autoRef.current.category) {
+      const match = names.find(
+        (name) => name.localeCompare(patch.category, undefined, { sensitivity: "accent" }) === 0,
+      );
+      setCategorySelect(match || NEW_TAB);
+      setValues((v) => ({ ...v, category: match || patch.category }));
+    }
+  };
+
+  const onCategorySelect = (value) => {
+    setCategorySelect(value);
+    autoRef.current.category = false;
+    setValues((v) => ({ ...v, category: value === NEW_TAB ? "" : value }));
   };
 
   const analyze = async (raw) => {
@@ -168,7 +185,7 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
       onClose();
       onNavigate(categoryId);
     } catch {
-      setError("사진을 브라우저에 저장하지 못했어요. 다른 사진으로 다시 시도해 주세요.");
+      setError("제품을 저장하지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.");
     } finally {
       setBusy(false);
     }
@@ -286,19 +303,32 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
 
               <div className="cc-field">
                 <label htmlFor="cc-category">Category</label>
-                <input
+                <select
                   id="cc-category"
-                  list="cc-category-list"
-                  placeholder="예: Sneakers"
                   required
-                  value={values.category}
-                  onChange={(e) => setField("category", e.target.value)}
-                />
-                <datalist id="cc-category-list">
+                  value={categorySelect}
+                  onChange={(e) => onCategorySelect(e.target.value)}
+                >
+                  <option value="" disabled>
+                    탭을 선택하세요
+                  </option>
                   {names.map((name) => (
-                    <option key={name} value={name} />
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
                   ))}
-                </datalist>
+                  <option value={NEW_TAB}>+ 새 탭 만들기</option>
+                </select>
+                {categorySelect === NEW_TAB && (
+                  <input
+                    id="cc-category-new"
+                    placeholder="새 탭 이름 · 예: Sneakers"
+                    required
+                    autoFocus
+                    value={values.category}
+                    onChange={(e) => setField("category", e.target.value)}
+                  />
+                )}
                 <small>같은 이름의 제품은 한 탭에 모입니다.</small>
               </div>
               <div className="cc-field">

@@ -1,12 +1,23 @@
 // Personal "Pharmer's pick" collections — add products from a link or a photo.
-// Ports the original vanilla logic: IndexedDB photo storage, microlink metadata
-// extraction, and heuristic category inference.
+// Tabs and products are synced across devices through Firestore; microlink
+// metadata extraction and heuristic category inference stay client-side.
 
-export const STORAGE_KEY = "curation-for-abigail-custom-collections-v1";
-const LEGACY_STORAGE_KEY = "abigail-orbit-custom-collections-v1";
-const IMAGE_DB_NAME = "curation-for-abigail-media-v1";
-const IMAGE_STORE = "product-images";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import { db } from "./firebase.js";
+
+const TABS_COLLECTION = "tabs";
+const PRODUCTS_COLLECTION = "products";
 export const MAX_PHOTO_BYTES = 30 * 1024 * 1024;
+// Firestore caps documents at 1 MiB; keep compressed photos well under that
+// so the rest of the product fields always fit alongside it.
+const MAX_PHOTO_DATA_URL_BYTES = 700_000;
 
 export const uid = () =>
   globalThis.crypto?.randomUUID?.() || `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
@@ -20,62 +31,37 @@ export const safeHttps = (value) => {
   }
 };
 
-const memoryImages = new Map();
-let imageDbPromise;
+// Resizes/re-encodes a photo in the browser so it can be embedded directly in
+// a Firestore document (no separate paid storage bucket needed).
+export const compressImageToDataUrl = async (file, maxDimension = 1280) => {
+  const bitmap = await createImageBitmap(file);
+  let width = bitmap.width;
+  let height = bitmap.height;
+  const scale = Math.min(1, maxDimension / Math.max(width, height));
+  width = Math.max(1, Math.round(width * scale));
+  height = Math.max(1, Math.round(height * scale));
 
-const openImageDb = () => {
-  if (!globalThis.indexedDB) return Promise.resolve(null);
-  if (imageDbPromise) return imageDbPromise;
-  imageDbPromise = new Promise((resolve, reject) => {
-    const request = indexedDB.open(IMAGE_DB_NAME, 1);
-    request.onupgradeneeded = () => {
-      if (!request.result.objectStoreNames.contains(IMAGE_STORE)) request.result.createObjectStore(IMAGE_STORE);
-    };
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  }).catch(() => null);
-  return imageDbPromise;
-};
-
-const imageStoreAction = async (mode, action) => {
-  const db = await openImageDb();
-  if (!db) return null;
-  return new Promise((resolve, reject) => {
-    const transaction = db.transaction(IMAGE_STORE, mode);
-    const request = action(transaction.objectStore(IMAGE_STORE));
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
-};
-
-export const storeProductPhoto = async (key, file) => {
-  const db = await openImageDb();
-  if (!db) {
-    memoryImages.set(key, file);
-    return;
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  let dataUrl = "";
+  for (let attempt = 0; attempt < 5; attempt += 1) {
+    canvas.width = width;
+    canvas.height = height;
+    ctx.clearRect(0, 0, width, height);
+    ctx.drawImage(bitmap, 0, 0, width, height);
+    let quality = 0.75;
+    dataUrl = canvas.toDataURL("image/jpeg", quality);
+    while (dataUrl.length > MAX_PHOTO_DATA_URL_BYTES && quality > 0.35) {
+      quality -= 0.1;
+      dataUrl = canvas.toDataURL("image/jpeg", quality);
+    }
+    if (dataUrl.length <= MAX_PHOTO_DATA_URL_BYTES) break;
+    width = Math.round(width * 0.75);
+    height = Math.round(height * 0.75);
   }
-  await imageStoreAction("readwrite", (store) => store.put(file, key));
+  bitmap.close?.();
+  return dataUrl;
 };
-
-export const readProductPhoto = async (key) => {
-  const db = await openImageDb();
-  return db ? imageStoreAction("readonly", (store) => store.get(key)) : memoryImages.get(key) || null;
-};
-
-export const deleteProductPhoto = async (key) => {
-  if (!key) return;
-  const db = await openImageDb();
-  if (db) await imageStoreAction("readwrite", (store) => store.delete(key));
-  else memoryImages.delete(key);
-};
-
-export const blobDataUrl = (blob) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = () => reject(reader.error);
-    reader.readAsDataURL(blob);
-  });
 
 const imageExtension = /\.(?:jpe?g|png|webp|gif|avif|heic|heif|bmp|tiff?|svg)$/i;
 export const isImageFile = (file) =>
@@ -265,21 +251,50 @@ export async function fetchProductMetadata(url, signal) {
   }
 }
 
-export function loadCollections() {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY) || "[]");
-    return Array.isArray(parsed)
-      ? parsed.filter((category) => category?.id && category?.name && Array.isArray(category.items))
-      : [];
-  } catch {
-    return [];
-  }
+// Subscribes to the shared `tabs` and `products` collections and calls
+// onChange with the merged, nested shape the rest of the app expects:
+// [{ id, name, items: [...] }]. Returns an unsubscribe function.
+export function subscribeCollections(onChange) {
+  let tabs = [];
+  let products = [];
+  let tabsReady = false;
+  let productsReady = false;
+
+  const emit = () => {
+    if (!tabsReady || !productsReady) return;
+    const byTab = new Map(tabs.map((tab) => [tab.id, { ...tab, items: [] }]));
+    for (const product of products) {
+      byTab.get(product.tabId)?.items.push(product);
+    }
+    const merged = [...byTab.values()];
+    for (const category of merged) category.items.sort((a, b) => b.addedAt - a.addedAt);
+    merged.sort((a, b) => a.createdAt - b.createdAt);
+    onChange(merged);
+  };
+
+  const unsubTabs = onSnapshot(collection(db, TABS_COLLECTION), (snap) => {
+    tabs = snap.docs.map((d) => ({ id: d.id, name: d.data().name, createdAt: d.data().createdAt?.toMillis?.() || 0 }));
+    tabsReady = true;
+    emit();
+  });
+  const unsubProducts = onSnapshot(collection(db, PRODUCTS_COLLECTION), (snap) => {
+    products = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    productsReady = true;
+    emit();
+  });
+
+  return () => {
+    unsubTabs();
+    unsubProducts();
+  };
 }
 
-export const saveCollections = (collections) => {
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(collections));
-  } catch {
-    /* ignore */
-  }
-};
+export const addTabDoc = (id, name) =>
+  setDoc(doc(db, TABS_COLLECTION, id), { name, createdAt: serverTimestamp() });
+
+export const addProductDoc = (id, data) =>
+  setDoc(doc(db, PRODUCTS_COLLECTION, id), { ...data, createdAt: serverTimestamp() });
+
+export const deleteProductDoc = (id) => deleteDoc(doc(db, PRODUCTS_COLLECTION, id));
+
+export const deleteTabDoc = (id) => deleteDoc(doc(db, TABS_COLLECTION, id));

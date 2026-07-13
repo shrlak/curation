@@ -551,8 +551,10 @@ html[data-theme="light"] .theme-btn .moon { display: none; }
 .cc-field { display: grid; gap: 6px; }
 .cc-field.full { grid-column: 1 / -1; }
 .cc-field label { font-family: var(--font-mono); font-size: 0.66rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-.cc-field input { min-height: 46px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
-.cc-field input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.cc-field input, .cc-field select { min-height: 46px; padding: 10px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-2); color: var(--text); outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+.cc-field input:focus, .cc-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.cc-field select { cursor: pointer; }
+.cc-field select + input { margin-top: 6px; }
 .cc-field small { font-size: 0.72rem; color: var(--faint); }
 .cc-intake { grid-column: 1 / -1; padding: 16px; border: 1px solid var(--line); border-radius: 18px; background: var(--surface); }
 .cc-intake-title { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 12px; }
