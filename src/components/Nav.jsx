@@ -9,11 +9,6 @@ const BASE_TABS = [
   { route: "lenses", label: "Lenses", icon: "lens" },
   { route: "scrubs", label: "Scrubs", icon: "scrub" },
 ];
-const TAIL_TABS = [
-  { route: "about", label: "About", icon: "about" },
-  { route: "acknowledgements", label: "Acknowledgements", icon: "ack" },
-  { route: "contact", label: "Contact", icon: "contact" },
-];
 
 function Tab({ tab, active, onClick }) {
   return (
@@ -50,7 +45,7 @@ export default function Nav({ route, go, favoriteCount, onOpenCart, onOpenAdd, t
   }, []);
 
   const custom = customTabs.map((c) => ({ route: c.id, label: c.name, icon: "folder" }));
-  const tabs = [...BASE_TABS, ...custom, ...TAIL_TABS];
+  const tabs = [...BASE_TABS, ...custom];
 
   return (
     <header className="header">
