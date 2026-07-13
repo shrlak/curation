@@ -10,7 +10,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import HTTPError, URLError
-from urllib.parse import quote, urljoin
+from urllib.parse import quote, urljoin, urlparse
 from urllib.request import Request, urlopen
 
 from PIL import Image, ImageOps
@@ -23,6 +23,70 @@ UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
     "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36"
 )
+
+# Product-only image assets used when retailer pages do not expose usable
+# metadata (or block automated page/image requests). These are normalized into
+# the repository cache by this script, so the live app never hotlinks them.
+IMAGE_OVERRIDES = {
+    "watch-1": "https://cdna.lystit.com/520/650/n/photos/macys/65532e15/rosefield-designer-Silver-Mini-Oval-Tone-Stainless-Steel-Bracelet-Watch-22mm.jpeg",
+    "watch-4": "https://anneklein.com/cdn/shop/files/AK-5326RGRG_5c3382cc-65d2-4bfd-985c-74c91336e2f5_2048x.jpg?v=1755806048",
+    "watch-5": "https://anneklein.com/cdn/shop/files/AK-5327SVTT_2048x.jpg?v=1759867773",
+    "watch-6": "https://anneklein.com/cdn/shop/files/AK-5021SVTT_2048x.jpg?v=1755269065",
+    "watch-7": "https://anneklein.com/cdn/shop/files/AK-5154SVYL_2048x.jpg?v=1755268952",
+    "watch-8": "https://editorialist.com/thumbnail/1200/2026/1/040/359/745/40359745~silvermother%20of%20pearl_1779283371617_0.webp?quality=100&width=1200",
+    "watch-9": "https://s7.toryburch.com/is/image/ToryBurch/style/elongated-oval-watch-front.TB_185731_000_SLFRO.pdp-767x872.jpg",
+    "watch-10": "https://www.kay.com/productimages/processed/V-331799104_0_800.jpg?pristine=true",
+    "watch-12": "https://www.kay.com/productimages/processed/V-331800300_0_800.jpg?pristine=true",
+    "watch-13": "https://slimages.macysassets.com/is/image/MCY/products/3/optimized/22992373_fpx.tif",
+    "watch-14": "https://www.reeds.com/media/catalog/product/cache/38c3c1b8e53ef11aa9803a5390245afc/c/o/coach_elliot_white_sunray_dial_mesh_stainless_steel_bracelet_watch_36mm-14504207-1-14504207-hxf8172fb5.jpg",
+    "watch-15": "https://www.kay.com/productimages/processed/V-331502207_0_800.jpg?pristine=true",
+    "watch-18": "https://www.zales.com/productimages/processed/V-20598112_0_800.jpg?pristine=true",
+    "watch-19": "https://dimg.dillards.com/is/image/DillardsZoom/alt/coach-womens-sammy-quartz-analog-gold-tone-stainless-steel-bracelet-watch/00000000_zi_f00c5e6d-3203-474b-84cd-6edac360529d.jpg",
+    "watch-21": "https://production.atgwasl.com/dw/image/v2/BDSP_PRD/on/demandware.static/-/Sites-coach-master-catalog/default/dwb84d3105/sfcc-coach-production/2/1/8/6/1/218616830_E1.jpg?sw=1000&sh=1250&q=90",
+    "watch-22": "https://slimages.macysassets.com/is/image/MCY/products/2/optimized/28662402_fpx.tif",
+    "watch-23": "https://dimg.dillards.com/is/image/DillardsZoom/alt/coach-womens-sammy-quartz-analog-stainless-steel-mesh-bracelet-watch/00000001_zi_32d2b504-0114-4a15-a065-1514c0a1f084.jpg",
+    "watch-25": "https://dimg.dillards.com/is/image/DillardsZoom/alt/olivia-burton-womens-finer-quartz-analog-stainless-steel-mesh-bracelet-watch/00000000_zi_4520bc51-87cc-4838-b26b-7c53e380ec9d.jpg",
+    "watch-29": "https://slimages.macysassets.com/is/image/MCY/products/8/optimized/35417478_fpx.tif",
+    "watch-30": "https://dimg.dillards.com/is/image/DillardsZoom/alt/movado-womens-museum-oval-quartz-analog-stainless-steel-bangle-bracelet-watch/00000000_zi_cec4f5fe-5941-4fd8-a014-6a9202694270.jpg",
+    "watch-31": "https://watch-connection.com/cdn/shop/files/imgi_113_61qBdp2KBrL._AC_SL1500.jpg?v=1758580980",
+    "watch-32": "https://www.hollandwatchgroup.com/pictures/daniel-wellington-dw00100890-ophelia-mini-19226477.jpg",
+    "watch-34": "https://www.bijourama.com/media/produits/lacoste/img/montre-lacoste--femme-2001453_3690217_1140x1140.jpg",
+    "watch-35": "https://www.zales.com/productimages/processed/V-20349509_0_800.jpg?pristine=true",
+    "watch-37": "https://dimg.dillards.com/is/image/DillardsZoom/alt/movado-womens-museum-oval-quartz-analog-stainless-steel-bangle-bracelet-watch/00000000_zi_cec4f5fe-5941-4fd8-a014-6a9202694270.jpg",
+    "lens-1": "https://www.fujiya-camera.co.jp/img/goods/L/C4548736131187_l.jpg",
+    "lens-2": "https://d1uzk9o9cg136f.cloudfront.net/f/16783155/rc/2020/02/26/f6dfcdf30539ec7d7243a1e9cf2bc514559fba64_large.jpg",
+    "lens-3": "https://bizweb.dktcdn.net/thumb/1024x1024/100/507/659/products/ong-kinh-sony-fe-24mm-f1-4-gm-hang-chinh-hang.jpg?v=1709714447990",
+    "lens-4": "https://www.fotopro.es/26402-large_default/sigma-24mm-f-14-dg-dn-art.jpg",
+    "lens-6": "https://cdn11.bigcommerce.com/s-745x53acpn/images/stencil/1280x1280/products/8543/38302/20260107_Sony_TITU_Jan1_Mar31_Web_Pic_10467__84654.1767830258.jpg?c=2",
+    "lens-7": "https://www.sony.com.au/image/4f8ed826f02307ff822d4ab29ff6220f?fmt=png-alpha&wid=480",
+    "lens-8": "https://cdn.webshopapp.com/shops/254654/files/368504290/800x1024x2/sigma-sigma-35mm-f14-dg-dn-art-sony-e-mount.jpg",
+    "lens-9": "https://www.photonet.cz/image/catalog/viltrox-af-35mm-f1-8-fe-sony_99.jpg",
+    "lens-10": "https://dukefotografia.com/65025-home_default/sony-objetivo-fe-50mm-f12-gm-sel50f12gm-sony.jpg",
+    "lens-11": "https://microless.com/cdn/products/e337e598f113b2b3d829429a26257f31-hi.jpg",
+    "lens-12": "https://omaxphoto.com/cdn/shop/files/50mm1.4sigma2.jpg?v=1741433399&width=5000",
+    "lens-13": "https://dukefotografia.com/59431-home_default/viltrox-af-50mm-f18-fe-sony-full-frame-viltrox.jpg",
+    "lens-14": "https://www.fotofenice.com/35324-large_default/obiettivo-ttartisan-50mm-f2-per-mirrorless-sony-e.jpg",
+    "lens-15": "https://cdn.shopify.com/s/files/1/0672/3806/8470/files/LensaTTArtisanTilt50mmf1.47_e34ff733-4536-4148-b2b4-a34dedb0a5b9.jpg?v=1718001553",
+    "lens-16": "https://fstudio.vtexassets.com/arquivos/ids/672105-1200-1200?aspect=true&height=1200&width=1200",
+    "lens-17": "https://www.camera-warehouse.com.au/media/catalog/product/cache/4c60323fdbce02b8f1d369b207d25a05/s/o/sony_sel85f14gm2_1.jpg",
+    "lens-18": "https://cdn.uniquephoto.com/resources/uniquephoto/images/products/processed/SGL322965.superZoom.a.jpg",
+    "lens-19": "https://www.cameraland.nl/media/catalog/product/v/i/viltrox-af-85mm-1-8-xfii-fuji-x_1_1.jpg",
+    "lens-20": "https://samyangus.com/cdn/shop/products/Rokinon_IO75AF-E_1.jpg?v=1600437281&width=1080",
+    "lens-21": "https://img-cdn.heureka.group/v1/67ab9006-1bfb-433b-a12d-e4660f601f0d.jpg?height=1200&width=1200",
+    "lens-22": "https://viltroxjapan.jp/cdn/shop/files/4573620730320_2e33fece-1449-4b28-8ea7-a37ab665b069.jpg?v=1738918238&width=1946",
+    "lens-23": "https://prophotosupply.com/cdn/shop/files/SEL1635GM2_A-3000px.png?v=1693339214&width=1946",
+    "lens-24": "https://media.foto-erhardt.de/images/product_images/original_images/248/sigma-16-28mm-f28-dg-dn-c-sony-e-165414924724810304.jpg",
+    "lens-25": "https://static01.galaxus.com/productimages/3/6/1/3/6/4/5/2/Tamron-17-28mm-III-RXD-A046-cover.jpg_720.jpeg",
+    "lens-26": "https://i.ebayimg.com/images/g/GhsAAOSwgVtkkIKo/s-l1600.webp",
+    "lens-27": "https://cdn.uniquephoto.com/resources/uniquephoto/images/products/processed/SGL57A965.superZoom.g.jpg",
+    "lens-28": "https://www.tamron.com/jp/consumer/pc_file/file/a063_main.webp",
+    "lens-29": "https://dtz3um9jw7ngl.cloudfront.net/p/l/9245024S/9245024S.jpg",
+    "lens-30": "https://www.fujiya-camera.co.jp/img/goods/L/C4960371006703_l.jpg",
+    "lens-31": "https://i.ebayimg.com/images/g/hpYAAeSwrKto~v3n/s-l1600.jpg",
+    "lens-32": "https://www.tamron.com/jp/consumer/pc_file/file/a065_main.webp",
+    "lens-33": "https://fotocuratolo.it/prodotti/3533/XXL/3533foto.jpg",
+    "lens-34": "https://www.kamera-express.nl/media/9e75f3ab-16b0-44a7-9f67-2e90954485de/samyang-af-35-150mm-f-2-2-8-sony-fe.jpg",
+}
 
 
 class MetadataParser(HTMLParser):
@@ -184,9 +248,16 @@ def process(product):
     errors = []
     candidates = []
     final_url = product["url"]
+    override = IMAGE_OVERRIDES.get(product["id"])
+    if override:
+        candidates.append((override, "curated product image"))
     try:
         direct, final_url, warning = page_metadata_images(product["url"])
-        candidates.extend((url, "page metadata") for url in direct)
+        candidates.extend(
+            (url, "page metadata")
+            for url in direct
+            if all(url != candidate for candidate, _ in candidates)
+        )
         if warning:
             errors.append(warning)
     except Exception as exc:
@@ -201,7 +272,11 @@ def process(product):
 
     for image_url, source in candidates:
         try:
-            output = save_thumbnail(product, image_url, final_url)
+            image_referer = final_url
+            if source == "curated product image":
+                parsed = urlparse(image_url)
+                image_referer = f"{parsed.scheme}://{parsed.netloc}/"
+            output = save_thumbnail(product, image_url, image_referer)
             return {
                 **product,
                 "ok": True,
