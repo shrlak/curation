@@ -5,6 +5,7 @@ import {
   compressImageToDataUrl,
   deleteProductDoc,
   deleteTabDoc,
+  migrateLocalCollections,
   subscribeCollections,
   uid,
 } from "../lib/customCollections.js";
@@ -12,7 +13,10 @@ import {
 export function useCustomCollections(notify) {
   const [collections, setCollections] = useState([]);
 
-  useEffect(() => subscribeCollections(setCollections), []);
+  useEffect(() => {
+    migrateLocalCollections();
+    return subscribeCollections(setCollections);
+  }, []);
 
   const addProduct = useCallback(
     async ({ categoryName, productName, price, note, url, image, photoFile }) => {
