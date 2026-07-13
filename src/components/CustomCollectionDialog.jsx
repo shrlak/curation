@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { icons } from "./icons.jsx";
 import {
+  BUILTIN_TABS,
   MAX_PHOTO_BYTES,
   fetchProductMetadata,
   formatFileSize,
@@ -13,7 +14,7 @@ import {
 
 const EMPTY = { url: "", category: "", name: "", price: "", note: "" };
 const NEW_TAB = "__new_tab__";
-const PRESET_TABS = ["Necklaces", "Watches", "Lenses", "Scrubs"];
+const PRESET_TABS = Object.keys(BUILTIN_TABS);
 
 export default function CustomCollectionDialog({ open, onClose, onSubmit, names, initialCategory, onNavigate }) {
   const [values, setValues] = useState(EMPTY);

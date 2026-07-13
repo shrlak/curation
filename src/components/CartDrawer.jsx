@@ -5,8 +5,8 @@ import { productMap, variantUrl } from "../data/index.js";
 
 const httpsOnly = (url) => (/^https:\/\//i.test(String(url)) ? url : "#");
 
-export default function CartDrawer({ open, onClose, favoriteIds, onRemove, colorOf }) {
-  const items = favoriteIds.map((id) => productMap.get(id)).filter(Boolean);
+export default function CartDrawer({ open, onClose, favoriteIds, onRemove, colorOf, customProductMap }) {
+  const items = favoriteIds.map((id) => productMap.get(id) || customProductMap?.get(id)).filter(Boolean);
 
   return (
     <AnimatePresence>
