@@ -185,7 +185,7 @@ export default function CustomCollectionDialog({ open, onClose, onSubmit, names,
       onClose();
       onNavigate(categoryId);
     } catch {
-      setError("사진을 브라우저에 저장하지 못했어요. 다른 사진으로 다시 시도해 주세요.");
+      setError("제품을 저장하지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.");
     } finally {
       setBusy(false);
     }
