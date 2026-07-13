@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - "index.html"
       - "assets/**"
+      - "products/**"
       - "favicon.svg"
       - "site.webmanifest"
       - ".nojekyll"
@@ -47,7 +48,9 @@ jobs:
         if: github.event_name == 'push'
         run: |
           rm -rf assets
+          rm -rf products
           cp -R dist/assets assets
+          cp -R dist/products products
           cp dist/index.html index.html
           cp dist/favicon.svg favicon.svg
           cp dist/site.webmanifest site.webmanifest
@@ -55,7 +58,7 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A -- index.html assets favicon.svg site.webmanifest .nojekyll
+          git add -A -- index.html assets products favicon.svg site.webmanifest .nojekyll
 
           if git diff --cached --quiet; then
             echo "Pages fallback is already current."
