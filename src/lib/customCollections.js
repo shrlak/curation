@@ -6,6 +6,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDocs,
   onSnapshot,
   serverTimestamp,
   setDoc,
@@ -14,6 +15,11 @@ import { db } from "./firebase.js";
 
 const TABS_COLLECTION = "tabs";
 const PRODUCTS_COLLECTION = "products";
+const LEGACY_STORAGE_KEY = "curation-for-abigail-custom-collections-v1";
+const LEGACY_STORAGE_KEY_V0 = "abigail-orbit-custom-collections-v1";
+const LEGACY_IMAGE_DB = "curation-for-abigail-media-v1";
+const LEGACY_IMAGE_STORE = "product-images";
+const MIGRATION_FLAG = "curation-for-abigail-firestore-migrated-v1";
 export const MAX_PHOTO_BYTES = 30 * 1024 * 1024;
 // Firestore caps documents at 1 MiB; keep compressed photos well under that
 // so the rest of the product fields always fit alongside it.
@@ -298,3 +304,71 @@ export const addProductDoc = (id, data) =>
 export const deleteProductDoc = (id) => deleteDoc(doc(db, PRODUCTS_COLLECTION, id));
 
 export const deleteTabDoc = (id) => deleteDoc(doc(db, TABS_COLLECTION, id));
+
+const readLegacyPhoto = (key) =>
+  new Promise((resolve) => {
+    if (!globalThis.indexedDB) return resolve(null);
+    const request = indexedDB.open(LEGACY_IMAGE_DB);
+    request.onerror = () => resolve(null);
+    request.onsuccess = () => {
+      const database = request.result;
+      if (!database.objectStoreNames.contains(LEGACY_IMAGE_STORE)) return resolve(null);
+      const getRequest = database.transaction(LEGACY_IMAGE_STORE, "readonly").objectStore(LEGACY_IMAGE_STORE).get(key);
+      getRequest.onsuccess = () => resolve(getRequest.result || null);
+      getRequest.onerror = () => resolve(null);
+    };
+  });
+
+// One-time upgrade: earlier versions of this app kept tabs/products in this
+// browser's localStorage (+ photos in IndexedDB). Now that they're synced
+// through Firestore, pull any pre-existing local data in so it isn't
+// stranded on whichever device happened to create it.
+export async function migrateLocalCollections() {
+  if (localStorage.getItem(MIGRATION_FLAG)) return;
+  try {
+    const raw = localStorage.getItem(LEGACY_STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY_V0);
+    const parsed = raw ? JSON.parse(raw) : [];
+
+    if (Array.isArray(parsed) && parsed.length > 0) {
+      const existingTabs = await getDocs(collection(db, TABS_COLLECTION));
+      const tabIdByName = new Map(
+        existingTabs.docs.map((d) => [String(d.data().name || "").toLowerCase(), d.id]),
+      );
+
+      for (const category of parsed) {
+        if (!category?.id || !category?.name || !Array.isArray(category.items) || category.items.length === 0) continue;
+        const key = category.name.toLowerCase();
+        const tabId = tabIdByName.get(key) || category.id;
+        if (!tabIdByName.has(key)) {
+          await addTabDoc(tabId, category.name);
+          tabIdByName.set(key, tabId);
+        }
+        for (const item of category.items) {
+          if (!item?.id || !item?.name) continue;
+          let image = item.image || "";
+          let imageName = item.imageName || "";
+          if (item.imageKey) {
+            const blob = await readLegacyPhoto(item.imageKey);
+            if (blob) {
+              image = await compressImageToDataUrl(blob);
+              imageName = imageName || "Uploaded photo";
+            }
+          }
+          await addProductDoc(item.id, {
+            tabId,
+            name: item.name,
+            url: item.url || "",
+            price: item.price || "",
+            note: item.note || "",
+            image,
+            imageName,
+            addedAt: item.addedAt || Date.now(),
+          });
+        }
+      }
+    }
+    localStorage.setItem(MIGRATION_FLAG, "1");
+  } catch {
+    /* leave the migration flag unset so it can be retried next load */
+  }
+}
