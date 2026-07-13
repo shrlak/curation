@@ -418,6 +418,7 @@ html[data-theme="light"] .theme-btn .moon { display: none; }
 .fav[data-on="true"] { background: var(--grad); color: var(--accent-ink); border-color: transparent; }
 .fav:hover, .card-del:hover { transform: scale(1.1); border-color: color-mix(in srgb, var(--accent) 45%, var(--line)); }
 .card-del:hover { color: #ff6b6b; }
+.fav ~ .card-del { right: auto; left: 11px; top: 49px; }
 .quick { left: 50%; bottom: 12px; min-height: 38px; padding: 0 16px; border-radius: 999px; font-size: 0.74rem; font-weight: 600;
   opacity: 0; transform: translate(-50%, 12px); }
 .card:hover .quick, .quick:focus-visible { opacity: 1; transform: translate(-50%, 0); }

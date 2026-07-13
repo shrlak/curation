@@ -69,7 +69,15 @@ export function useCustomCollections(notify) {
     [collections, notify],
   );
 
+  const removeBuiltinProduct = useCallback(
+    async (itemId) => {
+      await deleteProductDoc(itemId);
+      notify?.("제품을 삭제했어요.");
+    },
+    [notify],
+  );
+
   const names = useMemo(() => collections.map((c) => c.name), [collections]);
 
-  return { collections, addProduct, removeProduct, names, builtinItems };
+  return { collections, addProduct, removeProduct, names, builtinItems, removeBuiltinProduct };
 }

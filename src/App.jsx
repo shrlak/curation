@@ -49,6 +49,7 @@ export default function App() {
     removeProduct,
     names,
     builtinItems,
+    removeBuiltinProduct,
   } = useCustomCollections(notify);
 
   const customProductMap = useMemo(() => {
@@ -97,6 +98,7 @@ export default function App() {
           colorOf={colorOf}
           setColor={handleColor}
           customItems={builtinItems[route] || []}
+          onDeleteCustom={removeBuiltinProduct}
         />
       );
     }
@@ -105,7 +107,19 @@ export default function App() {
     if (route === "contact") return <Contact notify={notify} />;
     if (customCategory) return <CustomView category={customCategory} onRemove={handleRemove} onAdd={openAdd} />;
     return <Home go={go} onOpenAdd={() => openAdd()} />;
-  }, [route, favorites, colorOf, handleColor, notify, customCategory, handleRemove, openAdd, go, builtinItems]);
+  }, [
+    route,
+    favorites,
+    colorOf,
+    handleColor,
+    notify,
+    customCategory,
+    handleRemove,
+    openAdd,
+    go,
+    builtinItems,
+    removeBuiltinProduct,
+  ]);
 
   return (
     <>

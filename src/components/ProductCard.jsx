@@ -12,7 +12,7 @@ const rise = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
 
-export default function ProductCard({ product, isFav, onToggleFav, onQuick, color, onColor }) {
+export default function ProductCard({ product, isFav, onToggleFav, onQuick, color, onColor, onDelete }) {
   const { tag, match, matchClass, kind, note } = cardFields(product);
   const isScrub = product.type === "scrub";
   const hasColors = isScrub && colorsFor(product).length > 1;
@@ -62,6 +62,20 @@ export default function ProductCard({ product, isFav, onToggleFav, onQuick, colo
         >
           Quick view
         </button>
+        {product.isCustom && (
+          <button
+            className="card-del"
+            type="button"
+            aria-label={`${product.name} 삭제`}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onDelete(product.id);
+            }}
+          >
+            {icons.trash}
+          </button>
+        )}
       </ProductImage>
 
       <div className="copy">

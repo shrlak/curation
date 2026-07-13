@@ -60,7 +60,7 @@ const grid = {
   show: { transition: { staggerChildren: 0.05 } },
 };
 
-export default function Collection({ collectionKey, favorites, onToggleFav, onQuick, colorOf, setColor, customItems = [] }) {
+export default function Collection({ collectionKey, favorites, onToggleFav, onQuick, colorOf, setColor, customItems = [], onDeleteCustom }) {
   const config = collections[collectionKey];
   const meta = META[collectionKey];
   const [query, setQuery] = useState("");
@@ -150,6 +150,7 @@ export default function Collection({ collectionKey, favorites, onToggleFav, onQu
                 onQuick={onQuick}
                 color={colorOf(product)}
                 onColor={setColor}
+                onDelete={onDeleteCustom}
               />
             ))
           ) : (
