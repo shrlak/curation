@@ -18,6 +18,8 @@ import { useTheme } from "./hooks/useTheme.js";
 import { useFavorites } from "./hooks/useFavorites.js";
 import { useColors } from "./hooks/useColors.js";
 import { useCustomCollections } from "./hooks/useCustomCollections.js";
+import { collections as catalogCollections } from "./data/index.js";
+import { normalizeCustomProduct } from "./lib/customCollections.js";
 
 const COLLECTION_ROUTES = ["necklaces", "watches", "lenses", "scrubs"];
 const pageMotion = {
@@ -41,7 +43,22 @@ export default function App() {
 
   const favorites = useFavorites(notify);
   const { colorOf, setColor } = useColors();
-  const { collections: customCollections, addProduct, removeProduct, names } = useCustomCollections(notify);
+  const {
+    collections: customCollections,
+    addProduct,
+    removeProduct,
+    names,
+    builtinItems,
+  } = useCustomCollections(notify);
+
+  const customProductMap = useMemo(() => {
+    const map = new Map();
+    for (const routeKey of COLLECTION_ROUTES) {
+      const type = catalogCollections[routeKey].type;
+      for (const raw of builtinItems[routeKey] || []) map.set(raw.id, normalizeCustomProduct(raw, type));
+    }
+    return map;
+  }, [builtinItems]);
 
   const handleColor = useCallback(
     (product, color) => {
@@ -79,6 +96,7 @@ export default function App() {
           onQuick={setQuick}
           colorOf={colorOf}
           setColor={handleColor}
+          customItems={builtinItems[route] || []}
         />
       );
     }
@@ -87,7 +105,7 @@ export default function App() {
     if (route === "contact") return <Contact notify={notify} />;
     if (customCategory) return <CustomView category={customCategory} onRemove={handleRemove} onAdd={openAdd} />;
     return <Home go={go} onOpenAdd={() => openAdd()} />;
-  }, [route, favorites, colorOf, handleColor, notify, customCategory, handleRemove, openAdd, go]);
+  }, [route, favorites, colorOf, handleColor, notify, customCategory, handleRemove, openAdd, go, builtinItems]);
 
   return (
     <>
@@ -123,6 +141,7 @@ export default function App() {
         favoriteIds={favorites.ids}
         onRemove={favorites.remove}
         colorOf={colorOf}
+        customProductMap={customProductMap}
       />
       <CustomCollectionDialog
         open={addDialog.open}

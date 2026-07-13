@@ -4,6 +4,7 @@ import Toolbar from "./Toolbar.jsx";
 import ProductCard from "./ProductCard.jsx";
 import SetFeature from "./SetFeature.jsx";
 import { collections } from "../data/index.js";
+import { normalizeCustomProduct } from "../lib/customCollections.js";
 
 const META = {
   necklaces: {
@@ -59,20 +60,25 @@ const grid = {
   show: { transition: { staggerChildren: 0.05 } },
 };
 
-export default function Collection({ collectionKey, favorites, onToggleFav, onQuick, colorOf, setColor }) {
+export default function Collection({ collectionKey, favorites, onToggleFav, onQuick, colorOf, setColor, customItems = [] }) {
   const config = collections[collectionKey];
   const meta = META[collectionKey];
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState("");
   const [sort, setSort] = useState("recommended");
 
+  const allItems = useMemo(
+    () => [...customItems.map((item) => normalizeCustomProduct(item, config.type)), ...config.items],
+    [config.items, config.type, customItems],
+  );
+
   const filterOptions = useMemo(() => {
     if (!meta.dim) return [];
-    return [...new Set(config.items.map((item) => item[meta.dim]).filter(Boolean))].sort();
-  }, [config.items, meta.dim]);
+    return [...new Set(allItems.map((item) => item[meta.dim]).filter(Boolean))].sort();
+  }, [allItems, meta.dim]);
 
   const visible = useMemo(() => {
-    let list = [...config.items];
+    let list = [...allItems];
     const q = query.trim().toLowerCase();
     if (q) list = list.filter((item) => Object.values(item).join(" ").toLowerCase().includes(q));
     if (filter && meta.dim) list = list.filter((item) => item[meta.dim] === filter);
@@ -81,7 +87,7 @@ export default function Collection({ collectionKey, favorites, onToggleFav, onQu
     if (sort === "name") list.sort((a, b) => a.name.localeCompare(b.name));
     if (sort === "category") list.sort((a, b) => (a.category || "").localeCompare(b.category || ""));
     return list;
-  }, [config.items, query, filter, sort, meta.dim]);
+  }, [allItems, query, filter, sort, meta.dim]);
 
   const setProduct = collectionKey === "scrubs" ? config.items.find((item) => item.slug === "the-set-wide-leg") : null;
   const hasToolbar = Boolean(meta.dim);

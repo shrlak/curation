@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
+  BUILTIN_TABS,
   addProductDoc,
   addTabDoc,
   compressImageToDataUrl,
@@ -10,12 +11,20 @@ import {
   uid,
 } from "../lib/customCollections.js";
 
+const BUILTIN_TABS_LOWER = new Map(
+  Object.entries(BUILTIN_TABS).map(([label, route]) => [label.toLowerCase(), route]),
+);
+
 export function useCustomCollections(notify) {
   const [collections, setCollections] = useState([]);
+  const [builtinItems, setBuiltinItems] = useState({});
 
   useEffect(() => {
     migrateLocalCollections();
-    return subscribeCollections(setCollections);
+    return subscribeCollections((next) => {
+      setCollections(next.collections);
+      setBuiltinItems(next.builtinItems);
+    });
   }, []);
 
   const addProduct = useCallback(
@@ -26,9 +35,10 @@ export function useCustomCollections(notify) {
       const category = collections.find(
         (c) => c.name.localeCompare(categoryName, undefined, { sensitivity: "accent" }) === 0,
       );
-      const isNew = !category;
-      const tabId = category?.id || `custom-${uid()}`;
-      if (isNew) await addTabDoc(tabId, categoryName);
+      const builtinRoute = category ? null : BUILTIN_TABS_LOWER.get(categoryName.toLowerCase());
+      const isNewTab = !category && !builtinRoute;
+      const tabId = category?.id || builtinRoute || `custom-${uid()}`;
+      if (isNewTab) await addTabDoc(tabId, categoryName);
 
       await addProductDoc(itemId, {
         tabId,
@@ -41,7 +51,7 @@ export function useCustomCollections(notify) {
         addedAt: Date.now(),
       });
 
-      notify?.(isNew ? `“${categoryName}” 탭을 만들고 제품을 추가했어요.` : `“${categoryName}”에 제품을 추가했어요.`);
+      notify?.(isNewTab ? `“${categoryName}” 탭을 만들고 제품을 추가했어요.` : `“${categoryName}”에 제품을 추가했어요.`);
       return tabId;
     },
     [collections, notify],
@@ -61,5 +71,5 @@ export function useCustomCollections(notify) {
 
   const names = useMemo(() => collections.map((c) => c.name), [collections]);
 
-  return { collections, addProduct, removeProduct, names };
+  return { collections, addProduct, removeProduct, names, builtinItems };
 }

@@ -15,6 +15,17 @@ import { db } from "./firebase.js";
 
 const TABS_COLLECTION = "tabs";
 const PRODUCTS_COLLECTION = "products";
+// Maps the preset category labels shown in the "add a product" dropdown to
+// the site's built-in collection routes. Products filed under one of these
+// don't get their own custom tab — they're merged directly into that
+// built-in collection page instead.
+export const BUILTIN_TABS = {
+  Necklaces: "necklaces",
+  Watches: "watches",
+  Lenses: "lenses",
+  Scrubs: "scrubs",
+};
+const BUILTIN_TAB_IDS = new Set(Object.values(BUILTIN_TABS));
 const LEGACY_STORAGE_KEY = "curation-for-abigail-custom-collections-v1";
 const LEGACY_STORAGE_KEY_V0 = "abigail-orbit-custom-collections-v1";
 const LEGACY_IMAGE_DB = "curation-for-abigail-media-v1";
@@ -258,8 +269,11 @@ export async function fetchProductMetadata(url, signal) {
 }
 
 // Subscribes to the shared `tabs` and `products` collections and calls
-// onChange with the merged, nested shape the rest of the app expects:
-// [{ id, name, items: [...] }]. Returns an unsubscribe function.
+// onChange({ collections, builtinItems }):
+//   - collections: [{ id, name, items: [...] }] for custom tabs
+//   - builtinItems: { necklaces: [...], watches: [...], lenses: [...], scrubs: [...] }
+//     for products filed straight into a built-in collection page.
+// Returns an unsubscribe function.
 export function subscribeCollections(onChange) {
   let tabs = [];
   let products = [];
@@ -269,13 +283,16 @@ export function subscribeCollections(onChange) {
   const emit = () => {
     if (!tabsReady || !productsReady) return;
     const byTab = new Map(tabs.map((tab) => [tab.id, { ...tab, items: [] }]));
+    const builtinItems = Object.fromEntries([...BUILTIN_TAB_IDS].map((id) => [id, []]));
     for (const product of products) {
-      byTab.get(product.tabId)?.items.push(product);
+      if (BUILTIN_TAB_IDS.has(product.tabId)) builtinItems[product.tabId].push(product);
+      else byTab.get(product.tabId)?.items.push(product);
     }
     const merged = [...byTab.values()];
     for (const category of merged) category.items.sort((a, b) => b.addedAt - a.addedAt);
     merged.sort((a, b) => a.createdAt - b.createdAt);
-    onChange(merged);
+    for (const list of Object.values(builtinItems)) list.sort((a, b) => b.addedAt - a.addedAt);
+    onChange({ collections: merged, builtinItems });
   };
 
   const unsubTabs = onSnapshot(collection(db, TABS_COLLECTION), (snap) => {
@@ -372,3 +389,26 @@ export async function migrateLocalCollections() {
     /* leave the migration flag unset so it can be retried next load */
   }
 }
+
+const parsePriceNumber = (value) => {
+  const match = String(value || "").match(/[\d,.]+/);
+  if (!match) return null;
+  const number = Number(match[0].replace(/,/g, ""));
+  return Number.isFinite(number) ? number : null;
+};
+
+// Adapts a raw Firestore product doc filed under a built-in collection
+// (see BUILTIN_TABS) into the shape Collection/ProductCard/QuickView expect
+// from the site's static catalog data.
+export const normalizeCustomProduct = (item, type) => ({
+  id: item.id,
+  type,
+  name: item.name,
+  price: parsePriceNumber(item.price),
+  priceLabel: item.price || "Research",
+  image: item.image || "",
+  url: item.url,
+  brand: "Your pick",
+  note: item.note,
+  isCustom: true,
+});

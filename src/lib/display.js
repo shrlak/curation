@@ -2,6 +2,9 @@
 // Ports the field logic from the original app.js renderer.
 
 export function cardFields(product) {
+  if (product.isCustom) {
+    return { tag: "Your pick", match: "", matchClass: "", kind: "Personally added", note: product.note };
+  }
   const { type } = product;
   const tag =
     type === "watch"
@@ -48,7 +51,23 @@ export function cardFields(product) {
   return { tag, match, matchClass, kind, note };
 }
 
+const hostnameOf = (url) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "—";
+  }
+};
+
 export function quickSpecs(product) {
+  if (product.isCustom) {
+    return [
+      ["Price", product.priceLabel],
+      ["Source", hostnameOf(product.url)],
+      ["Added by", "You"],
+      ["Type", product.type],
+    ];
+  }
   const { type } = product;
   if (type === "watch")
     return [
