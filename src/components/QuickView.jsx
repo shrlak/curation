@@ -13,9 +13,11 @@ export default function QuickView({ product, onClose, colorOf, setColor }) {
   const hasColors = isScrub && colorsFor(product).length > 1;
   const url = product ? (isScrub ? variantUrl(product, color) : product.url) : "#";
   const typeLine = product
-    ? isScrub
-      ? `FIGS · ${product.category || "Scrubs"} · ${color}`
-      : `${product.brand} · ${product.type}`
+    ? product.isCustom
+      ? "Your pick · Personally added"
+      : isScrub
+        ? `FIGS · ${product.category || "Scrubs"} · ${color}`
+        : `${product.brand} · ${product.type}`
     : "";
 
   return (

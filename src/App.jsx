@@ -58,8 +58,11 @@ export default function App() {
       const type = catalogCollections[routeKey].type;
       for (const raw of builtinItems[routeKey] || []) map.set(raw.id, normalizeCustomProduct(raw, type));
     }
+    for (const category of customCollections) {
+      for (const raw of category.items) map.set(raw.id, normalizeCustomProduct(raw, "custom"));
+    }
     return map;
-  }, [builtinItems]);
+  }, [builtinItems, customCollections]);
 
   const handleColor = useCallback(
     (product, color) => {
@@ -105,7 +108,17 @@ export default function App() {
     if (route === "about") return <About />;
     if (route === "acknowledgements") return <Acknowledgements />;
     if (route === "contact") return <Contact notify={notify} />;
-    if (customCategory) return <CustomView category={customCategory} onRemove={handleRemove} onAdd={openAdd} />;
+    if (customCategory)
+      return (
+        <CustomView
+          category={customCategory}
+          onRemove={handleRemove}
+          onAdd={openAdd}
+          favorites={favorites}
+          onToggleFav={favorites.toggle}
+          onQuick={setQuick}
+        />
+      );
     return <Home go={go} onOpenAdd={() => openAdd()} />;
   }, [
     route,
