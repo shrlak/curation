@@ -220,9 +220,9 @@ html[data-theme="light"] .spotlight { background: radial-gradient(360px 360px at
 /* -------------------------------------------------------------------------
    Header / nav
    ------------------------------------------------------------------------- */
-.skip { position: fixed; z-index: 999; top: calc(var(--safe-top) + 10px); left: 10px; transform: translateY(-160%);
+.skip { position: fixed; z-index: 999; top: 10px; left: 10px; transform: translateY(-200%);
   border-radius: 999px; padding: 10px 16px; background: var(--text); color: var(--bg); transition: 0.2s; }
-.skip:focus { transform: none; }
+.skip:focus { top: calc(var(--safe-top) + 10px); transform: none; }
 
 .header { position: sticky; z-index: 90; top: 0; height: calc(var(--nav-h) + var(--safe-top));
   padding-top: var(--safe-top);
